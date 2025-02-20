@@ -1,0 +1,161 @@
+.NewsKeret
+{
+    text-align: justify;
+    width: 600px;
+    border-style: solid;
+    border:50px;
+    border-color: black;
+
+}
+#Comment{
+    float: left;
+
+}
+.popup{
+    display: none;
+    width: 700px;
+    height: 700px;
+    z-index: 1;
+    position: fixed;
+    background-image: url(NewsImg/BGscroll.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    border-radius: 50px;
+    left: 25%;
+    top: 1%
+    
+    
+
+
+}
+.szovegd{
+    resize: none;
+    width: 400px;
+    height: 50px;
+    border: 3px black solid;
+    border-radius: 3%;
+
+
+} 
+.NImg{
+    width: 150px;
+
+
+
+}
+.SzN{
+    text-align: justify;
+    width: 500px;
+    height: auto;
+    border: solid black 5px;
+    color: white;
+    background-color: rgb(7, 63, 7);
+    font-size: 18px;
+
+}
+#NewsTable{
+    margin: 0 auto;
+    
+
+
+
+}
+#eltun{
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0.001%;
+    right: 0.001%;
+    z-index: 1;
+    filter: blur(5px);
+    background-color: gray;
+    opacity: 70%;
+    overflow-y: auto;
+
+}
+#kommentelj1{
+    width: 500px;
+    height: 550px;
+    background-color: white;
+    border: 5px black solid;
+    border-radius: 5%;
+    overflow-y: auto;
+    margin-bottom: 10px;
+
+
+
+
+}
+#egyutt1{
+    position: relative;
+    left: 100px;
+    top: 50px;
+
+
+}
+.kuld:hover,.jelent:hover{
+    background-color: darkred;
+
+}
+.kuld{
+    color: white;
+    background-color: red;
+    border: black 1px solid;
+    border-radius: 5%;
+
+}
+.megjelent{
+    width: auto;
+    height: auto;
+    border-radius: 5%;
+    background-color: gray;
+    margin-bottom: 5px;
+    border-bottom: black solid 3px;
+
+}
+.jelent{
+    background-color: red;
+    color: white;
+
+}
+table
+{
+    border: solid black 5px;
+    background-color: black;
+}
+.krt{
+    border: solid black 5px;
+    background-color: rgba(169, 169, 169, 0.39);
+
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+  
+  /* Track */
+::-webkit-scrollbar-track {
+    background: black;
+}
+  
+  /* Handle */
+::-webkit-scrollbar-thumb {
+    background: brown;
+    border-radius: 10px;
+}
+  
+  /* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: darkred;
+}
+body{
+    background-image: url("NewsImg/BGtable.png");
+    background-size:     cover;                     
+    background-repeat:   no-repeat;
+    background-position: center center; 
+
+}
+h1{
+    color: white;
+}
