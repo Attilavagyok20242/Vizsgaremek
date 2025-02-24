@@ -1,3 +1,11 @@
+<?php
+require("../Kapcsolat.php");
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="hu">
 <head>
@@ -25,7 +33,7 @@
             </form>
         </div>
         <td class="krt"><img src="NewsImg/Orbán.png" class="NImg"></td>
-        <td class="SzN"><?php ?><?php require("../Kapcsolat.php"); $sql = "SELECT hir FROM `hirek` WHERE 0=(SELECT id FROM hirek ORDER BY id DESC LIMIT 1)-id;";
+        <td class="SzN"><?php ?><?php $sql = "SELECT hir FROM `hirek` WHERE 0=(SELECT id FROM hirek ORDER BY id DESC LIMIT 1)-id;";
                         $result = $con->query($sql);
                         $szoveg=$result->fetch_assoc();
                         print($szoveg["hir"]);
@@ -50,7 +58,7 @@
             </form>
         </div>
         <td class="krt"><img src="NewsImg/Orbán.png" class="NImg"></td>
-        <td class="SzN"><?php require("../Kapcsolat.php"); $sql = "SELECT hir FROM `hirek` WHERE 1=(SELECT id FROM hirek ORDER BY id DESC LIMIT 1)-id;";
+        <td class="SzN"><?php $sql = "SELECT hir FROM `hirek` WHERE 1=(SELECT id FROM hirek ORDER BY id DESC LIMIT 1)-id;";
                         $result = $con->query($sql);
                         $szoveg=$result->fetch_assoc();
                         print($szoveg["hir"]);
@@ -76,7 +84,7 @@
             </form>
         </div>
         <td class="krt"><img src="NewsImg/Orbán.png" class="NImg"></td>
-        <td class="SzN"><?php require("../Kapcsolat.php"); $sql = "SELECT hir FROM `hirek` WHERE 2=(SELECT id FROM hirek ORDER BY id DESC LIMIT 1)-id;";
+        <td class="SzN"><?php $sql = "SELECT hir FROM `hirek` WHERE 2=(SELECT id FROM hirek ORDER BY id DESC LIMIT 1)-id;";
                         $result = $con->query($sql);
                         $szoveg=$result->fetch_assoc();
                         print($szoveg["hir"]);
