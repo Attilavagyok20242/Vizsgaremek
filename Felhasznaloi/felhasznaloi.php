@@ -1,3 +1,19 @@
+<?php
+require("../Kapcsolat.php");
+if(isset($_FILES["image"])){
+    $fileName=$_FILES["image"]["name"];
+    $tmpName=$_FILES["image"]["tmp_name"];
+
+    move_uploaded_file($tmpName, 'img/'.$fileName);
+
+    $conn->query("INSERT INTO kepek (kepek) VALUES ('" . $fileName . "')");
+}
+
+
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="hu">
 <head>
@@ -83,46 +99,3 @@
 <script src="felhasznaloi.js"></script>
 </body>
 </html>
-
-
-
-<?php
-    // require_once("../Kapcsolat.php");
-    
-    // if ($_FILES["felh_ikon"]["error"]===4) 
-    // {
-    //     echo
-    //     "<script> alert('Kép nem létezik')</script>";
-    // }
-    // else{
-    //     $fileName=$_FILES["felh_ikon"]["name"];
-    //     $fileSize=$_FILES["felh_ikon"]["size"];
-    //     $tmpName=$_FILES["felh_ikon"]["tmp_name"];
-
-    //     $validImageExtension=['jpg','jpeg','png'];
-    //     $imageExtension=explode('.',$fileName);
-    //     $imageExtension=strtolower(end($imageExtension));
-    //     if (!in_array($imageExtension,$validImageExtension)) {
-    //         echo
-    //         "<script>alert('Rossz képkiterjesztés!');</script>";
-    //     }
-    //     else if($fileSize>1000000){
-    //         echo
-    //         "<script>alert('Kép túl nagy!');</script>";
-    //     }
-    //     else
-    //     {
-    //         $newImageName=uniqid();
-    //         $newImageName.='.'.$imageExtension;
-    //         move_uploaded_file($tmpName, 'ikon/'.$newImageName);
-    //         $query="UPDATE TABLE tb_upload VALUES ('','$name','$newImageName')";
-    //         $sql = "UPDATE felhasznalo SET profil_kep='$newImageName' WHERE id=1";
-    //         $conn->query($query);
-    //         echo
-    //         "<script>alert('Kép sikeresen feltöltve!'); document.location.href='data.php'</script>";
-
-            
-    //     }
-    // }
-
-?>
