@@ -2,36 +2,26 @@ $(document).ready(function () {
     $("#nevchan").click(function (e) { 
        $("#box1").slideToggle("slow");
     });
-});
-
-$(document).ready(function () {
     $("#emailchan").click(function (e) { 
-       $("#box2").slideToggle("slow");
-    });
+        $("#box2").slideToggle("slow");
+     });
+     $("#jelchan").click(function (e) { 
+        $("#box3").slideToggle("slow");
+     });
+     $("#adatvaltoz").click(function (e) { 
+        $("#kartya2").fadeIn("slow");
+        $("#kartya1").hide("fast");
+     });
+     $("#profilkep").click(function (e) { 
+        $("#kartya1").fadeIn("slow");
+        $("#kartya2").hide("fast");
+     });
 });
-$(document).ready(function () {
-    $("#jelchan").click(function (e) { 
-       $("#box3").slideToggle("slow");
-    });
-});
-$(document).ready(function () {
-    $("#adatvaltoz").click(function (e) { 
-       $("#kartya2").fadeIn("slow");
-       $("#kartya1").hide("fast");
-    });
-});
-$(document).ready(function () {
-    $("#profilkep").click(function (e) { 
-       $("#kartya1").fadeIn("slow");
-       $("#kartya2").hide("fast");
-    });
-});
-
 function JelVizsgal()
 {
     jelszo1=document.getElementById("ujjelszo");
     jelszo2=document.getElementById("ujujjelszo");
-    visszajelzes=document.getElementById("visszajelzes3");
+    visszajelzes=document.getElementById("visszajelzesjelszo");
     if (jelszo1.value!="" || jelszo2.value!="") {
         if (jelszo1.value==jelszo2.value) {
             Modosit(jelszo1.value,visszajelzes);
@@ -48,13 +38,11 @@ function JelVizsgal()
         visszajelzes.style.color="red";
         visszajelzes.innerHTML="Nem adott meg jelszót!";
     }
-
-
 }
-function Modosit(jelszo1,visszajelzes)
+function JelszoModosit(jelszo1,visszajelzes)
 {
     var xhttp = new XMLHttpRequest();
-    xhttp.open('POST', 'Jelszovaltoz.php', true);
+    xhttp.open('POST', 'adatvaltoz.php', true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.onload = function () {
         visszajelzes.style.color="darkgreen";
@@ -62,28 +50,54 @@ function Modosit(jelszo1,visszajelzes)
     };
     xhttp.send('jelszo1='+jelszo1);
 }
-function KepFeltolt()
+function Megerosit()
 {
-    profilkep=document.getElementById("profil");
-    utvonal=document.getElementById("kepfeltolt");
+    email=document.getElementById("megerosit").value;
     var xhttp = new XMLHttpRequest();
-    xhttp.open('FILE', 'felhasznaloi.php', true);
+    xhttp.open('POST', 'Megerosit.php', true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.onload = function () {
-        profilkep.src = this.responseText;
+        alert(this.responseText);
     };
-    xhttp.send(utvonal);
-    
-
-
-
-
+    xhttp.send('email='+email);
 }
-    
-    
-
-
-
-
-
-
+function FelhNevModosit()
+{
+    ujfelnev=document.getElementById("ujfelnev").value;
+    visszajelzes=document.getElementById("visszajelzesnev");
+    var xhttp = new XMLHttpRequest();
+    xhttp.open('POST', 'adatvaltoz.php', true);
+    xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhttp.onload = function () {
+        if (this.responseText!="foglalt") {
+            visszajelzes.style.color="darkgreen";
+            visszajelzes.innerHTML=this.responseText;
+        }
+        else{
+            visszajelzes.style.color="red";
+            visszajelzes.innerHTML="A felhasználónév már foglalt!";
+        }
+        
+        
+    };
+    xhttp.send('ujfelnev='+ujfelnev);
+}
+function EmailModosit()
+{
+    ujemail=document.getElementById("ujemail").value;
+    visszajelzes=document.getElementById("visszajelzesemail");
+    var xhttp = new XMLHttpRequest();
+    xhttp.open('POST', 'adatvaltoz.php', true);
+    xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhttp.onload = function () {
+        if (this.responseText!="foglalt") {
+            visszajelzes.style.color="darkgreen";
+            visszajelzes.innerHTML=this.responseText;
+        }
+        else{
+            visszajelzes.style.color="red";
+            visszajelzes.innerHTML="Ez az E-mail cím már foglalt!";
+        }
+    };
+    xhttp.send('ujemail='+ujemail);
+}

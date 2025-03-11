@@ -1,5 +1,5 @@
 <?php
-require("../Kapcsolat.php");
+require("../connection.php");
 
 
 

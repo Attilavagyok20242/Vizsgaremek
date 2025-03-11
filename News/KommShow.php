@@ -1,5 +1,5 @@
 <?php
-require("../Kapcsolat.php");
+require("../connection.php");
 $sql = "SELECT  Szoveg, Datum, felhasznalok.Felhasz_nev FROM felhasznalok INNER JOIN kommentek ON felhasznalok.id=kommentek.felhasznalo_id";
 $result = $con->query($sql);
 while($adatok = $result->fetch_assoc())

@@ -1,5 +1,5 @@
 <?php
-require("../Kapcsolat.php");
+require("../connection.php");
 if (isset($_POST["komment"])) {
     $komment=$_POST["komment"];
     if ($komment!="") {
