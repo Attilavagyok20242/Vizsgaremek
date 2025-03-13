@@ -1,8 +1,22 @@
 <?php
 require("../connection.php");
+$sql="SELECT hir_szoveg, hir_kep FROM hirek ORDER BY datum ASC LIMIT 3";
+$result=$con->query($sql);
 
-
-
+while($row=$result->fetch_assoc())
+{
+    $tomb[]=array
+    (
+        "hir_szoveg" => $row["hir_szoveg"],
+        "hir_kep" => $row["hir_kep"]
+    );
+}
+$elso_hir=$tomb[0]["hir_szoveg"];
+$masodik_hir=$tomb[1]["hir_szoveg"];
+$harmadik_hir=$tomb[2]["hir_szoveg"];
+$elso_hir_kep=$tomb[0]["hir_kep"];
+$masodik_hir_kep=$tomb[1]["hir_kep"];
+$harmadik_hir_kep=$tomb[2]["hir_kep"];
 ?>
 
 
@@ -13,90 +27,11 @@ require("../connection.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="News.css">
     
-    <title>News</title>
+    <title>Hírek</title>
 </head>
 <body>
 
-<div id="eltun" onclick="Eltun()"></div>
-    <h1>Hírek</h1>
-    <table id="NewsTable">
-    <tr>
-        <div class="popup" id="felugro1">
-            <form method="post" action="Kommentment.php" class="mozgat">
-                <div id="egyutt1">
-                <div id="kommentelj1">
-                    
-                </div>
-                <textarea class="szovegd" placeholder="Írd le véleményed..." name="komment"></textarea>
-                <input type="submit" class="kuld" value="Posztolom">
-                </div>
-            </form>
-        </div>
-        <td class="krt"><img src="NewsImg/Orbán.png" class="NImg"></td>
-        <td class="SzN"><?php ?><?php $sql = "SELECT hir FROM `hirek` WHERE 0=(SELECT id FROM hirek ORDER BY id DESC LIMIT 1)-id;";
-                        $result = $con->query($sql);
-                        $szoveg=$result->fetch_assoc();
-                        print($szoveg["hir"]);
-                        ?></td>
-    </tr>
-    <tr>
-    <td colspan="2" class="krt"><img src="NewsImg/Comment2.png" onclick="Komm()"alt="KOMMENT"><td>
-    </tr>
-    <tr>
-        <div class="popup" id="felugro2">
-            
-            <form method="post" action="Kommentment.php">
-                <div id="egyutt2">
-                <div id="kommentelj2">
-                    <div class="megjelent"><p>Szléj:</p><p>Sziasztok!</p><p>2024-10-23 11:12:13</p></div>
-                    <div class="megjelent"><p>Szléj:</p><p>Sziasztok!</p><p>2024-10-23 11:12:13</p></div>
-                    <div class="megjelent"><p>Szléj:</p><p>Sziasztok!</p><p>2024-10-23 11:12:13</p></div>
-                </div>
-                <textarea class="szovegd" placeholder="Írd le véleményed..." name="komment"></textarea>
-                <input type="submit" class="kuld" value="Posztolom">
-                </div>
-            </form>
-        </div>
-        <td class="krt"><img src="NewsImg/Orbán.png" class="NImg"></td>
-        <td class="SzN"><?php $sql = "SELECT hir FROM `hirek` WHERE 1=(SELECT id FROM hirek ORDER BY id DESC LIMIT 1)-id;";
-                        $result = $con->query($sql);
-                        $szoveg=$result->fetch_assoc();
-                        print($szoveg["hir"]);
-                        ?>
-        </td>
-    </tr>
-    <tr>
-    <td colspan="2" class="krt"><img src="NewsImg/Comment2.png" onclick="Comm()" alt="KOMMENT"><td>
-    </tr>
-    <tr>
-        <div class="popup" id="felugro3">
-            
-            <form method="post" action="Kommentment.php">
-                <div id="egyutt3">
-                <div id="kommentelj3">
-                    <div class="megjelent"><p>Szléj:</p><p>Sziasztok!</p><p>2024-10-23 11:12:13</p></div>
-                    <div class="megjelent"><p>Szléj:</p><p>Sziasztok!</p><p>2024-10-23 11:12:13</p></div>
-                    <div class="megjelent"><p>Szléj:</p><p>Sziasztok!</p><p>2024-10-23 11:12:13</p></div>
-                </div>
-                <textarea class="szovegd" placeholder="Írd le véleményed..." name="komment"></textarea>
-                <input type="submit" class="kuld" value="Posztolom">
-                </div>
-            </form>
-        </div>
-        <td class="krt"><img src="NewsImg/Orbán.png" class="NImg"></td>
-        <td class="SzN"><?php $sql = "SELECT hir FROM `hirek` WHERE 2=(SELECT id FROM hirek ORDER BY id DESC LIMIT 1)-id;";
-                        $result = $con->query($sql);
-                        $szoveg=$result->fetch_assoc();
-                        print($szoveg["hir"]);
-                        ?></td>
-    </tr>
-    <tr>
-    <td colspan="2" class="krt"><img src="NewsImg/Comment2.png" onclick="Comm()" alt="KOMMENT"><td>
-    </tr>
-    
 
-
-    </table>
     
     
     
