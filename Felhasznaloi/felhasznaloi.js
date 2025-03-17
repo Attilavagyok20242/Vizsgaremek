@@ -45,10 +45,17 @@ function JelszoModosit(jelszo,visszajelzes,jelszo1,jelszo2)
     xhttp.open('POST', 'adatvaltoz.php', true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.onload = function () {
-        visszajelzes.style.color="darkgreen";
-        visszajelzes.innerHTML = this.responseText;
-        jelszo1.value="";
-        jelszo2.value="";
+        if (this.responseText!="24") {
+            visszajelzes.style.color="darkgreen";
+            visszajelzes.innerHTML = this.responseText;
+            jelszo1.value="";
+            jelszo2.value="";
+        }
+        else{
+            visszajelzes.style.color="red";
+            visszajelzes.innerHTML = "Csak 24 óra múlva tudod újra megváltoztatni jelszavadat!";
+        }
+        
 
     };
     xhttp.send('jelszo1='+jelszo);

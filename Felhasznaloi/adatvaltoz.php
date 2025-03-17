@@ -5,8 +5,14 @@
     {
         $jelszo = password_hash($_POST['jelszo1'],PASSWORD_DEFAULT);
         $sql = "UPDATE felhasznalo SET jelszo = '$jelszo' WHERE id=".$_SESSION['id'];
-        $result = mysqli_query($con, $sql);
-        print"Sikeresen megváltoztattad a jelszavadat!";
+        try{
+            $result = mysqli_query($con, $sql);
+            print"Sikeresen megváltoztattad a jelszavadat!";
+        }
+        catch(Exception){
+            print"24";
+        }
+        
         
     }
     if(isset($_POST['ujfelnev']))

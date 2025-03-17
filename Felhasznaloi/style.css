@@ -180,7 +180,7 @@ input:hover{
     cursor: pointer;
 }
 .visszajelzes{
-    background-color: rgb(35, 32, 32);
+    background-color: lightblue;
     margin-left: 5px;
     width: fit-content;
 }
