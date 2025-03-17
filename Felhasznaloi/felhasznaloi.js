@@ -24,7 +24,7 @@ function JelVizsgal()
     visszajelzes=document.getElementById("visszajelzesjelszo");
     if (jelszo1.value!="" || jelszo2.value!="") {
         if (jelszo1.value==jelszo2.value) {
-            Modosit(jelszo1.value,visszajelzes);
+            JelszoModosit(jelszo1.value,visszajelzes,jelszo1,jelszo2);
         }
         else if(jelszo1.value!=jelszo2.value){
             visszajelzes.style.color="red";
@@ -39,7 +39,7 @@ function JelVizsgal()
         visszajelzes.innerHTML="Nem adott meg jelszót!";
     }
 }
-function JelszoModosit(jelszo1,visszajelzes)
+function JelszoModosit(jelszo,visszajelzes,jelszo1,jelszo2)
 {
     var xhttp = new XMLHttpRequest();
     xhttp.open('POST', 'adatvaltoz.php', true);
@@ -47,8 +47,11 @@ function JelszoModosit(jelszo1,visszajelzes)
     xhttp.onload = function () {
         visszajelzes.style.color="darkgreen";
         visszajelzes.innerHTML = this.responseText;
+        jelszo1.value="";
+        jelszo2.value="";
+
     };
-    xhttp.send('jelszo1='+jelszo1);
+    xhttp.send('jelszo1='+jelszo);
 }
 function Megerosit()
 {
@@ -100,4 +103,27 @@ function EmailModosit()
         }
     };
     xhttp.send('ujemail='+ujemail);
+}
+function Kepvaltoztat()
+{
+    profilkep=document.getElementById("kepfeltolt").files[0];
+    if(profilkep!=null)
+    {
+        formdata=new FormData();
+        formdata.append("image",profilkep);
+        kep=document.getElementById("profil");
+        console.log(profilkep);
+        $.ajax({
+            url: "keptolt.php",
+            type: "POST",
+            data: formdata,
+            dataType: "multipart/form-data",
+            processData: false,
+            contentType: false,
+            complete: function(vissza){
+                kep.src=vissza.responseText;
+            }
+            
+        });
+    }
 }

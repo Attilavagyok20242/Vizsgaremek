@@ -1,18 +1,23 @@
 <?php
     session_start();
     require("../connection.php");
+    $_SESSION['id']=196;
     if (isset($_SESSION['id'])) {
-        $sql="SELECT nev, email,datum FROM felhasznalo WHERE id=".$_SESSION["id"];
+        $sql="SELECT nev, email,datum,profilkep FROM felhasznalo WHERE id=".$_SESSION["id"];
         $result=$con->query($sql);
         $row=$result->fetch_assoc();
+        if (isset($_POST["kuld"])) {
+
+            if(isset($_FILES["image"])){
+                $fileName=$row['nev'].'_'.$_FILES["image"]["name"];
+                $tmpName=$_FILES["image"]["tmp_name"];
+                $con->query("UPDATE felhasznalo SET profilkep='$fileName' WHERE id=".$_SESSION["id"]);
+            }
+            header("location:felhasznaloi.php");
+        }
+        
     }
     
-    if(isset($_FILES["image"])){
-        $fileName=$_FILES["image"]["name"];
-        $tmpName=$_FILES["image"]["tmp_name"];
-        move_uploaded_file($tmpName, 'ikon/'.$fileName);
-        $conn->query("INSERT INTO kepek (kepek) VALUES ('" . $fileName . "')");
-    }
 ?>
 <!DOCTYPE html>
 <html lang="hu">
@@ -30,7 +35,7 @@
 </div>
     
     <div id="pkeret">
-        <img src="ikon/felh_ikon.png" id="felhasznalokep" class="profil">
+        <img src="<?php print "profilkepek/".$row["profilkep"];?>" id="felhasznalokep" class="profil">
         <div id="adatok">
         <p id="fnev">Felhasználó név:<span class="adatok2"><?php if(isset($row['nev'])){print $row['nev'];} ?></span><p>
         <p id="email">E-mail:<span class="adatok2"><?php if(isset($row['email'])){print $row['email'];} ?></span></p>
@@ -43,10 +48,10 @@
     <button class="adatok">Hibajelentéseid</button></div></div>
     
     <div id="kartya1" class="kartyak">
-        <form action="felhasznaloi.php" method="post" >
-        <input type="file" id="kepfeltolt" onchange="Kepvaltoztat()" name="felh_ikon" accept=".jpg,.jpeg,.png">
+        <form action="" method="post" enctype="multipart/form-data">
+        <input type="file" id="kepfeltolt" onchange="Kepvaltoztat()" name="image" accept=".jpg,.jpeg,.png">
         <img src="ikon/feltoltes.png" id="profil" class="profil">
-        <input type="button" value="Kép feltöltés" id="feltolt" onclick="KepFeltot()">
+        <input type="submit" value="Kép feltöltés" name="kuld" id="feltolt">
         </form>
     </div>
 

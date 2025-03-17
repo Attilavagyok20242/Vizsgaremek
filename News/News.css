@@ -3,3 +3,11 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
 }
+.hir{
+    width: 700px;
+    height: 900px;
+    background-image: url("NewsImg/scroll.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0 auto;
+}

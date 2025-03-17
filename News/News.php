@@ -1,6 +1,6 @@
 <?php
 require("../connection.php");
-$sql="SELECT hir_szoveg, hir_kep FROM hirek ORDER BY datum ASC LIMIT 3";
+$sql="SELECT hir_szoveg, hir_kep,datum FROM hirek ORDER BY datum ASC LIMIT 3";
 $result=$con->query($sql);
 
 while($row=$result->fetch_assoc())
@@ -26,11 +26,12 @@ $harmadik_hir_kep=$tomb[2]["hir_kep"];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="News.css">
-    
     <title>Hírek</title>
 </head>
 <body>
-
+    <div class="hir">
+        
+    </div>
 
     
     

@@ -3,7 +3,7 @@
     include("../connection.php");
     if(isset($_POST['jelszo1']))
     {
-        $jelszo = $_POST['jelszo1'];
+        $jelszo = password_hash($_POST['jelszo1'],PASSWORD_DEFAULT);
         $sql = "UPDATE felhasznalo SET jelszo = '$jelszo' WHERE id=".$_SESSION['id'];
         $result = mysqli_query($con, $sql);
         print"Sikeresen megváltoztattad a jelszavadat!";
