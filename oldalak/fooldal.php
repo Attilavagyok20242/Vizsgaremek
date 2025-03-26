@@ -1,50 +1,65 @@
 <body>
-   <div class="container">
-    <div class="main2">
-      <div class="smooth-scroll">
-        <div class="wrapper">
-          <main class="page">
-            <section class="banner-big">
-              <div class="banner-big__bg">
-              </div>
-            </section>
-            <div class="page__content">
-              <h2 style="text-transform: none;">  Rólunk és a weboldalról</h2>
-              <p style="font-size: 18px">
-               Mi két végzős középiskolás diák vagyunk, akik egy projekt munka kedvéért vágtak bele a témába.
-               Magának az oldal tematikájával célünk, hogy akik a gladiátor élet vonzz illetve érdkelné maga a téma annak
-               legyen egy pont az interneten, ahol szabadon megbeszélhetik a véleményeiket illetve gondolataikat.
-              </p>
-              <div class="page__video-container">
-                <iframe width="560" height="315" src="Gladiatorsképek/videoplayback.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-              </div>
-              <h2>  A gladiátorok élete</h2>
-              <p style="font-size: 18px">
-                A gladiátorok az ókori Róma rettegett és tisztelt alakjai voltak, akik kegyetlen harcokban szórakoztatták a népet. Sok gladiátor rabszolga, hadifogoly vagy bűnöző volt, akiket kényszerítettek a küzdelemre. Néhányan azonban önként jelentkeztek, vonzotta őket a hírnév, a pénz vagy a szabadulás reménye. A gladiátorok szigorú kiképzésen mentek keresztül a ludi nevű iskolákban, ahol fizikailag és mentálisan is felkészítették őket. Az életük állandó küzdelem volt a túlélésért, hiszen az arénában az egyik fél gyakran halállal fizetett. Mindez az emberek szórakoztatására történt, a gladiátorok számára pedig ez a mindennapok része volt.
-                </p>
-              <h2>Képek/könyvek</h2>
-              <div class="page__gallery-games">
-                <div class="game-item-container">
-                  <img src="Gladiatorsképek/asddd.jfif" alt="">
-                </div>
-                <div class="game-item-container">
-                  <img src="Gladiatorsképek/asd.jfif" alt="">
-                </div>
-                <div class="game-item-container">
-                  <img src="Gladiatorsképek/asdd.jfif" alt="">
-                </div>
-                <div class="game-item-container">
-                  <img src="Gladiatorsképek/Agron.jfif" alt="">
-                </div>
-                <div class="game-item-container">
-                  <img src="Gladiatorsképek/Gladiator.jfif" alt="">
-                </div>
-                <div class="game-item-container">
-                  <img src="Gladiatorsképek/pasd.jfif" alt="">
-                </div>
-              </div>
-          </div>
+
+    
+    <!-- Harcos Szakasz -->
+    <section id="warriors" class="warrior-section">
+        <h2>Legendás Harcosok</h2>
+        <div class="warrior-gallery">
+            <div class="warrior"><img src="kepek/you may live __].jpg" alt="Harcos 1"></div>
+            <div class="warrior"><img src="kepek/max.jpg" alt="Harcos 2"></div>
+            <div class="warrior"><img src="kepek/Spartan warrior.jpg" alt="Harcos 3"></div>
+        </div>
+    </section>
+    <!-- Gladiátorok Legendája Szakasz -->
+    <section id="legendary-warriors" class="legendary-warriors">
+        <h2>Legendás Harcosok Története</h2>
+        <div class="warrior-info" id="warrior1" style="background-image: url('maximus-bg.jpg');">
+            <h3>Maximus</h3>
+            <p>Maximus Decimus Meridius, a hűséges római tábornok, aki gladiátor lett családja meggyilkolása után, és visszavágott a császárnak.</p>
+        </div>
+        <div class="warrior-info" id="warrior2" style="background-image: url('commodus-bg.jpg');">
+            <h3>Commodus</h3>
+            <p>Commodus, a római császár, aki gladiátorként harcolt saját dicsősége érdekében, miközben elhanyagolta birodalma vezetését.</p>
+        </div>
+        <div class="warrior-info" id="warrior3" style="background-image: url('spartacus-bg.jpg');">
+            <h3>Spartacus</h3>
+            <p>Spartacus, a gladiátor és rabszolgafelkelő, aki vezetésével megszervezte a leghíresebb római lázadásokat a szabadságért.</p>
+        </div>
+    </section>
+
+    <!-- Videó Szakasz -->
+    <section id="warrior-video" class="video-section">
+        <h2>Gladiátorok Akcióban</h2>
+        <div class="video-container">
+            <video id="myVideo" class="video-effect" width="800" controls>
+                <source src="Gladiatorsképek/videoplayback.mp4" type="video/mp4">
+                A böngésződ nem támogatja a videólejátszót.
+            </video>
+            <div class="play-button" id="playButton">
+                <i class="fas fa-play"></i>
             </div>
-          </div>
-          </main>
-       </div>
+        </div>
+        <div class="video-caption">
+            <p>Tanúja lehetsz a végső csatának a dicsőségért és a tisztességért!</p>
+        </div>
+    </section>
+
+    <!-- Lábléc Szakasz -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>© 2025 Gladiátor UI. Minden jog fenntartva.</p>
+            <div class="contact-info">
+                <p><strong>Kapcsolat:</strong></p>
+                <p>Email: gladiators@rome.com</p>
+                <p>Telefon: +123 456 789</p>
+            </div>
+            <div class="social-links">
+                <a href="#" class="social-icon">Facebook</a>
+                <a href="#" class="social-icon">Twitter</a>
+                <a href="#" class="social-icon">Instagram</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js.js"></script>
+</body>
