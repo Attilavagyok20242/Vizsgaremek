@@ -1,0 +1,28 @@
+
+document.addEventListener("DOMContentLoaded", function () {
+    fetch("felhasznalo_belepve") 
+        .then(response => response.json())
+        .then(data => {
+            if (data.loggedIn) {
+                document.querySelector(".megerosites").style.display = "block";
+                fetch("felhasznalo_kod") 
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.megerosites==true) {
+                                document.querySelector(".megerosites").style.display = "none";
+
+                                document.querySelector(".element").style.display = "none"; 
+                        }
+                    })
+                    .catch(error => console.error("Hiba történt:", error));
+            } else {
+                document.querySelector(".megerosites").style.display = "none";
+            }
+        })
+        .catch(error => console.error("Hiba történt:", error));
+});
+
+
+
+ 
+ 

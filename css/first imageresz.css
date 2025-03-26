@@ -1,0 +1,182 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  font-size: 14px;
+  overflow-x: hidden;
+  text-align: center;
+  color: #5e503f;
+  background-color: #5e503f;
+}
+
+h2 {
+  font-size: 46px;
+  color: #ffffff;
+  margin-top: 60px;
+}
+
+p {
+  font-size: 18px;
+  line-height: 180%;
+  margin-top: 18px;
+  text-align: justify;
+  color: gray;
+}
+
+.wrapper {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.page__content {
+width: 100%;
+  margin: 0 auto;
+}
+
+.page__video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 30px;
+}
+
+.page__video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.page__gallery-games {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.page__gallery-games .game-item-container {
+  width: 100%;
+  max-width: 350px;
+  height: 350px;
+  border-radius: 10px;
+  margin: 15px 0;
+  overflow: hidden;
+  background-color: #5e503f;
+  cursor: pointer;
+}
+
+.page__gallery-games img {
+  width: 100%;
+  height: auto;
+}
+
+.banner-big {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  overflow: hidden;
+}
+
+.banner-big__bg {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 135%;
+  background-image: url(../kepek/asd23.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.banner-big__headline {
+  position: absolute;
+  width: 100%;
+  top: 60px;
+  color: #5e503f;
+}
+.bejelentkezes,
+.megerositess {
+  position: fixed;
+  bottom: 0;
+  left: 56%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 950px;
+  background-color: rgb(88, 81, 81);
+  color: white;
+  text-align: center;
+  padding: 10px;
+  z-index: 1000;
+  font-size: 15px;
+  box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.2);
+}
+.megerosites-gomb {
+  display: inline-block;
+  background-color: #ff9800;
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.megerosites-gomb:hover {
+  background-color: #e68900;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+@media (max-width: 1024px) {
+  h2 {
+      font-size: 36px;
+  }
+  
+
+  .bejelentkezes,
+  .megerositess {
+      width: 95%;
+      font-size: 14px;
+  }
+}
+
+/* Mobil nézet (max 768px) */
+@media (max-width: 768px) {
+  h2 {
+      font-size: 28px;
+  }
+
+  p {
+      font-size: 16px;
+  }
+
+  .page__gallery-games {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .page__gallery-games .game-item-container {
+      width: 90%;
+      height: auto;
+  }
+
+  .bejelentkezes,
+  .megerosites {
+      width: 100%;
+      font-size: 12px;
+      padding: 8px;
+  }
+
+  .megerosites-gomb {
+      padding: 6px 12px;
+      font-size: 12px;
+  }
+}

@@ -1,0 +1,270 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url(../kepek/user-background.jpg);
+    background-color: #c6ac8f;
+    background-size: cover;
+    background-position: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* User doboz */
+#User {
+    background: rgba(198, 172, 143, 0.6);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Vissza gomb */
+#vissza {
+    width: 150px;
+    height: 30px;
+    border-radius: 5px;
+    border: 2px solid;
+    background-color: white;
+    color: black;
+    text-align: center;
+    line-height: 30px;
+    font-weight: bold;
+    display: block;
+    margin: 20px auto;
+}
+
+#vissza:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+/* Profilkeret */
+#pkeret {
+    border-radius: 5px;
+    position: relative;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    color: darkblue;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 15px;
+    width: 90%;
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+/* Felhasználói adatok */
+#fnev, #email, #regdate, #elozmenyek {
+    padding-right: 10px;
+    margin-left: 15px;
+    color: #F2E9E4;
+    font-size: 20px;
+}
+
+/* Információs dobozok */
+#box1, #box2, #box3, #box4 {
+    opacity: 0.15;
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    font-style: italic;
+}
+
+#box3, #box4 {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+/* Kártyák */
+.kartyak {
+    border-radius: 5px;
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 20px;
+    font-weight: bold;
+    display: none;
+}
+
+#kartya1 {
+    height: 200px;
+}
+
+/* Feltöltés gomb */
+#feltolt {
+    height: 20px;
+    margin-top: 160px;
+    background-color: #F2E9E4;
+    border-radius: 7px;
+}
+
+/* Input mezők */
+.bemenetek {
+    padding-left: 5px;
+    width: 100%;
+    padding-bottom: 5px;
+}
+
+/* Cím */
+h1 {
+    margin-left: 20px;
+    padding-top: 5px;
+    text-decoration: none;
+    color: #F2E9E4;
+}
+
+/* Profilkép */
+.profil {
+    border: 5px #F2E9E4 solid;
+    border-radius: 5px;
+    width: 150px;
+    height: 150px;
+    margin: 20px auto;
+    display: block;
+    background-color: grey;
+}
+
+/* Kép feltöltés */
+#kepfeltolt {
+    width: 150px;
+    height: 176px;
+    border: 2px solid white;
+    z-index: 1;
+    position: relative;
+    opacity: 0;
+}
+
+#kepfeltolt:hover {
+    cursor: pointer;
+}
+
+/* Menü */
+#menusor {
+    width: 90%;
+    max-width: 600px;
+    height: 50px;
+    margin: 40px auto 30px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+/* Adatok */
+.adatok {
+    height: 30px;
+    border-radius: 5px;
+    border: solid 2px;
+    background-color: #F2E9E4;
+    margin: 5px;
+}
+
+/* Változás gomb */
+.valtozz {
+    height: 50px;
+    background-color: #F2E9E4;
+    border-radius: 15px;
+}
+
+/* Bemenet */
+.bemenet {
+    border: black solid 2px;
+}
+
+#ujjelszo {
+    margin-top: 30px;
+}
+
+/* Hover effektek */
+input:hover {
+    cursor: pointer;
+}
+
+.visszajelzes {
+    padding-top: 2px;
+}
+
+/* Kisebb keretek */
+.belsokeret {
+    padding-top: 9px;
+    width: 90%;
+    max-width: 500px;
+    height: auto;
+    margin: 0 auto;
+}
+
+/* ====== RESPONSIVE DESIGN ====== */
+
+/* Tablet (max 1024px) */
+@media (max-width: 1024px) {
+    h1 {
+        font-size: 24px;
+        text-align: center;
+    }
+
+    #pkeret, .kartyak, #menusor {
+        width: 95%;
+    }
+
+    .profil {
+        width: 120px;
+        height: 120px;
+    }
+
+    #fnev, #email, #regdate, #elozmenyek {
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .adatok {
+        font-size: 16px;
+    }
+
+    #vissza {
+        margin: 20px auto;
+    }
+}
+
+/* Mobil (max 768px) */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    #pkeret, .kartyak, #menusor {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .profil {
+        width: 100px;
+        height: 100px;
+    }
+
+    #fnev, #email, #regdate, #elozmenyek {
+        font-size: 16px;
+        text-align: center;
+    }
+
+    .adatok {
+        font-size: 14px;
+        width: 90%;
+    }
+
+    #vissza {
+        width: 100%;
+        font-size: 14px;
+        height: auto;
+        padding: 10px;
+    }
+
+    .valtozz {
+        font-size: 14px;
+    }
+}
