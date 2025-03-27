@@ -1,0 +1,364 @@
+/* General Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #0b0b0d;
+    color: #fff;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+/* Header Styles */
+header {
+    padding: 20px;
+    background-color: #222;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+header .logo {
+    font-size: 2em;
+    color: #ffcc00;
+    font-weight: bold;
+    margin: 0;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+header nav ul li {
+    margin: 0 2px;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2em;
+    padding: 10px 5px;
+    transition: background-color 0.3s;
+}
+
+header nav ul li a:hover {
+    background-color: #e6b800;
+    border-radius: 5px;
+}
+
+header .menu-icon {
+    display: none;
+}
+
+/* Hero Section */
+.hero {
+    background: url('../kepek/gladiator.png') no-repeat center center fixed;
+    background-size: cover;
+    padding: 150px 20px;  /* Increased padding for more space */
+    color: #fff;
+    text-align: center;
+    height: 100vh; /* Set the height to 100% of the viewport */
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero h1 {
+    font-size: 4.5em;  /* Increased font size */
+    margin-bottom: 30px;  /* Increased margin for spacing */
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+}
+.szobak{
+    display: none;
+}
+ .profils{
+display: none;
+}
+.kilepes{
+display: none;
+}
+.erdekesseg{
+    display: block;
+}
+.fooldal{
+    display: block;
+}
+
+.hero p {
+    font-size: 2em;  /* Increased font size */
+    margin-bottom: 40px;  /* Increased margin for spacing */
+}
+
+.hero .btn {
+    background-color: #ffcc00;
+    color: #0b0b0d;
+    padding: 20px 40px;  /* Increased padding for larger button */
+    font-size: 1.5em;  /* Increased font size */
+    border: none;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.hero .btn:hover {
+    background-color: #e6b800;
+}
+
+
+/* Warrior Section */
+.warrior-section {
+    padding: 80px 20px;
+    background-color: #333;
+    text-align: center;
+}
+
+.warrior-gallery {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.warrior img {
+    width: 200px;
+    height: 300px;
+    object-fit:cover;
+    border-radius: 10px;
+}
+
+/* Legendary Warriors Section with Parallax */
+.legendary-warriors {
+    padding: 80px 20px;
+}
+
+.legendary-warriors h2 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+}
+
+.warrior-info {
+    padding: 40px;
+    background-size:cover;
+    background-position: center;
+    color: #fff;
+    margin-bottom: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s;
+}
+
+.warrior-info:hover {
+    transform: scale(1.05);
+}
+
+.warrior-info h3 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+.warrior-info p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Arena Section */
+.arena-section {
+    padding: 80px 20px;
+    background-color: #444;
+}
+
+.arena-section h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.arena-section p {
+    font-size: 1.5em;
+    line-height: 1.6;
+    color: #ccc;
+}
+
+/* Video Section Styling */
+.video-section {
+    text-align: center;
+    margin: 60px 20px;
+    color: #ffcc00;
+}
+
+.video-container {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+    width: 90%; /* Increased width for a larger video */
+    max-width: 1200px; /* Ensure the video doesn't stretch too wide */
+}
+
+.video-container video {
+    width: 100%; /* Make video fill the container */
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Hover Effect: Scale video */
+.video-container:hover video {
+    transform: scale(1.05);
+}
+.bejelentkezes,
+.megerositess {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 950px;
+  background-color: rgb(88, 81, 81);
+  color: white;
+  text-align: center;
+  padding: 10px;
+  z-index: 1000;
+  font-size: 15px;
+  box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.2);
+}
+.megerosites-gomb {
+  display: inline-block;
+  background-color: #ff9800;
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.megerosites-gomb:hover {
+  background-color: #e68900;
+}
+/* Play Button Styling */
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 80px; /* Increase button size */
+    color: #fff;
+    opacity: 0.8;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+}
+
+.video-container:hover .play-button {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Caption Animation */
+.video-caption {
+    margin-top: 20px;
+    font-size: 24px; /* Increased font size for the caption */
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.video-container:hover + .video-caption {
+    opacity: 1;
+}
+
+/* Custom video controls (hide default controls) */
+.video-container video::-webkit-media-controls {
+    display: none;
+}
+
+/* Footer Section */
+.footer {
+    padding: 60px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #ffcc00;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-content p {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+.contact-info p {
+    margin: 5px 0;
+}
+
+.social-links {
+    margin-top: 20px;
+}
+
+.social-links a {
+    color: #ffcc00;
+    text-decoration: none;
+    font-size: 1.5em;
+    margin: 0 10px;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: #e6b800;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero {
+        padding: 60px 20px;
+    }
+
+    .hero h1 {
+        font-size: 2.5em;
+    }
+
+    .warrior-gallery {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .warrior-info h3 {
+        font-size: 1.8em;
+    }
+
+    .warrior-info p {
+        font-size: 1.1em;
+    }
+
+    .footer-content p {
+        font-size: 1em;
+    }
+
+    .social-links a {
+        font-size: 1.2em;
+    }
+}
+
+/* Parallax Backgrounds */
+#warrior1 {
+    background-image: url('max.jpg');
+}
+
+#warrior2 {
+    background-image: url('you\ may\ live\ __].jpg');
+}
+
+#warrior3 {
+    background-image: url('Spartan\ warrior.jpg');
+}
+
