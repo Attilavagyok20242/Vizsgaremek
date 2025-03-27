@@ -24,7 +24,6 @@
 <div id="cim">
 <h1>Felhasználói fiókod adatai<span class="fekete">:</span></h1>
 </div>
-    
     <div id="pkeret">
         <img src="<?php print "../profilkepek/".$row["profilkep"];?>" id="felhasznalokep" class="profil">
         <div id="adatok">

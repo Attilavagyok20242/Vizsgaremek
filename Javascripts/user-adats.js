@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.querySelector(".kilepes").style.display = "block";
                 document.querySelector(".megerosites").style.display = "block";
                 document.querySelector(".profils").style.display = "block";
+                document.querySelector(".szobak").style.display = "block";
+
 
                 fetch("felhasznalo_kod") 
                     .then(response => response.json())
@@ -14,7 +16,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         if (data.megerosites==true) {
                                 document.querySelector(".megerosites").style.display = "none";
                                 document.querySelector(".element").style.display = "none"; 
-                                document.querySelector(".szobak").style.display = "block";
 
                         }
                     })
