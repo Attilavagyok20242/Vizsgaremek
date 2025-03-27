@@ -12,6 +12,7 @@
                     $conn->query("UPDATE felhasznalo SET profilkep='$fileName' WHERE id=".$_SESSION["id"]);
                 }
             }
+            header("Location:http://arenaklub.loc/?page=Profil");
         }
         
     }

@@ -83,5 +83,6 @@
     <script src="Javascripts/js.js"></script>
     <script src="Javascripts/user-adats.js"></script>
     <script src="Javascripts/informaciok.js"></script>
+    <script src="Javascripts/felhasznaloi.js"></script>
 </body>
 </html>

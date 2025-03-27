@@ -4,10 +4,10 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
 
-require_once "connection/connection.php";
-require_once "PHPMailer/PHPMailer.php";
-require_once "PHPMailer/SMTP.php";
-require_once "PHPMailer/Exception.php";
+require_once "../connection/connection.php";
+require_once "../PHPMailer/PHPMailer.php";
+require_once "../PHPMailer/SMTP.php";
+require_once "../PHPMailer/Exception.php";
 
 $mail = new PHPMailer();
 $mail->isSMTP();
