@@ -30,8 +30,6 @@ function JelVizsgal()
             visszajelzes.style.color="red";
             visszajelzes.innerHTML="Nem egyezik a két jelszavad!";
         }
-            
-     
     }
     else
     {

@@ -1,7 +1,6 @@
 <?php
 require("../connection.php");
 session_start();
-$_SESSION["id"]=196;
 if ($_SESSION["id"]) {
         $sql="SELECT nev FROM felhasznalo WHERE id=".$_SESSION["id"];
         $result=$con->query($sql);

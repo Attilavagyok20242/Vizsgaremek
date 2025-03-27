@@ -1,7 +1,6 @@
 <?php
     session_start();
     require("../connection.php");
-    $_SESSION['id']=196;
     if (isset($_SESSION['id'])) {
         $sql="SELECT nev, email,datum,profilkep FROM felhasznalo WHERE id=".$_SESSION["id"];
         $result=$con->query($sql);
@@ -11,7 +10,9 @@
             if(isset($_FILES["image"])){
                 $fileName=$row['nev'].'_'.$_FILES["image"]["name"];
                 $tmpName=$_FILES["image"]["tmp_name"];
-                $con->query("UPDATE felhasznalo SET profilkep='$fileName' WHERE id=".$_SESSION["id"]);
+                if ($_FILES["image"]["name"]!="") {
+                    $con->query("UPDATE felhasznalo SET profilkep='$fileName' WHERE id=".$_SESSION["id"]);
+                }
             }
             header("location:felhasznaloi.php");
         }
@@ -24,7 +25,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document</title>
+<title>Felhasználói fiók</title>
 <link rel="stylesheet" href="style.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>

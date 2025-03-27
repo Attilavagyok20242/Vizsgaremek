@@ -1,6 +1,6 @@
 <?php
 require("../connection.php");
-$sql="SELECT hir_szoveg, hir_kep,datum FROM hirek ORDER BY datum ASC LIMIT 3";
+$sql="SELECT hir_szoveg, hir_cim,datum FROM hirek ORDER BY datum ASC LIMIT 3";
 $result=$con->query($sql);
 
 while($row=$result->fetch_assoc())
@@ -8,15 +8,21 @@ while($row=$result->fetch_assoc())
     $tomb[]=array
     (
         "hir_szoveg" => $row["hir_szoveg"],
-        "hir_kep" => $row["hir_kep"]
+        "hir_cim" => $row["hir_cim"],
+        "datum" => $row["datum"]
     );
 }
 $elso_hir=$tomb[0]["hir_szoveg"];
 $masodik_hir=$tomb[1]["hir_szoveg"];
 $harmadik_hir=$tomb[2]["hir_szoveg"];
-$elso_hir_kep=$tomb[0]["hir_kep"];
-$masodik_hir_kep=$tomb[1]["hir_kep"];
-$harmadik_hir_kep=$tomb[2]["hir_kep"];
+
+$elso_hir_cim=$tomb[0]["hir_cim"];
+$masodik_hir_cim=$tomb[1]["hir_cim"];
+$harmadik_hir_cim=$tomb[2]["hir_cim"];
+
+$elso_datum=$tomb[0]["datum"];
+$masodik_datum=$tomb[1]["datum"];
+$harmadik_datum=$tomb[2]["datum"];
 ?>
 
 
@@ -26,13 +32,51 @@ $harmadik_hir_kep=$tomb[2]["hir_kep"];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="News.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <title>Hírek</title>
 </head>
 <body>
-    <div class="hir">
-        
-    </div>
 
+    <img src="NewsImg/Title.png" class="oldalcim">
+    <div class="keret">
+        <div class="belsokeret">
+            <div class="scrollrolled" id="rolled1">
+                <img src="NewsImg/rolledupscroll2.png" class="rolledkep">
+            </div>
+            <div class="scroll" id="scroll1">
+                <div class="szovegkeret">
+                    <h1 class="cim"><?php print $elso_hir_cim?></h1>
+                    <p class="szoveg"><?php print $elso_hir?></p>
+                    <p id="datum"><?php print $elso_datum?></p>
+                    <img class="stamp" src="NewsImg/stamp.png">
+                </div>
+                <img src="NewsImg/Comment2.png" id="komment1" class="komment">  
+            </div>
+        </div>
+        <div class="belsokeret">
+            <div class="scrollrolled" id="rolled2">
+                <img src="NewsImg/rolledupscroll2.png" class="rolledkep"></div>
+            <div class="scroll" id="scroll2">
+                <div class="szovegkeret">
+                <h1 class="cim"><?php print $masodik_hir_cim?></h1>
+                <p class="szoveg"><?php print $masodik_hir?></p>
+                <p id="datum"><?php print $masodik_datum?></p><img class="stamp" src="NewsImg/stamp.png">
+                </div>
+                <img src="NewsImg/Comment2.png" id="komment1" class="komment">  
+            </div>
+        </div>
+        <div class="belsokeret">
+            <div class="scrollrolled" id="rolled3">
+                <img src="NewsImg/rolledupscroll2.png" class="rolledkep"></div>
+            <div class="scroll" id="scroll3">
+            <div class="szovegkeret">
+                <h1 class="cim"><?php print $harmadik_hir_cim?></h1>
+                <p class="szoveg"><?php print $harmadik_hir?></p>
+                <p id="datum"><?php print $harmadik_datum?></p><img class="stamp" src="NewsImg/stamp.png"></div>
+                <img src="NewsImg/Comment2.png" id="komment1" class="komment">  
+            
+        </div> 
+    </div>
     
     
     
