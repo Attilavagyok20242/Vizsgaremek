@@ -82,22 +82,17 @@ body{
     padding-left: 5px;
     padding-bottom: 15px;
 }
-h1{
-    margin-left: 20px;
-    padding-top: 5px;
-    text-decoration: underline black;
-    color: darkred;
-}
+
 .fekete{
     color: black;
 }
 #cim{
     border-radius: 5px;
     background: rgba(133, 131, 131, 0.7);
-    height: 50px;
+    height: 30px;
     width: 600px;
     margin: 0 auto;
-    margin-bottom: 50px;
+    margin-bottom: 150px;
 }
 .profil{
     border: 5px black solid;

@@ -1,5 +1,4 @@
 <?php
-    require("connection/connection.php");
     if (isset($_SESSION['id'])) {
         $sql="SELECT nev, email,datum,profilkep FROM felhasznalo WHERE id=".$_SESSION["id"];
         $result=$conn->query($sql);
@@ -13,7 +12,6 @@
                     $conn->query("UPDATE felhasznalo SET profilkep='$fileName' WHERE id=".$_SESSION["id"]);
                 }
             }
-            header("location:felhasznaloi");
         }
         
     }

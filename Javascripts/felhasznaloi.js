@@ -120,7 +120,6 @@ function Kepvaltoztat()
             complete: function(vissza){
                 kep.src=vissza.responseText;
             }
-            
         });
     }
 }

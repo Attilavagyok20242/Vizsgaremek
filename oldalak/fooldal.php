@@ -1,6 +1,11 @@
 <body>
 
-    
+   <!-- Hero Szakasz -->
+   <section id="hero" class="hero">
+        <h1>Honorért és Dicsőségért</h1>
+        <p>Tapasztald meg az ókori gladiátorok legendás csatáit.</p>
+        <a href="?page=Arena" class="btn" id="enterArena">Lépj be az Arénába</a>
+    </section>    
     <!-- Harcos Szakasz -->
     <section id="warriors" class="warrior-section">
         <h2>Legendás Harcosok</h2>
@@ -13,15 +18,15 @@
     <!-- Gladiátorok Legendája Szakasz -->
     <section id="legendary-warriors" class="legendary-warriors">
         <h2>Legendás Harcosok Története</h2>
-        <div class="warrior-info" id="warrior1" style="background-image: url('maximus-bg.jpg');">
+        <div class="warrior-info" id="warrior1" style="background-image: url('kepek/max.jpg');">
             <h3>Maximus</h3>
             <p>Maximus Decimus Meridius, a hűséges római tábornok, aki gladiátor lett családja meggyilkolása után, és visszavágott a császárnak.</p>
         </div>
-        <div class="warrior-info" id="warrior2" style="background-image: url('commodus-bg.jpg');">
+        <div class="warrior-info" id="warrior2" style="background-image: url('kepek/you may live __].jpg');">
             <h3>Commodus</h3>
             <p>Commodus, a római császár, aki gladiátorként harcolt saját dicsősége érdekében, miközben elhanyagolta birodalma vezetését.</p>
         </div>
-        <div class="warrior-info" id="warrior3" style="background-image: url('spartacus-bg.jpg');">
+        <div class="warrior-info" id="warrior3" style="background-image: url('kepek/Spartan warrior.jpg');">
             <h3>Spartacus</h3>
             <p>Spartacus, a gladiátor és rabszolgafelkelő, aki vezetésével megszervezte a leghíresebb római lázadásokat a szabadságért.</p>
         </div>
