@@ -1,0 +1,4 @@
+{"username":"Szabi","message":"ss","time":"09:58:08"}
+{"username":"Szabi","message":"Szia","time":"09:58:24"}
+{"username":"Szabi","message":"Ok\u00e9","time":"09:58:27"}
+{"username":"Szabi","message":"Szia","time":"09:59:56"}
