@@ -5,12 +5,12 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // NÉV ELLENŐRZÉS
-if (!isset($_SESSION['username']) && !isset($_COOKIE["username"])) {
+if (!isset($_SESSION['username']) && !isset($_SESSION["username"])) {
     die("Hiba: Nincs beállítva a felhasználónév.");
 }
 
 // CHATSZOBA KIVÁLASZTÁS
-$room = $_COOKIE["chatroom"] ?? "general";
+$room = $_SESSION["chatroom"] ?? "general";
 $chatFile = "chat_{$room}.txt";
 
 // CHAT FÁJL LÉTREHOZÁSA, HA NEM LÉTEZIK
@@ -27,10 +27,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["username"])) {
 }
 
 // ÜZENET KÜLDÉSE
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["message"]) && isset($_COOKIE["username"])) {
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["message"]) && isset($_SESSION["username"])) {
     $message = htmlspecialchars($_POST["message"]);
     $data = [
-        "username" => $_COOKIE["username"],
+        "username" => $_SESSION["username"],
         "message" => $message,
         "time" => date("H:i:s")
     ];
@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["message"]) && isset($
 
 // GÉPELÉSI ÁLLAPOT MENTÉSE
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['typing'])) {
-    $username = $_COOKIE["username"] ?? "ismeretlen";
+    $username = $_SESSION["username"] ?? "ismeretlen";
     $typingData = file_exists("typing_status.json") ? json_decode(file_get_contents("typing_status.json"), true) : [];
     $typingData[$username] = $_POST['typing'] == 1 ? time() : 0;
     file_put_contents("typing_status.json", json_encode($typingData));
@@ -80,7 +80,7 @@ if (isset($_GET["get_messages"])) {
     $messages = file_exists($chatFile) ? file($chatFile) : [];
     foreach ($messages as $msg) {
         $data = json_decode($msg, true);
-        echo "<div class='message " . ($data['username'] == $_COOKIE['username'] ? "my-message" : "other-message") . "'>";
+        echo "<div class='message " . ($data['username'] == $_SESSION['username'] ? "my-message" : "other-message") . "'>";
         echo "<strong>" . $data['username'] . "</strong> [" . $data['time'] . "]: " . $data['message'];
         echo "</div>";
     }
