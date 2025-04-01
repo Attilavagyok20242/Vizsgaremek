@@ -12,11 +12,16 @@ document.addEventListener("DOMContentLoaded", function () {
     // Sötét mód ellenőrzése
     if (localStorage.getItem("darkMode") === "enabled") {
         document.body.classList.add("dark-mode");
+        document.body.classList.remove("light-mode");
         darkModeToggle.innerHTML = "☀️ Világos mód";
+    } else {
+        document.body.classList.add("light-mode");
+        darkModeToggle.innerHTML = "🌙 Sötét mód";
     }
 
     darkModeToggle.addEventListener("click", function () {
         document.body.classList.toggle("dark-mode");
+        document.body.classList.toggle("light-mode");
 
         if (document.body.classList.contains("dark-mode")) {
             localStorage.setItem("darkMode", "enabled");

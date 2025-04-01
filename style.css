@@ -85,9 +85,9 @@ button:hover {
 }
 
 #dark-mode-toggle {
-    background: black; /* Fekete háttér, hogy látható legyen */
-    color: white; /* Fehér szöveg */
-    border: 2px solid gold; /* Arany keret */
+    background: black; 
+    color: white; 
+    border: 2px solid gold;
     padding: 10px;
     font-size: 18px;
     cursor: pointer;
@@ -100,6 +100,48 @@ button:hover {
     background: darkgoldenrod;
     color: black;
 }
+
+.dark-mode {
+    background: #121212 !important;
+    color: white;
+}
+
+.dark-mode .chat-container {
+    background: rgba(20, 20, 20, 0.9) !important;
+    box-shadow: 0px 0px 15px rgba(255, 215, 0, 0.3);
+}
+
+.dark-mode #chatbox {
+    background: rgba(30, 30, 30, 0.9) !important;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.dark-mode input[type='text'] {
+    background: #222 !important;
+    color: white !important;
+    border: 2px solid darkgoldenrod !important;
+}
+
+.dark-mode button {
+    background: darkgoldenrod !important;
+    color: black !important;
+}
+
+.dark-mode button:hover {
+    background: goldenrod !important;
+}
+
+.dark-mode #dark-mode-toggle {
+    background: darkgoldenrod !important;
+    color: black !important;
+    border: 2px solid white !important;
+}
+
+.light-mode {
+    background: url('gladiátor.jpg') no-repeat center center fixed !important;
+    background-size: cover !important;
+}
+
 
 #private-message
 {
