@@ -1,28 +1,13 @@
 <?php
-require("../connection.php");
-if (isset($_POST["komment"])) {
-    $komment=$_POST["komment"];
-    if ($komment!="") {
-        $sql="INSERT INTO kommentek(Szoveg,Datum) VALUES('$komment',NOW())";
-        if($con->query($sql)===TRUE){
-            
-            echo ("Sikeres posztolás!");
-            header('Refresh: 1; url=News.php');
-        }
-        else{
-            echo "Hiba:".$sql."<br>". $con->error;
-        }
+session_start();
+require_once("../connection/connection.php");
+if (isset($_SESSION["id"])) {
+    if (isset($_POST['szoveg'])) {
+        $szoveg=$_POST['szoveg'];
+        $sql="INSERT INTO kommentek (szoveg,datum,felhasznalo_id,hir_id) VALUES (?,NOW(),?,?)";
+        $stmt=$conn->prepare($sql);
+        $stmt->bind_param('sii',$szoveg,$_SESSION['id'],$_SESSION['hirid']);
+        $stmt->execute();
+        $stmt->close();
     }
-    else{
-        header('Refresh: 1; url=News.php');
-    }
-    
-    
 }
-else{
-    header('Refresh: 1; url=News.php');
-}
-    
-    
-
-

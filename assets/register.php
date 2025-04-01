@@ -1,9 +1,9 @@
 <?php
 require_once("../connection/connection.php");
 if (isset($_POST['Nev'], $_POST['Jelszo'], $_POST['email'])) {
-    $nev = mysqli_real_escape_string($con, $_POST['Nev']);
-    $jelszo = mysqli_real_escape_string($con, $_POST['Jelszo']);
-    $email = mysqli_real_escape_string($con, $_POST['email']);
+    $nev = mysqli_real_escape_string($conn, $_POST['Nev']);
+    $jelszo = mysqli_real_escape_string($conn, $_POST['Jelszo']);
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
 
     // Email formátum ellenőrzés
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -12,7 +12,7 @@ if (isset($_POST['Nev'], $_POST['Jelszo'], $_POST['email'])) {
     }
 
     // Felhasználónév vagy email létezik-e már?
-    $stmt = $con->prepare("SELECT email, nev FROM felhasznalo WHERE email = ? OR nev = ?");
+    $stmt = $conn->prepare("SELECT email, nev FROM felhasznalo WHERE email = ? OR nev = ?");
     $stmt->bind_param("ss", $email, $nev);
     $stmt->execute();
     $stmt->store_result();
@@ -35,7 +35,7 @@ if (isset($_POST['Nev'], $_POST['Jelszo'], $_POST['email'])) {
     $rnd = rand(1000, 9999);  // Generálunk egy véletlenszámot a "kod" mezőhöz
 
     // Helyes INSERT paranccsal való beszúrás
-    $stmt = $con->prepare("INSERT INTO felhasznalo (nev, jelszo, email, aktív, Szerep, megerositve, kod, datum, utolso_bejelentkezes, utoljara_hasznalt_ip, elrontott_bejelenkezes) 
+    $stmt = $conn->prepare("INSERT INTO felhasznalo (nev, jelszo, email, aktív, Szerep, megerositve, kod, datum, utolso_bejelentkezes, utoljara_hasznalt_ip, elrontott_bejelenkezes) 
                            VALUES (?, ?, ?, 1, 0, 0, ?, ?, NULL, NULL, 0)");
     $stmt->bind_param("sssis", $nev, $hashedPassword, $email, $rnd, $mysqltime);
 
