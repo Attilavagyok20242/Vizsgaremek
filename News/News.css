@@ -131,12 +131,50 @@ body{
 }
 
 @media only screen and (max-width: 1000px) {
+  .uzenet{
+    padding-top: 10px;
+    margin: 0 auto;
+  }
+  .uzenetir{
+    width: 300px;
+    margin-left: 41px;
+  }
+  .gomb{
+    width: 210px;
+    height: 40px;
+    margin-left: 90px;
+  }
+  .kulso{
+    display: none;
+    width: 420px;
+    height: 858px;
+    background: grey;
+    opacity: 0.9;
+    filter: blur(1px);
+    z-index: 3;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+  }
+  .kommentkeret{
+    display: none;
+    left: 15px;
+    top: 15px;
+    z-index: 4;
+    position: absolute;
+    width: 390px;
+    height: 600px;
+    background-image: url(NewsImg/BGscroll.png);
+    border-radius: 25px;
+    align-content: center;
+  }
     body {
-          padding-bottom: 65%;
+          padding-bottom: 50%;
     }
     .scroll{
+      
       background-size: 400px;
-
+      width: 400px;
     }
     .szovegkeret{
       height: 250px;
@@ -167,11 +205,19 @@ body{
       bottom: 150px;
       left: 300px;
   }
+  .oldalcim{
+    width: 200px;
+    height: 40px;
+    margin: 0 auto;
+  }
+  .keret{
+    width: 400px;
+    height: 600px;
+    overflow-y: hidden;
+  }
 }
 
 
 @media only screen and (max-width: 600px) {
-  body {
-        padding-bottom: 100%;
-  }
+  
 }

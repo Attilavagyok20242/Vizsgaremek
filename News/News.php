@@ -49,7 +49,7 @@ $harmadik_datum=$tomb[2]["datum"];
             </div>
             <div class="uzenet">
             <textarea class="uzenetir" id="uzenetkuld" maxlength="200"></textarea>
-            <input type="button" value="Küld!"  onclick="UziKuld()">
+            <input type="button" value="Küld!"  onclick="UziKuld()" class="gomb">
             </div>
         </div>
     

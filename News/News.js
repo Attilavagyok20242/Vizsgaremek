@@ -23,6 +23,7 @@ $(document).ready(function(){
 
 function KommentSec(id)
 {
+ 
   keret=document.getElementById("k");
   keret.innerHTML="";
   var xhttp = new XMLHttpRequest();
@@ -42,6 +43,7 @@ function KommentSec(id)
   };
   xhttp.open("GET", "Kommentshow.php?id="+id, true);
   xhttp.send();
+ 
 }
 
 
@@ -54,7 +56,9 @@ function UziKuld()
   xhttp.onreadystatechange = function() {
     if(xhttp.readyState == 4 && xhttp.status == 200) {
       szoveg=document.getElementById("uzenetkuld").value="";
+      
     }
   }
   xhttp.send("szoveg="+szoveg);
+  
 }
