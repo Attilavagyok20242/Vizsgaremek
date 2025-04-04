@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             if ($failedAttempts >= 5) {
                 echo "<script>alert('Túl sok sikertelen próbálkozás! Próbáld újra később.');</script>";
-                exit();
+
             }
             if (password_verify($jelszo, $row['jelszo'])) {
                 $_SESSION['id'] = $row['id'];
@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $update->execute();
 
                 if ($row['Szerep'] == 1) {
-                    header("Location: /");
+                    header("Location: /admin");
                 } else {
                     header('Location: /');
                 }

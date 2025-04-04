@@ -1,10 +1,12 @@
+<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+
 <body>
 
    <!-- Hero Szakasz -->
    <section id="hero" class="hero">
-        <h1>Honorért és Dicsőségért</h1>
-        <p>Tapasztald meg az ókori gladiátorok legendás csatáit.</p>
-        <a href="?page=Arena" class="btn" id="enterArena">Lépj be az Arénába</a>
+        <h1>Becsületért és Dicsőségért</h1>
+        <p>Lépj be egy világba ahol dicsőséget szerezhetsz.</p>
+        <a href="" class="btn" id="enterArena">Lépj be az Arénába</a>
     </section>    
     <!-- Harcos Szakasz -->
     <section id="warriors" class="warrior-section">
@@ -18,7 +20,7 @@
     <!-- Gladiátorok Legendája Szakasz -->
     <section id="legendary-warriors" class="legendary-warriors">
         <h2>Legendás Harcosok Története</h2>
-        <div class="warrior-info" id="warrior1" style="background-image: url('kepek/max.jpg');">
+        <div class="warrior-info" id="warrior1" style=" background-image: url('kepek/max.jpg');">
             <h3>Maximus</h3>
             <p>Maximus Decimus Meridius, a hűséges római tábornok, aki gladiátor lett családja meggyilkolása után, és visszavágott a császárnak.</p>
         </div>
@@ -41,7 +43,7 @@
                 A böngésződ nem támogatja a videólejátszót.
             </video>
             <div class="play-button" id="playButton">
-                <i class="fas fa-play"></i>
+            <i class="fa-solid fa-play"></i>
             </div>
         </div>
         <div class="video-caption">
@@ -55,8 +57,8 @@
             <p>© 2025 Gladiátor UI. Minden jog fenntartva.</p>
             <div class="contact-info">
                 <p><strong>Kapcsolat:</strong></p>
-                <p>Email: gladiators@rome.com</p>
-                <p>Telefon: +123 456 789</p>
+                <p>Email: arenaklub001@gmail.com</p>
+                <p>Telefon: +30 513 6408</p>
             </div>
             <div class="social-links">
                 <a href="#" class="social-icon">Facebook</a>
@@ -65,6 +67,5 @@
             </div>
         </div>
     </footer>
-
     <script src="js.js"></script>
 </body>

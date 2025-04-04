@@ -1,6 +1,6 @@
 
-
-
+<link rel="stylesheet" href="css/style.css">
+<body>
     <fejlec>
         <nav>
         </nav>
