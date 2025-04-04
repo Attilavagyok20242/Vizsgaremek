@@ -9,5 +9,7 @@ if (isset($_SESSION["id"])) {
         $stmt->bind_param('sii',$szoveg,$_SESSION['id'],$_SESSION['hirid']);
         $stmt->execute();
         $stmt->close();
+        $id=$_SESSION['hirid'];
+        print $id;
     }
 }

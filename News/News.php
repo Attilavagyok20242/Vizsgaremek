@@ -1,6 +1,8 @@
 <?php
 session_start();
-$_SESSION["id"]=209;
+if (isset($_SESSION["hirid"])) {
+    $hirid=$_SESSION["hirid"];
+}
 require("../connection/connection.php");
 $sql="SELECT id,hir_szoveg, hir_cim,datum FROM hirek ORDER BY datum ASC LIMIT 3";
 $result=$conn->query($sql);

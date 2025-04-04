@@ -23,7 +23,6 @@ $(document).ready(function(){
 
 function KommentSec(id)
 {
- 
   keret=document.getElementById("k");
   keret.innerHTML="";
   var xhttp = new XMLHttpRequest();
@@ -43,20 +42,20 @@ function KommentSec(id)
   };
   xhttp.open("GET", "Kommentshow.php?id="+id, true);
   xhttp.send();
- 
 }
 
 
 function UziKuld()
 {
+  
   szoveg=document.getElementById("uzenetkuld").value;
   xhttp = new XMLHttpRequest();
   xhttp.open('POST', 'Kommentment.php', true);
   xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   xhttp.onreadystatechange = function() {
     if(xhttp.readyState == 4 && xhttp.status == 200) {
+      KommentSec(this.responseText);
       szoveg=document.getElementById("uzenetkuld").value="";
-      
     }
   }
   xhttp.send("szoveg="+szoveg);

@@ -50,6 +50,7 @@ function JelszoModosit(jelszo,visszajelzes,jelszo1,jelszo2)
             visszajelzes.innerHTML = this.responseText;
             jelszo1.value="";
             jelszo2.value="";
+            setTimeout(() => window.location.reload(), 3000);
         }
         else{
             visszajelzes.style.color="red";
@@ -72,6 +73,7 @@ function FelhNevModosit()
         if (this.responseText!="foglalt") {
             visszajelzes.style.color="darkgreen";
             visszajelzes.innerHTML=this.responseText;
+            setTimeout(() => window.location.reload(), 3000);
         }
         else{
             visszajelzes.style.color="red";
@@ -93,6 +95,7 @@ function EmailModosit()
         if (this.responseText!="foglalt") {
             visszajelzes.style.color="darkgreen";
             visszajelzes.innerHTML=this.responseText;
+            setTimeout(() => window.location.reload(), 3000);
         }
         else{
             visszajelzes.style.color="red";
