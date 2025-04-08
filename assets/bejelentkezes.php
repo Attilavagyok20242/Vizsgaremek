@@ -4,7 +4,9 @@ session_start();
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $nev = filter_input(INPUT_POST, 'Nevs', FILTER_SANITIZE_STRING);
     $jelszo = $_POST['Jelszos'] ?? '';
-
+function FelhasznaloCheck(){
+    
+}
     if ($nev && $jelszo) {
         $stmt = $conn->prepare("SELECT id, nev, jelszo, email, kod, Szerep, elrontott_bejelenkezes FROM felhasznalo WHERE nev = ?");
         $stmt->bind_param("s", $nev);

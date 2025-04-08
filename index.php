@@ -48,8 +48,8 @@
         if (file_exists($contentFile)) {
             include($contentFile);
         } else {
-            echo "<p>Ez a tartalom nem elérhető!</p>";
-        }
+           echo "<p>Ez a tartalom nem elérhető!</p>";
+        } 
         ?>
     </main>
     

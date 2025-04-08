@@ -5,12 +5,12 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // NÉV ELLENŐRZÉS
-if (!isset($_SESSION['username']) && !isset($_SESSION["username"])) {
+if (!isset($_SESSION['username']) && !isset($_COOKIE["username"])) {
     die("Hiba: Nincs beállítva a felhasználónév.");
 }
 
 // CHATSZOBA KIVÁLASZTÁS
-$room = $_SESSION["chatroom"] ?? "general";
+$room = $_COOKIE["chatroom"] ?? "general";
 $chatFile = "chat_{$room}.txt";
 
 // CHAT FÁJL LÉTREHOZÁSA, HA NEM LÉTEZIK
@@ -21,16 +21,16 @@ if (!file_exists($chatFile)) {
 // FELHASZNÁLÓ NEVÉNEK MENTÉSE
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["username"])) {
     $_SESSION['username'] = htmlspecialchars($_POST["username"]);
-    setSession$_SESSION("username", $_SESSION['username'], time() + 3600, "/");
+    setcookie("username", $_SESSION['username'], time() + 3600, "/");
     echo json_encode(["username" => $_SESSION['username']]);
     exit();
 }
 
 // ÜZENET KÜLDÉSE
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["message"]) && isset($_SESSION["username"])) {
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["message"]) && isset($_COOKIE["username"])) {
     $message = htmlspecialchars($_POST["message"]);
     $data = [
-        "username" => $_SESSION["username"],
+        "username" => $_COOKIE["username"],
         "message" => $message,
         "time" => date("H:i:s")
     ];
@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["message"]) && isset($
 
 // GÉPELÉSI ÁLLAPOT MENTÉSE
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['typing'])) {
-    $username = $_SESSION["username"] ?? "ismeretlen";
+    $username = $_COOKIE["username"] ?? "ismeretlen";
     $typingData = file_exists("typing_status.json") ? json_decode(file_get_contents("uzenetek/typing_status.json"), true) : [];
     $typingData[$username] = $_POST['typing'] == 1 ? time() : 0;
     file_put_contents("uzenetek/typing_status.json", json_encode($typingData));
@@ -80,7 +80,7 @@ if (isset($_GET["get_messages"])) {
     $messages = file_exists($chatFile) ? file($chatFile) : [];
     foreach ($messages as $msg) {
         $data = json_decode($msg, true);
-        echo "<div class='message " . ($data['username'] == $_SESSION['username'] ? "my-message" : "other-message") . "'>";
+        echo "<div class='message " . ($data['username'] == $_COOKIE['username'] ? "my-message" : "other-message") . "'>";
         echo "<strong>" . $data['username'] . "</strong> [" . $data['time'] . "]: " . $data['message'];
         echo "</div>";
     }
@@ -90,7 +90,7 @@ if (isset($_GET["get_messages"])) {
 // FELHASZNÁLÓK AKTIVITÁSÁNAK KEZELÉSE
 if (isset($_GET['get_users'])) {
     $users = file_exists("users.json") ? json_decode(file_get_contents("uzenetek/users.json"), true) : [];
-    $users[$_SESSION['username']] = time();
+    $users[$_COOKIE['username']] = time();
     file_put_contents("uzenetek/users.json", json_encode($users));
 
     foreach ($users as $user => $last_active) {
@@ -102,7 +102,7 @@ if (isset($_GET['get_users'])) {
 }
 
 // ADMIN: ÜZENETEK TÖRLÉSE
-if (isset($_POST['delete']) && $_SESSION['username'] === 'admin') {
+if (isset($_POST['delete']) && $_COOKIE['username'] === 'admin') {
     file_put_contents("uzenetek/".$chatFile, "");
     exit();
 }
