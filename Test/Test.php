@@ -34,4 +34,5 @@ class Test extends TestCase
         $valasz = FelhasznaloNevJelszo("", "");
         $this->assertEquals(400, $valasz);
     }
+    
 }
