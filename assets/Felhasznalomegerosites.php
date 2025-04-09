@@ -2,18 +2,15 @@
 include("../connection/connection.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['megerosites'])) {
-        $megerosites = $con->real_escape_string($_POST['megerosites']);
-
-        // Prepare the SQL statement
+        $megerosites = $conn->real_escape_string($_POST['megerosites']);
         $sql = "UPDATE felhasznalo SET megerositve=true WHERE kod=$megerosites";
-        $result = $con->query($sql);
-
+        $result = $conn->query($sql);
         if ($result) {
             echo "Sikeres megerősítés";
             header("Location: /");
             exit;
         } else {
-            echo "Sikertelen megerősítés: " . $con->error;
+            echo "Sikertelen megerősítés: " . $conn->error;
         }
     }
 }

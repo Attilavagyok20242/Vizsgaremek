@@ -136,7 +136,7 @@ function megerosites(){
     };
 
     console.log("Küldés indítása...");
-    xhttp.open("GET", "level_kuld2.php",true);
+    xhttp.open("GET", "level_kuld2",true);
     xhttp.send();
     console.log("Küldés megtörtént!");
 }

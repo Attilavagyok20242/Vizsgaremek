@@ -1,6 +1,5 @@
 <?php
     session_start();
-    include("../connection/connection.php");
     if(isset($_POST['jelszo1']))
     {
         $jelszo = password_hash($_POST['jelszo1'],PASSWORD_DEFAULT);

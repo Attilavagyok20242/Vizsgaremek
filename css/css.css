@@ -20,6 +20,9 @@ header {
     z-index: 1000;
 }
 
+
+
+
 header .logo {
     font-size: 2em;
     color: #ffcc00;
@@ -154,6 +157,8 @@ display: none;
 
 .warrior-info:hover {
     transform: scale(1.05);
+   
+
 }
 
 .warrior-info h3 {
@@ -276,7 +281,6 @@ display: none;
 
 /* Custom video controls (hide default controls) */
 .video-container video::-webkit-media-controls {
-    display: none;
 }
 
 /* Footer Section */
@@ -362,3 +366,40 @@ display: none;
     background-image: url('Spartan\ warrior.jpg');
 }
 
+@media screen and (max-width: 500px) {
+    header .logo {
+        font-size: 1.5em;
+    }
+    mobil-menu{
+        display: block;
+    }
+
+   nav header nav ul {
+        font-size: 10px;
+        display: inline;
+        height: 5px;
+    }
+    header nav ul li a {
+        font-size: 10px;
+        display: inline;
+        height: 10px;
+    }
+    #mobilMenuIcon{
+        display: block;
+    }
+    .szobak{
+        display: block;
+    }
+    .profils{
+        display: block;
+    }
+    .kilepes{
+        display: block;
+    }
+    .erdekesseg{
+        display: blocK;
+    }
+    .fooldal{
+        display: block;
+    }
+}    

@@ -12,7 +12,7 @@ if (isset($_POST['Nev'], $_POST['Jelszo'], $_POST['email'])) {
     }
 
     // Felhasználónév vagy email létezik-e már?
-    $stmt = $conn->prepare("SELECT email, nev FROM felhasznalo WHERE email = ? OR nev = ?");
+    $stmt = $con->prepare("SELECT email, nev FROM felhasznalo WHERE email = ? OR nev = ?");
     $stmt->bind_param("ss", $email, $nev);
     $stmt->execute();
     $stmt->store_result();
@@ -41,7 +41,7 @@ if (isset($_POST['Nev'], $_POST['Jelszo'], $_POST['email'])) {
 
     if ($stmt->execute()) {
         echo "<script>alert('Sikeres regisztráció!');</script>";
-        header('Location: /logreg');
+        header('Location: /login');
         exit();
     } else {
         echo "<script>alert('Hiba történt a regisztráció során!');</script>";

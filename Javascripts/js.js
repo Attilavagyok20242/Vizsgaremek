@@ -73,8 +73,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const video = document.getElementById('myVideo');
     const playButton = document.getElementById('playButton');
     const caption = document.querySelector('.video-caption p');
-
-    // Toggle play and pause when clicking the play button
     playButton.addEventListener('click', function () {
         if (video.paused) {
             video.play();
@@ -87,7 +85,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Show the play button when video is paused (in case the video ended or was paused)
     video.addEventListener('pause', function () {
         playButton.style.display = 'block';
         caption.style.opacity = '0'; // Hide caption when paused

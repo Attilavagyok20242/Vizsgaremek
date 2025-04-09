@@ -12,6 +12,7 @@
                     $conn->query("UPDATE felhasznalo SET profilkep='$fileName' WHERE id=".$_SESSION["id"]);
                 }
             }
+            header("Location:http://arenaklub.loc/?page=Profil");
         }
         
     }
@@ -23,7 +24,6 @@
 <div id="cim">
 <h1>Felhasználói fiókod adatai<span class="fekete">:</span></h1>
 </div>
-    
     <div id="pkeret">
         <img src="<?php print "../profilkepek/".$row["profilkep"];?>" id="felhasznalokep" class="profil">
         <div id="adatok">

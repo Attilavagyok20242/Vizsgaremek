@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gladiátor Aréna</title>
+    <title><img src="hatter/asd.jpg" alt=""></img>Aréna Klub</title>
     <link rel="stylesheet" href="css/css.css">
-    <link rel="stylesheet" href="css/style.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
@@ -26,7 +24,10 @@
     
     <!-- Fejléc -->
     <header>
-        <div class="logo">GLADIÁTOR ARÉNA</div>
+        <div class="logo">ARÉNA KLUB</div>
+        <div class="mobil-menu" style="display: none;">
+            <div class="menu-icon" id="mobilMenuIcon"><i class="fas fa-bars"></i></div>   
+        </div>
         <nav>
             <ul>
                 <li><a href="?page=Fooldal" class="fooldal">Kezdőlap</a></li>
@@ -74,14 +75,11 @@
         </div>
     <?php endif; ?>
     
-    <!-- Lábléc -->
-    <footer>
-        <p>&copy; 2025 Gladiátor Aréna. Minden jog fenntartva.</p>
-        <p>Email: gladiators@rome.com | Telefon: +123 456 789</p>
-    </footer>
+  
     
     <script src="Javascripts/js.js"></script>
     <script src="Javascripts/user-adats.js"></script>
     <script src="Javascripts/informaciok.js"></script>
+    <script src="Javascripts/felhasznaloi.js"></script>
 </body>
 </html>
