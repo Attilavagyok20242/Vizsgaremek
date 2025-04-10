@@ -34,6 +34,7 @@
                 <li><a href="?page=Szobak" class="szobak">Szobák</a>
                 <li><a href="?page=Profil" class="profils">Profilom</a></li>
                 <li><a href="?page=Erdekesseg" class="erdekesseg">Erdekesseg</a></li>
+                <li><a href="?page=Hírek" class="erdekesseg">Hírek</a></li>
                 <li><a href="?page=Hírek" class="erdekessegek">Hírek</a></li>
                 <li><a href="?page=Kilépés" class="kilepes">Kilépés</a></li>
             </ul>
@@ -49,8 +50,8 @@
         if (file_exists($contentFile)) {
             include($contentFile);
         } else {
-            echo "<p>Ez a tartalom nem elérhető!</p>";
-        }
+           echo "<p>Ez a tartalom nem elérhető!</p>";
+        } 
         ?>
     </main>
     
@@ -70,7 +71,7 @@
             <div class="bejelentkezes">
                 Kedves felhasználó, nem erősítetted meg a fiókodat. Ahhoz, hogy további tartalmat érj el:
                 <div class="bejelentkezes_szoveg2">
-                    <a href="/Felhasznalomegerosites" class="megerosites-gomb">Megerősítem!</a>
+                    <a href="?page=Profil" class="megerosites-gomb">Megerősítem!</a>
                 </div>
             </div>
         </div>

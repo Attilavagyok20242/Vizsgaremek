@@ -8,7 +8,7 @@ if (!isset($_SESSION['username'])) {
         $_SESSION['username'] = htmlspecialchars($_POST['username']);
         $_SESSION['last_active'] = time();
     } else {
-        die("<script>window.location.href='/szoba';</script>");
+        die("<script>window.location.href='szoba';</script>");
     }
 }
 

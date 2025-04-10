@@ -1,6 +1,16 @@
 <?php
 $views = 0;
 session_start();
+ $query = "SELECT Szerep FROM felhasznalo WHERE id=".$_SESSION['id'];
+ $result = mysqli_query($conn, $query);
+ if ($result) {
+     $row = mysqli_fetch_assoc($result);
+     $Szerep = $row['Szerep']; // works now
+     if ($Szerep == 0) {
+         header("Location: /fooldal");
+         exit();
+     }
+ }
 if (isset($_SESSION['views'])) {
     $views = $_SESSION['views'];
 }
@@ -22,6 +32,8 @@ include "../connection/connection.php";
    {
     $comments = $_SESSION['messages'];
    }
+    
+ 
 ?>
 
 <?php
@@ -46,7 +58,8 @@ $result = mysqli_query($conn, $query);
      if ($result) {
          $row = mysqli_fetch_assoc($result);
          $comments = $row['szoveg'];
-     }
+     
+        }
 ?>
 
 <!DOCTYPE html>

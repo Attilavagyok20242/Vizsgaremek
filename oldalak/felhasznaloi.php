@@ -16,7 +16,27 @@
         }
         
     }
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (isset($_POST['megerosites'])) {
+            $megerosites = $conn->real_escape_string($_POST['megerosites']);
+            $sql = "UPDATE felhasznalo SET megerositve=true WHERE kod=$megerosites";
+            $result = $conn->query($sql);
+            if ($result) {
+                echo "Sikeres megerősítés";
+                header("Location: /");
+                exit;
+            } else {
+                echo "Sikertelen megerősítés: " . $conn->error;
+            }
+        }
+    }
     
+if(!isset($_SESSION['id']))
+{
+    header("Location: /fooldal");
+    exit();
+}
+
 ?>
 
 <link rel="stylesheet" href="css/style2.css">
@@ -24,15 +44,28 @@
 <div id="cim">
 <h1>Felhasználói fiókod adatai<span class="fekete">:</span></h1>
 </div>
-    <div id="pkeret">
-        <img src="<?php print "../profilkepek/".$row["profilkep"];?>" id="felhasznalokep" class="profil">
-        <div id="adatok">
-        <p id="fnev">Felhasználó név:<span class="adatok2"><?php if(isset($row['nev'])){print $row['nev'];} ?></span><p>
-        <p id="email">E-mail:<span class="adatok2"><?php if(isset($row['email'])){print $row['email'];} ?></span></p>
-        <p id="elozmenyek">Kommentjeid száma:<span class="adatok2"></span></p>
-        <p id="regdate">Regisztráció dátuma:<span class="adatok2"><?php if(isset($row['nev'])){print $row['datum'];} ?></span></p>
+<section id ="pkeret">
+            <img src="<?php print "../profilkepek/".$row["profilkep"];?>" id="felhasznalokep" class="profil">
+          <div id="adatok">
+                <p id="fnev">Felhasználó név:<span class="adatok2"><?php if(isset($row['nev'])){print $row['nev'];} ?></span><p>
+                <p id="email">E-mail:<span class="adatok2"><?php if(isset($row['email'])){print $row['email'];} ?></span></p>
+                <p id="elozmenyek">Kommentjeid száma:<span class="adatok2"></span></p>
+                <p id="regdate">Regisztráció dátuma:<span class="adatok2"><?php if(isset($row['nev'])){print $row['datum'];} ?></span></p>
         </div>
-    </div>
+</section>
+<section class="megerositesfel">
+                <div id="meger2">
+                <button class="megerosites-gombs" onclick="megerosites()">Felhaszalo megerősítő kód kérése</button>
+                </div>
+                <div id="meger">
+                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                <input type="number" name="megerosites" class="number"  required>
+                             <button type="submit" class="kuldes">Küldés</button>
+                </form>
+                </div>
+              
+</section>
+
     <div id="menusor"><div class="belsokeret"><button class="adatok" id="profilkep">Profilkép</button>
     <button class="adatok" id="adatvaltoz">Adatatváltoztatás</button><button class="adatok">Naplód</button>
     <button class="adatok">Hibajelentéseid</button></div></div>
@@ -61,18 +94,13 @@
         <input type="text" class="bemenet" id="ujemail" placeholder="Az új E-mail címed...">
         <button onclick="EmailModosit()">Küld</button>
         <br>
-        <input type="email" class="bemenet" id="megerosit" placeholder="E-mail címed!">
-        <button class="bemenet" onclick="JelszoMegerosit()">Megerősítés</button>
+   
 </div>
 </div>
-
-
-
     <p>Változtasd meg jelszavadat!</p>
     <button id="jelchan" class="valtozz">V</button>
 
 <div id="box3">
-    
 <div class="bemenetek">
 <p id="visszajelzesjelszo" class="visszajelzes"></p>
 <input type="text" class="bemenet" name="ujjelszo" id="ujjelszo" placeholder="Az új jelszavad..." required>
@@ -80,17 +108,8 @@
 <input type="text" class="bemenet" name="ujujjelszo" id="ujujjelszo" placeholder="Az új jelszavad újra..." required>
 <button onclick="JelVizsgal()">Küld</button>
 </div>
-
-
 <div id="kartya3">
-
-
-
-
-
 </div>
-
-    
 </div>
 <script src="Javascripts/user-adats.js"></script>
 <script src="Javascripts/felhasznaloi.js"></script>
