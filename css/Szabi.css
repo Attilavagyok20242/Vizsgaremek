@@ -1,14 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
 
-//belekell tenni egy sectionbe az egészet PUSZI!<3
-body {
+.Egész{
     font-family: 'Cinzel', serif;
-    background: url('gladiátor.jpg') no-repeat center center fixed;
+    background: url('/hatter/Gladiator.jpg') no-repeat center center fixed;
     background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 120vh;
     margin: 0;
     flex-direction: column;
     overflow: hidden;
@@ -24,7 +23,7 @@ body {
     text-align: center;
     display: flex;
     flex-direction: column;
-    height: 70vh;
+    height: 75vh;
 }
 
 #chatbox {

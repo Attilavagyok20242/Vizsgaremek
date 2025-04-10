@@ -1,6 +1,5 @@
 <?php
 
-session_start();
 $sql="SELECT id,hir_szoveg, hir_cim,datum FROM hirek ORDER BY datum ASC LIMIT 3";
 $result=$conn->query($sql);
 

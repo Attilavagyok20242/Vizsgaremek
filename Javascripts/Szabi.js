@@ -9,66 +9,54 @@ document.addEventListener("DOMContentLoaded", function () {
     let typing = false;
     let typingTimeout;
 
+    // Sötét mód ellenőrzése
     if (localStorage.getItem("darkMode") === "enabled") {
         document.body.classList.add("dark-mode");
-    }
-    
-    document.addEventListener("DOMContentLoaded", function () {
-        let themeButton = document.getElementById("dark-mode-toggle");
-    
-        themeButton.addEventListener("click", function () {
-            document.body.classList.toggle("dark-mode");
-    
-            if (document.body.classList.contains("dark-mode")) {
-                themeButton.textContent = "☀️ Világos mód";
-            } else {
-                themeButton.textContent = "🌙 Sötét mód";
-            }
-        });
-
-    // Ellenőrizzük, hogy a sötét mód aktív-e
-    if (localStorage.getItem("darkMode") === "enabled") {
-        document.body.classList.add("dark-mode");
+        document.body.classList.remove("light-mode");
+        darkModeToggle.innerHTML = "☀️ Világos mód";
+    } else {
+        document.body.classList.add("light-mode");
+        darkModeToggle.innerHTML = "🌙 Sötét mód";
     }
 
     darkModeToggle.addEventListener("click", function () {
         document.body.classList.toggle("dark-mode");
+        document.body.classList.toggle("light-mode");
 
         if (document.body.classList.contains("dark-mode")) {
             localStorage.setItem("darkMode", "enabled");
+            darkModeToggle.innerHTML = "☀️ Világos mód";
         } else {
             localStorage.setItem("darkMode", "disabled");
+            darkModeToggle.innerHTML = "🌙 Sötét mód";
         }
     });
+
     let typingTimer;
-const typingIndicator = document.getElementById("typing-indicator");
 
-document.getElementById("message-input").addEventListener("input", () => {
-    clearTimeout(typingTimer);
-    sendTypingStatus(1);
-    typingTimer = setTimeout(() => sendTypingStatus(0), 3000);
-});
-
-function sendTypingStatus(isTyping) {
-    fetch("chat", {
-        method: "Post",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: "typing=" + isTyping
+    document.getElementById("message").addEventListener("input", () => {
+        clearTimeout(typingTimer);
+        sendTypingStatus(1);
+        typingTimer = setTimeout(() => sendTypingStatus(0), 3000);
     });
-}
 
-function getTypingStatus() {
-    fetch("szobaszabaly")
-        .then(response => response.json())
-        .then(users => {
-            typingIndicator.innerText = users.length > 0 ? `${users.join(", ")} gépel...` : "";
+    function sendTypingStatus(isTyping) {
+        fetch("chat.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: "typing=" + isTyping
         });
-}
+    }
 
-setInterval(getTypingStatus, 2000);
+    function getTypingStatus() {
+        fetch("chat.php?get_typing")
+            .then(response => response.json())
+            .then(users => {
+                typingIndicator.innerText = users.length > 0 ? `${users.join(", ")} éppen gépel...` : "";
+            });
+    }
 
-});
-
+    setInterval(getTypingStatus, 2000);
 
     messageInput.addEventListener("input", function () {
         if (!typing) {
@@ -82,19 +70,11 @@ setInterval(getTypingStatus, 2000);
         }, 2000);
     });
 
-    function sendTypingStatus(isTyping) {
-        fetch("chat", {
-            method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: `typing=${isTyping ? 1 : 0}`
-        });
-    }
-
     window.sendMessage = function () {
         let message = messageInput.value.trim();
         if (message === "") return;
 
-        fetch("chat", {
+        fetch("chat.php", {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: `message=${encodeURIComponent(message)}`
@@ -105,12 +85,12 @@ setInterval(getTypingStatus, 2000);
     };
 
     function updateChat() {
-        fetch("/iras/2")
+        fetch("chat.php?get_messages=1")
             .then(response => response.text())
             .then(data => {
                 chatbox.innerHTML = data;
                 chatbox.scrollTop = chatbox.scrollHeight;
-                
+
                 document.querySelectorAll(".message").forEach(msg => {
                     if (msg.getAttribute("data-user") === "<?php echo $_SESSION['username']; ?>") {
                         msg.classList.add("my-message");
@@ -120,40 +100,7 @@ setInterval(getTypingStatus, 2000);
                 });
             });
 
-            function setUsername() {
-                let username = sessionStorage.getItem("username") || getCookie("username");
-                
-                if (!username) {
-                    username = prompt("Adj meg egy felhasználónevet:");
-                    if (!username) return;
-            
-                    fetch("chat", {
-                        method: "POST",
-                        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                        body: "username=" + encodeURIComponent(username)
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.username) {
-                            sessionStorage.setItem("username", data.username);
-                            document.cookie = `username=${data.username}; path=/`;
-                        }
-                    })
-                    .catch(error => console.error("Hiba a felhasználónév beállításakor:", error));
-                }
-            }
-            
-            function getCookie(name) {
-                const value = `; ${document.cookie}`;
-                const parts = value.split(`; ${name}=`);
-                if (parts.length === 2) return parts.pop().split(';').shift();
-                return "";
-            }
-            
-            
-            
-
-        fetch("/iras/1")
+        fetch("chat.php?get_typing=1")
             .then(response => response.text())
             .then(data => {
                 typingIndicator.innerHTML = data ? `<em>${data} éppen gépel...</em>` : "";
@@ -180,26 +127,13 @@ setInterval(getTypingStatus, 2000);
     document.getElementById("private-message").addEventListener("click", function () {
         let privateMsg = prompt(`Írj privát üzenetet ${selectedMessageUser} számára:`);
         if (privateMsg) {
-            fetch("chat", {
+            fetch("chat.php", {
                 method: "POST",
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
                 body: `private_message=${encodeURIComponent(privateMsg)}&recipient=${selectedMessageUser}`
             });
         }
     });
-    document.addEventListener("DOMContentLoaded", function () {
-        let themeButton = document.getElementById("theme-toggle");
-    
-        themeButton.addEventListener("click", function () {
-            document.body.classList.toggle("dark-mode");
-    
-            if (document.body.classList.contains("dark-mode")) {
-                themeButton.textContent = "Világos mód";
-            } else {
-                themeButton.textContent = "Sötét mód";
-            }
-        });
-    });    
 
     document.getElementById("report-message").addEventListener("click", function () {
         alert("Az üzenetet jelentetted az adminoknak!");

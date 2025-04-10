@@ -44,6 +44,7 @@ if(!isset($_SESSION['id']))
 <div id="cim">
 <h1>Felhasználói fiókod adatai<span class="fekete">:</span></h1>
 </div>
+<section class="egesz">
 <section id ="pkeret">
             <img src="<?php print "../profilkepek/".$row["profilkep"];?>" id="felhasznalokep" class="profil">
           <div id="adatok">
@@ -113,3 +114,5 @@ if(!isset($_SESSION['id']))
 </div>
 <script src="Javascripts/user-adats.js"></script>
 <script src="Javascripts/felhasznaloi.js"></script>
+
+</section>

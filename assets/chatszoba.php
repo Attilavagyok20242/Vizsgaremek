@@ -1,11 +1,11 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['username'])) {
-    if (isset($_COOKIE['username'])) {
-        $_SESSION['username'] = $_COOKIE['username'];
-    } elseif (isset($_POST['username'])) {
-        $_SESSION['username'] = htmlspecialchars($_POST['username']);
+if (!isset($_SESSION['nev'])) {
+    if (isset($_COOKIE['nev'])) {
+        $_SESSION['nev'] = $_COOKIE['nev'];
+    } elseif (isset($_POST['nev'])) {
+        $_SESSION['nev'] = htmlspecialchars($_POST['nev']);
         $_SESSION['last_active'] = time();
     } else {
         die("<script>window.location.href='szoba';</script>");
@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['message'])) {
     $message = htmlspecialchars($_POST['message']);
     if (!empty($message)) {
         $data = [
-            "username" => $_SESSION['username'],
+            "nev" => $_SESSION['nev'],
             "message" => $message,
             "time" => date("H:i:s")
         ];
@@ -33,7 +33,7 @@ if (isset($_GET['get_messages'])) {
     $messages = file($chatFile);
     foreach ($messages as $msg) {
         $data = json_decode($msg, true);
-        echo "<p><strong>" . $data['username'] . "</strong> [" . $data['time'] . "]: " . $data['message'] . "</p>";
+        echo "<p><strong>" . $data['nev'] . "</strong> [" . $data['time'] . "]: " . $data['message'] . "</p>";
     }
     exit;
 }
@@ -42,13 +42,13 @@ if (isset($_GET['get_messages'])) {
     $messages = file("chat.txt");
     foreach ($messages as $msg) {
         $data = json_decode($msg, true);
-        echo "<p><strong>" . $data['username'] . "</strong> [" . $data['time'] . "]: " . $data['message'] . "</p>";
+        echo "<p><strong>" . $data['nev'] . "</strong> [" . $data['time'] . "]: " . $data['message'] . "</p>";
     }
     exit;
 }
 if (isset($_GET['get_users'])) {
     $users = isset($_SESSION['users']) ? $_SESSION['users'] : [];
-    $users[$username] = time();
+    $users[$nev] = time();
     $_SESSION['users'] = $users;
 
     foreach ($users as $user => $last_active) {
@@ -60,7 +60,7 @@ if (isset($_GET['get_users'])) {
 }
 
 // Üzenetek törlése
-if (isset($_POST['delete']) && $_SESSION['username'] === 'admin') {
+if (isset($_POST['delete']) && $_SESSION['nev'] === 'admin') {
     file_put_contents("uzenetek/chat.txt", "");
     exit;
 }
