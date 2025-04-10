@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chatszoba</title>
-    <link rel="stylesheet" href="../css/Szabi.css">
-    <script defer src="../Javascripts/Szabi.js"></script>
+    <link rel="stylesheet" href="/css/Szabi.css">
+    <script defer src="/Javascripts/Szabi.js"></script>
 </head>
 <body>
     <div class="chat-container">
@@ -18,28 +18,28 @@
             <button onclick="sendMessage()">Küldés</button>
         </div>
     </div>
-    
-    
+
     <div id="context-menu" class="context-menu">
         <ul>
             <li id="private-message">💬 Privát üzenet küldése</li>
             <li id="report-message">⚠️ Jelentés az adminnak</li>
         </ul>
     </div>
+
     <script>
         function joinChat() {
             let username = document.getElementById("username").value;
             let chatroom = document.getElementById("chatroom").value;
-        
+
             if (username.trim() === "") {
                 alert("Kérlek, add meg a neved!");
                 return;
             }
-        
+
             sessionStorage.setItem("username", username);
             sessionStorage.setItem("chatroom", chatroom);
             window.location.href = "/chat";
         }
-        </script>
+    </script>
 </body>
 </html>

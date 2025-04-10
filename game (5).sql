@@ -76,19 +76,22 @@ INSERT INTO `deleted_users` (`id`, `nev`, `email`, `torles_idopont`) VALUES
 --
 
 CREATE TABLE `felhasznalo` (
-  `id` int(11) NOT NULL,
-  `nev` varchar(255) NOT NULL,
-  `jelszo` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `aktív` tinyint(1) NOT NULL,
-  `Szerep` tinyint(1) NOT NULL,
-  `megerositve` tinyint(1) NOT NULL,
-  `kod` int(11) NOT NULL,
-  `datum` date NOT NULL,
-  `utolso_bejelentkezes` datetime DEFAULT NULL,
-  `utoljara_hasznalt_ip` varchar(45) DEFAULT NULL,
-  `elrontott_bejelenkezes` int(11) DEFAULT 0,
-  `profilkep` varchar(255) NOT NULL DEFAULT 'felh_ikon.png'
+  `id` INT(11) NOT NULL AUTO_INCREMENT,  -- Auto-incrementing primary key
+  `nev` VARCHAR(255) NOT NULL,  -- User's name
+  `jelszo` VARCHAR(255) NOT NULL,  -- User's hashed password
+  `email` VARCHAR(255) NOT NULL UNIQUE,  -- User's email (added UNIQUE constraint)
+  `aktív` TINYINT(1) NOT NULL,  -- Active status (1 = active, 0 = inactive)
+  `Szerep` TINYINT(1) NOT NULL,  -- User's role (can be expanded if needed)
+  `megerositve` TINYINT(1) NOT NULL,  -- Confirmation status (1 = confirmed, 0 = not confirmed)
+  `kod` INT(11) NOT NULL,  -- A verification or user-specific code (may need more context)
+  `datum` DATE NOT NULL,  -- Registration date or user's birthdate
+  `utolso_bejelentkezes` DATETIME DEFAULT NULL,  -- Last login timestamp
+  `utoljara_hasznalt_ip` VARCHAR(45) DEFAULT NULL,  -- Last used IP address (IPv4/IPv6)
+  `elrontott_bejelenkezes` INT(11) DEFAULT 0,  -- Number of failed login attempts
+  `profilkep` VARCHAR(255) NOT NULL DEFAULT 'felh_ikon.png',  -- User's avatar (default avatar image)
+  `status` ENUM('online', 'offline', 'away', 'busy') DEFAULT 'offline',  -- User's status
+  PRIMARY KEY (`id`),  -- Primary key on `id`
+  INDEX (`email`)  -- Index for `email` column
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -548,6 +551,61 @@ ALTER TABLE `felhasznaloi_valtozasok`
 --
 ALTER TABLE `jelszo_elozmenyek`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+-- 2. Rooms Table (Assumed structure for the 'rooms' table, as referenced in other tables)
+CREATE TABLE `rooms` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) NOT NULL,  -- Room name
+  `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,  -- Room creation timestamp
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- 3. Messages Table
+CREATE TABLE `messages` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `room_id` INT(11) NOT NULL,  -- Chat room ID
+  `sender_id` INT(11) NOT NULL,  -- User who sent the message
+  `message` TEXT NOT NULL,  -- Message content
+  `message_type` ENUM('text', 'image', 'video', 'file') NOT NULL,  -- Type of message (e.g., text, image, etc.)
+  `status` ENUM('sent', 'delivered', 'read') DEFAULT 'sent',  -- Message status
+  `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,  -- Timestamp of when the message was created
+  `read_at` DATETIME DEFAULT NULL,  -- Timestamp when the message was read
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`room_id`) REFERENCES `rooms`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`sender_id`) REFERENCES `felhasznalo`(`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- 4. Room Participants Table
+CREATE TABLE `room_participants` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `room_id` INT(11) NOT NULL,  -- Chat room ID
+  `user_id` INT(11) NOT NULL,  -- User ID of the participant
+  `joined_at` DATETIME DEFAULT CURRENT_TIMESTAMP,  -- Timestamp of when the user joined the room
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`room_id`) REFERENCES `rooms`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`user_id`) REFERENCES `felhasznalo`(`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- 5. Message Attachments Table
+CREATE TABLE `message_attachments` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `message_id` INT(11) NOT NULL,  -- The message this attachment belongs to
+  `file_path` VARCHAR(255) NOT NULL,  -- Path to the file
+  `file_type` VARCHAR(50) NOT NULL,  -- Type of file (e.g., image, pdf, etc.)
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`message_id`) REFERENCES `messages`(`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- 6. Notifications Table
+CREATE TABLE `notifications` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `user_id` INT(11) NOT NULL,  -- User ID to whom the notification belongs
+  `message` TEXT NOT NULL,  -- The notification message
+  `seen` TINYINT(1) DEFAULT 0,  -- 0 = not seen, 1 = seen
+  `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,  -- Timestamp when the notification was created
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`user_id`) REFERENCES `felhasznalo`(`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- AUTO_INCREMENT for table `menu`
