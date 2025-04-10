@@ -34,6 +34,7 @@
                 <li><a href="?page=Szobak" class="szobak">Szobák</a>
                 <li><a href="?page=Profil" class="profils">Profilom</a></li>
                 <li><a href="?page=Erdekesseg" class="erdekesseg">Erdekesseg</a></li>
+                <li><a href="?page=Hírek" class="erdekessegek">Hírek</a></li>
                 <li><a href="?page=Kilépés" class="kilepes">Kilépés</a></li>
             </ul>
             <div class="menu-icon" id="menuIcon"><i class="fas fa-bars"></i></div>

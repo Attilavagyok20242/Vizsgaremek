@@ -1,11 +1,9 @@
 RewriteEngine On
 RewriteBase /
 
-# Block access to specific pages
 RewriteRule ^profilom$ - [F,L]
 RewriteRule ^erdekessegek$ - [F,L]
 
-# Continue with existing rules
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
@@ -26,6 +24,7 @@ RewriteRule ^szobafrissit$ chat.php?get_messages=$1 [nc,qsa]
 RewriteRule ^iras$ chat.php?get_messages=$1 [nc,qsa]
 RewriteRule ^felhasznalo_kod$ assets/felhasznalo_kod.php [nc,qsa]
 RewriteRule ^level_kuld2$ phpmailerteljes/level_kuld2.php [nc,qsa]
+
 
 # Catch-all for other routes
 RewriteRule ^([a-zA-Z]+)$ index.php?menupont=$1 [nc,qsa]

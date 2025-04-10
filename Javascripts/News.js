@@ -40,7 +40,7 @@ function KommentSec(id)
       }
     }
   };
-  xhttp.open("GET", "Kommentshow.php?id="+id, true);
+  xhttp.open("GET", "assets/Kommentshow.php?id="+id, true);
   xhttp.send();
 }
 
@@ -50,7 +50,7 @@ function UziKuld()
   
   szoveg=document.getElementById("uzenetkuld").value;
   xhttp = new XMLHttpRequest();
-  xhttp.open('POST', 'Kommentment.php', true);
+  xhttp.open('POST', 'assets/Kommentment.php', true);
   xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   xhttp.onreadystatechange = function() {
     if(xhttp.readyState == 4 && xhttp.status == 200) {
@@ -59,5 +59,4 @@ function UziKuld()
     }
   }
   xhttp.send("szoveg="+szoveg);
-  
 }

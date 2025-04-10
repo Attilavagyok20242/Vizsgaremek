@@ -1,9 +1,5 @@
 <?php
 session_start();
-if (isset($_SESSION["hirid"])) {
-    $hirid=$_SESSION["hirid"];
-}
-require("../connection/connection.php");
 $sql="SELECT id,hir_szoveg, hir_cim,datum FROM hirek ORDER BY datum ASC LIMIT 3";
 $result=$conn->query($sql);
 
@@ -39,7 +35,7 @@ $harmadik_datum=$tomb[2]["datum"];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="News.css">
+    <link rel="stylesheet" href="../css/News.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <title>Hírek</title>
 </head>
@@ -55,51 +51,50 @@ $harmadik_datum=$tomb[2]["datum"];
             </div>
         </div>
     
-    <img src="NewsImg/Title.png" class="oldalcim">
+    <img src="../NewsImg/Title.png" class="oldalcim">
     <div class="keret">
         <div class="belsokeret">
             <div class="scrollrolled" id="rolled1">
-                <img src="NewsImg/rolledupscroll2.png" class="rolledkep">
+                <img src="../NewsImg/rolledupscroll2.png" class="rolledkep">
             </div>
             <div class="scroll" id="scroll1">
                 <div class="szovegkeret">
                     <h1 class="cim"><?php print $elso_hir_cim?></h1>
                     <p class="szoveg"><?php print $elso_hir?></p>
                     <p id="datum"><?php print $elso_datum?></p>
-                    <img class="stamp" src="NewsImg/stamp.png">
+                    <img class="stamp" src="../NewsImg/stamp.png">
                 </div>
-                <?php if(isset($_SESSION["id"])){print"<img src='NewsImg/Comment2.png' id='kommentgomb' class='komment' onclick='KommentSec(".$elso_id.")'>";}?>  
+                <?php if(isset($_SESSION["id"])){print"<img src='../NewsImg/Comment2.png' id='kommentgomb' class='komment' onclick='KommentSec(".$elso_id.")'>";}?>  
             </div>
         </div>
         <div class="belsokeret">
             <div class="scrollrolled" id="rolled2">
-                <img src="NewsImg/rolledupscroll2.png" class="rolledkep"></div>
+                <img src="../NewsImg/rolledupscroll2.png" class="rolledkep"></div>
             <div class="scroll" id="scroll2">
                 <div class="szovegkeret">
                 <h1 class="cim"><?php print $masodik_hir_cim?></h1>
                 <p class="szoveg"><?php print $masodik_hir?></p>
-                <p id="datum"><?php print $masodik_datum?></p><img class="stamp" src="NewsImg/stamp.png">
+                <p id="datum"><?php print $masodik_datum?></p><img class="stamp" src="../NewsImg/stamp.png">
                 </div>
-                <?php if(isset($_SESSION["id"])){print"<img src='NewsImg/Comment2.png' id='kommentgomb' class='komment' onclick='KommentSec(".$masodik_id.")'>";}?>   
+                <?php if(isset($_SESSION["id"])){print"<img src='../NewsImg/Comment2.png' id='kommentgomb' class='komment' onclick='KommentSec(".$masodik_id.")'>";}?>   
             </div>
         </div>
         <div class="belsokeret">
             <div class="scrollrolled" id="rolled3">
-                <img src="NewsImg/rolledupscroll2.png" class="rolledkep"></div>
+                <img src="../NewsImg/rolledupscroll2.png" class="rolledkep"></div>
             <div class="scroll" id="scroll3">
             <div class="szovegkeret">
                 <h1 class="cim"><?php print $harmadik_hir_cim?></h1>
                 <p class="szoveg"><?php print $harmadik_hir?></p>
-                <p id="datum"><?php print $harmadik_datum?></p><img class="stamp" src="NewsImg/stamp.png"></div>
-                <?php if(isset($_SESSION["id"])){print"<img src='NewsImg/Comment2.png' id='kommentgomb' class='komment' onclick='KommentSec(".$harmadik_id.")'>";}?> 
-            
+                <p id="datum"><?php print $harmadik_datum?></p><img class="stamp" src="../NewsImg/stamp.png"></div>
+                <?php if(isset($_SESSION["id"])){print"<img src='../NewsImg/Comment2.png' id='kommentgomb' class='komment' onclick='KommentSec(".$harmadik_id.")'>";}?> 
         </div> 
     </div>
     
     
     
 
-    <script src="News.js"></script>
+    <script src="../Javascripts/News.js"></script>
     
 </body>
 </html>
