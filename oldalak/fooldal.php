@@ -1,7 +1,8 @@
-<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 
 <body>
-
+<?php
+print("<script>console.log(ez:".$_SESSION['Szerep'].")</script>")
+?>
    <!-- Hero Szakasz -->
    <section id="hero" class="hero">
         <h1>Becsületért és Dicsőségért</h1>

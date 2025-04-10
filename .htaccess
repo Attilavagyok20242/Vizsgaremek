@@ -4,10 +4,10 @@ RewriteBase /
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-
 RewriteRule ^Kilepes$ oldalak/kilepes.php [nc,qsa]
 RewriteRule ^Login$ oldalak/logreg.php [nc,qsa]
 RewriteRule ^felhasznaloi$ oldalak/felhasznaloi.php [nc,qsa]
+RewriteRule ^hírek$ oldalak/News.php [nc,qsa]
 RewriteRule ^Felhasznalomegerosites$ assets/Felhasznalomegerosites.php [nc,qsa]
 RewriteRule ^felhasznalo_belepve$ assets/felhasznalo_belepve.php [nc,qsa]
 RewriteRule ^keptolt$ assets/keptolt.php [nc,qsa]

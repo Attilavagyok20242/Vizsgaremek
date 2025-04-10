@@ -1,32 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-body {
-    margin: 0;
-    background-color: #000;
-    color: #eee;
-    font-family: Poppins;
-    font-size: 12px;
-}
 
-a {
-    text-decoration: none;
-}
 
-fejlec {
-    width: 1140px;
-    max-width: 80%;
-    margin: auto;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    position: relative;
-    z-index: 100;
-}
-
-fejlec a {
-    color: #eee;
-    margin-right: 40px;
-}
 
 /* korhinta */
 .korhinta {
@@ -52,15 +27,17 @@ fejlec a {
 
 .korhinta .lista .elem .tartalom {
     position: absolute;
-    top: 20%;
+    top: 25%;
     width: 1140px;
     max-width: 80%;
-    left: 50%;
-    transform: translateX(-50%);
-    padding-right: 30%;
+    left: 20%;
+    transform: translateX(-20%);
+    padding-right: 10%;
     box-sizing: border-box;
     color: #fff;
+    text-align: justify;
     text-shadow: 0 5px 10px #0004;
+    font-size: 15px;
 }
 
 .korhinta .lista .elem .szerzo {
@@ -140,6 +117,9 @@ fejlec a {
 
 .elonezet .elem .tartalom .leiras {
     font-weight: 300;
+    text-align: justify;
+    text-shadow: #fff;
+    float: right;
 }
 
 /* nyilak */
@@ -182,10 +162,10 @@ fejlec a {
 .korhinta .lista .elem:nth-child(1) .tartalom .tema,
 .korhinta .lista .elem:nth-child(1) .tartalom .leiras,
 .korhinta .lista .elem:nth-child(1) .tartalom .gombok {
-    transform: translateY(50px);
+    transform: translateY(0px);
     filter: blur(20px);
     opacity: 0;
-    animation: showContent .5s 1s linear 1 forwards;
+    animation: showContent .7s 2s linear 1 forwards;
 }
 
 @keyframes showContent {
@@ -324,13 +304,13 @@ fejlec a {
 .korhinta.prev .lista .elem:nth-child(2) .tartalom .tema,
 .korhinta.prev .lista .elem:nth-child(2) .tartalom .leiras,
 .korhinta.prev .lista .elem:nth-child(2) .tartalom .gombok {
-    animation: contentOut 1.5s linear 1 forwards !important;
+    animation: contentOut 2s linear 1.5 forwards !important;
 }
 
 @keyframes contentOut {
     to {
-        transform: translateY(-150px);
-        filter: blur(20px);
+        transform: translateY(-160px);
+        filter: blur(30px);
         opacity: 0;
     }
 }
