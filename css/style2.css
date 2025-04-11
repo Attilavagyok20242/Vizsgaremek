@@ -185,3 +185,45 @@ input:hover{
     height: 10px;
     margin: 0 auto;
 }
+
+.megerositesfel {
+    border-radius: 5px;
+    background: rgba(133, 131, 131, 0.7);
+    width: 600px;
+    margin: 0 auto;
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+    transform: translateX(0%);
+    margin-top: 20px;
+    padding: 10px;
+    z-index: 1000;
+    font-size: 15px;
+    box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+}
+.megerosites-gombs {
+  background-color: #ff9800;
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.number{
+    font-size: 20px;
+    margin-left: 15px;
+    margin-top: 2px;
+}
+.kuldes{
+    font-size: 17px;
+    background-color: #ff9800;
+}
+
+.megerosites-gombs:hover {
+  background-color: #e68900;
+}
+.number input{
+    background-color: #ff9800;
+}
