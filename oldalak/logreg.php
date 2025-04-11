@@ -1,6 +1,6 @@
 <?php require_once "../assets/bejelentkezes.php";?>
 <?php require_once "../assets/register.php";?>
-
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="css/kappa.css">
     <div class="container">
         <div class="form-box login">

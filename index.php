@@ -6,6 +6,8 @@
     <title><img src="hatter/asd.jpg" alt=""></img>Aréna Klub</title>
     <link rel="stylesheet" href="css/css.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+
 </head>
 <body>
     <?php
