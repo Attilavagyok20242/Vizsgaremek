@@ -6,6 +6,15 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
+#segitsegtartalomkeret
+{
+  display: none;
+}
+.jelentes{
+  width: 500px;
+  height: fit-content;
+  background-color: brown;
+}
 :root{
   --blue:#287bff;
   --white:#fff;
@@ -254,4 +263,33 @@ pointer-events: none;
 }
 #asd{
   display: none;
+}
+.keret{
+    width: 600px;
+    height: 400px;
+    background-color: white;
+    border-radius: 15px;
+    margin-left: 320px;
+    margin-top: 20px;
+}
+.bemenetek{
+  width: 200px;
+  height: fit-content;
+  margin-left: 100px;
+  padding-top: 50px;
+}
+.cim{
+  width: 400px;
+  height: 50px;
+  border: solid 5px black;
+  border-radius: 5px;
+  font-size: large;
+}
+.tartalom{
+  margin-top: 15px;
+  width: 400px;
+  resize: none;
+  height: 200px;
+  border: solid 5px black;
+  border-radius: 5px;
 }

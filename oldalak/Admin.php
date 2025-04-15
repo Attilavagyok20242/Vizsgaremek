@@ -1,4 +1,16 @@
 <?php
+include "../connection/connection.php";
+if(isset($_POST['cim'])&&isset($_POST['tartalom']))
+{
+    $cim=$_POST['cim'];
+    $tartalom=$_POST['tartalom'];
+    $sql = "INSERT INTO hirek (hir_cim,hir_szoveg,datum) VALUES (?,?,NOW())";
+    $stmt=$conn->prepare($sql);
+    $stmt->bind_param("ss", $cim,$tartalom);
+    $stmt->execute();
+}
+
+
 $views = 0;
 session_start();
  $query = "SELECT Szerep FROM felhasznalo WHERE id=".$_SESSION['id'];
@@ -52,12 +64,18 @@ $result = mysqli_query($conn, $query);
      $row = mysqli_fetch_assoc($result);
      $felhasznalo = $row['felhasznalo'];
  }
-     $messages=0;
-     $query = "SELECT COUNT(text) as szoveg FROM messages";
+     $query = "SELECT COUNT(id) as kommentek FROM kommentek";
      $result = mysqli_query($conn, $query);
      if ($result) {
          $row = mysqli_fetch_assoc($result);
-         $comments = $row['szoveg'];
+         $comments = $row['kommentek'];
+     
+        }
+      $query = "SELECT COUNT(id) as felhasznalok FROM felhasznalo";
+     $result = mysqli_query($conn, $query);
+     if ($result) {
+         $row = mysqli_fetch_assoc($result);
+         $felhasznalok = $row['felhasznalok'];
      
         }
 ?>
@@ -67,10 +85,9 @@ $result = mysqli_query($conn, $query);
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Admin felület</title>
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 <link rel="stylesheet" href="css/administrator.css">
-<link rel="stylesheet" href="../css/segitseg.css">
   <script src="javascriptek/segitseg.js"></script>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
@@ -86,16 +103,16 @@ $result = mysqli_query($conn, $query);
             <span class="title">Gladiator Arena</span>
           </a>
         </li>
-        <li>
-          <a href="#" id="uzemfal">
+        <li id="uzemfal">
+          <a href="#" >
             <span class="icon">
               <i class='bx bx-cog'></i>
             </span>
             <span class="title">Üzemfal</span>
           </a>
         </li>
-        <li>
-          <a href="#" id="segitseg">
+        <li id="segitseg">
+          <a href="#" >
             <span class="icon">
             
               <i class='bx bx-user-pin'></i>
@@ -143,11 +160,12 @@ $result = mysqli_query($conn, $query);
         </div>
       </div>
       <!--kártyák-->
+      <div id="uzemtartalomkeret">
        <div class="cardBox">
         <div class="card">
           <div>
-            <div class="numbers"><?php echo $views; ?></div>
-            <div class="cardName">Napi megtekintés</div>
+            <div class="numbers"><?php echo $felhasznalok; ?></div>
+            <div class="cardName">Regisztrált felhasználók</div>
           </div>
            <div class="iconBx">
             <i class='bx bxs-user'></i>
@@ -165,7 +183,7 @@ $result = mysqli_query($conn, $query);
         <div class="card">
           <div>
             <div class="numbers"><?php echo $felhasznalo;?></div>
-            <div class="cardName">Aktív Felhasznalók</div>
+            <div class="cardName">Aktív Felhasználók</div>
           </div>
            <div class="iconBx">
             <i class='bx bxs-user'></i>
@@ -180,16 +198,26 @@ $result = mysqli_query($conn, $query);
             <i class='bx bxs-user'></i>
            </div>
         </div>
-      
-      
        </div>
-<div id="poop-up">
 
-        
-
+        <div class="keret">
+          <div class="bemenetek">
+            <form action="" method="post">
+                    <input type="text" name="cim" placeholder="Add meg a hír címét!" class="cim" maxlength="50">
+                    <textarea name="tartalom" placeholder="Add meg a hír tartalmát!" class="tartalom" maxlength="600"></textarea>
+                    <input type="submit"  value="Küldés!" class="kuld" >
+            </form>
+        </div>
     </div>
    </div>
-   <script src="javascriptek/adminja.js"></script>
+        <div id="segitsegtartalomkeret">
+              <div id="jelentesek">
+              </div>
+        </div>
+  </div>
+  
+  
+   <script src="Javascripts/adminja.js"></script>
    <script>
       let toggle=document.querySelector('.toggle');
       let navigation=document.querySelector('.navigation');

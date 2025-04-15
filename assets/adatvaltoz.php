@@ -38,19 +38,22 @@
     if(isset($_POST['ujemail']))
     {
         $ujemail=$_POST['ujemail'];
-        $sql = "SELECT email FROM felhasznalo WHERE email=?";
-        $stmt=$conn->prepare($sql);
-        $stmt->bind_param("si", $ujemail, $_SESSION["id"]);
-        $stmt->execute();
-        $stmt->store_result();
-        if ($stmt->num_rows<1) {
-            $sql = "UPDATE felhasznalo SET email = ? WHERE id=?";
+        if (filter_var($ujemail, FILTER_VALIDATE_EMAIL)) {
+            $sql = "SELECT email FROM felhasznalo WHERE email=?";
             $stmt=$conn->prepare($sql);
             $stmt->bind_param("si", $ujemail, $_SESSION["id"]);
             $stmt->execute();
-            print "Sikeres név változtatás!";
+            $stmt->store_result();
+            if ($stmt->num_rows<1) {
+                $sql = "UPDATE felhasznalo SET email = ? WHERE id=?";
+                $stmt=$conn->prepare($sql);
+                $stmt->bind_param("si", $ujemail, $_SESSION["id"]);
+                $stmt->execute();
+                print "Sikeres név változtatás!";
+            }
+            else{
+                print "foglalt";
+            }
         }
-        else{
-            print "foglalt";
-        }
+        
     }

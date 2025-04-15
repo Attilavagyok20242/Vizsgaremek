@@ -67,7 +67,7 @@ body{
 }
 #kartya1{
     height: 200px;
-   
+    position: relative;
 
 
 }
@@ -87,11 +87,13 @@ body{
     color: black;
 }
 #cim{
+    color: black;
     border-radius: 5px;
     background: rgba(133, 131, 131, 0.7);
     height: 30px;
     width: 600px;
     margin: 0 auto;
+    padding-top: 50px;
     margin-bottom: 150px;
 }
 .profil{
@@ -135,6 +137,9 @@ body{
 }
 .adatok2{
     margin-left: 10px;
+}
+#adatok{
+    text-align: left;
 }
 .adatok{
     height: 30px;

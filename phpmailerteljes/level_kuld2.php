@@ -13,8 +13,8 @@ $mail = new PHPMailer();
 $mail->isSMTP();
 $mail->Host = "smtp.gmail.com";
 $mail->SMTPAuth = true;
-$mail->Username = "72517552872@szily.hu"; // Use a valid Gmail address
-$mail->Password = "smgyyqoevqinypnw";    // Use an App Password (DO NOT use your real password)
+$mail->Username = "arenaklub001@gmail.com"; // Use a valid Gmail address
+$mail->Password = "lrbxhdvwvctddwvv";    // Use an App Password (DO NOT use your real password)
 $mail->Port = 465;
 $mail->SMTPSecure = "ssl";
 
@@ -27,7 +27,7 @@ $fromName = "Arena Klub";
 $body = "Köszönjük, hogy regisztrált az oldalunkra! Kód: " . htmlspecialchars($kod, ENT_QUOTES, 'UTF-8');
 
 $mail->isHTML(true);
-$mail->setFrom("72517552872@szily.hu", $fromName);
+$mail->setFrom("arenaklub001@gmail.com", $fromName);
 $mail->addAddress($email);
 $mail->Subject = $subject;
 $mail->Body = $body;
