@@ -16,22 +16,7 @@
             header("Location:http://arenaklub.loc/?page=Profil");
         }
         
-    }
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if (isset($_POST['megerosites'])) {
-            $megerosites = $conn->real_escape_string($_POST['megerosites']);
-            $sql = "UPDATE felhasznalo SET megerositve=true WHERE kod=$megerosites";
-            $result = $conn->query($sql);
-            if ($result) {
-                echo "Sikeres megerősítés";
-                header("Location: /");
-                exit;
-            } else {
-                echo "Sikertelen megerősítés: " . $conn->error;
-            }
-        }
-    }
-    
+    }    
 if(!isset($_SESSION['id']))
 {
     header("Location: /fooldal");
@@ -39,6 +24,7 @@ if(!isset($_SESSION['id']))
 }
 
 ?>
+
 
 <link rel="stylesheet" href="css/style2.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -56,16 +42,11 @@ if(!isset($_SESSION['id']))
         </div>
 </section>
 <section class="megerositesfel">
-                <div id="meger2">
                 <button class="megerosites-gombs" onclick="megerosites()">Felhaszalo megerősítő kód kérése</button>
-                </div>
-                <div id="meger">
-                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                <form action="" method="post">
                 <input type="number" name="megerosites" class="number"  required>
                 <button type="submit" class="kuldes">Küldés</button>
                 </form>
-                </div>
-              
 </section>
 
     <div id="menusor"><div class="belsokeret"><button class="adatok" id="profilkep">Profilkép</button>
@@ -113,7 +94,7 @@ if(!isset($_SESSION['id']))
 <div id="kartya3">
 </div>
 </div>
-<script src="Javascripts/user-adats.js"></script>
-<script src="Javascripts/felhasznaloi.js"></script>
+
+
 
 </section>

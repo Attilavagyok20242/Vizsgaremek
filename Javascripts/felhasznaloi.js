@@ -1,21 +1,21 @@
 $(document).ready(function () {
     $("#nevchan").click(function (e) { 
-       $("#box1").slideToggle("slow");
-    });
-    $("#emailchan").click(function (e) { 
-        $("#box2").slideToggle("slow");
+        $("#box1").slideToggle("slow");
      });
-     $("#jelchan").click(function (e) { 
-        $("#box3").slideToggle("slow");
-     });
-     $("#adatvaltoz").click(function (e) { 
-        $("#kartya2").fadeIn("slow");
-        $("#kartya1").hide("fast");
-     });
-     $("#profilkep").click(function (e) { 
-        $("#kartya1").fadeIn("slow");
-        $("#kartya2").hide("fast");
-     });
+     $("#emailchan").click(function (e) { 
+         $("#box2").slideToggle("slow");
+      });
+      $("#jelchan").click(function (e) { 
+         $("#box3").slideToggle("slow");
+      });
+      $("#adatvaltoz").click(function (e) { 
+         $("#kartya2").fadeIn("slow");
+         $("#kartya1").hide("fast");
+      });
+      $("#profilkep").click(function (e) { 
+         $("#kartya1").fadeIn("slow");
+         $("#kartya2").hide("fast");
+      });
 });
 function JelVizsgal()
 {

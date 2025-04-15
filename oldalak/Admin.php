@@ -13,16 +13,13 @@ if(isset($_POST['cim'])&&isset($_POST['tartalom']))
 
 $views = 0;
 session_start();
- $query = "SELECT Szerep FROM felhasznalo WHERE id=".$_SESSION['id'];
- $result = mysqli_query($conn, $query);
- if ($result) {
-     $row = mysqli_fetch_assoc($result);
-     $Szerep = $row['Szerep']; // works now
-     if ($Szerep == 0) {
-         header("Location: /fooldal");
-         exit();
-     }
- }
+require_once "../connection/connection.php";
+
+if (!isset($_SESSION['id'])) {
+    http_response_code(403);
+    exit("Nincs jogosultság.");
+}
+
 if (isset($_SESSION['views'])) {
     $views = $_SESSION['views'];
 }
@@ -89,7 +86,7 @@ $result = mysqli_query($conn, $query);
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 <link rel="stylesheet" href="css/administrator.css">
   <script src="javascriptek/segitseg.js"></script>
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
    <div class="container">
