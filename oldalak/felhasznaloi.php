@@ -1,4 +1,5 @@
 <?php
+
     if (isset($_SESSION['id'])) {
         $sql="SELECT nev, email,datum,profilkep FROM felhasznalo WHERE id=".$_SESSION["id"];
         $result=$conn->query($sql);
@@ -68,7 +69,7 @@ if(!isset($_SESSION['id']))
     <button class="bemenet" onclick="FelhNevModosit()">Küld</button></div>
 </div>
 
-    <p>Változtasd meg az e-mail címedet/Erősítsd meg azt!</p>
+    <p>Változtasd meg az e-mail címedet</p>
     <button id="emailchan" class="valtozz">V</button>
 <div id="box2">
     <div class="bemenetek">

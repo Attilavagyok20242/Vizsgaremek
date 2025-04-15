@@ -5,7 +5,7 @@ if (isset($_GET['id'])) {
     $id=$_GET['id'];
     $_SESSION['hirid']=$id;
     $sql="SELECT kommentek.id,nev,szoveg,kommentek.datum FROM kommentek INNER JOIN felhasznalo 
-    ON kommentek.felhasznalo_id=felhasznalo.id INNER JOIN hirek ON kommentek.hir_id=hirek.id WHERE hir_id=$id ORDER BY kommentek.datum DESC";
+    ON kommentek.felhasznalo_id=felhasznalo.id INNER JOIN hirek ON kommentek.hir_id=hirek.id WHERE hir_id=$id ORDER BY kommentek.datum";
     $result=$conn->query($sql);
     if (mysqli_num_rows($result)>0) {
         while($row=$result->fetch_assoc())

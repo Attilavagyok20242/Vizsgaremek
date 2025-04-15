@@ -1,12 +1,10 @@
 <?php
-require_once("../connection/connection.php");
+require_once("./connection/connection.php");
 session_start();
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $nev = filter_input(INPUT_POST, 'Nevs', FILTER_SANITIZE_STRING);
     $jelszo = $_POST['Jelszos'] ?? '';
-function FelhasznaloCheck(){
-    
-}
+
     if ($nev && $jelszo) {
         $stmt = $conn->prepare("SELECT id, nev, jelszo, email, kod, Szerep, elrontott_bejelenkezes FROM felhasznalo WHERE nev = ?");
         $stmt->bind_param("s", $nev);
@@ -27,6 +25,7 @@ function FelhasznaloCheck(){
                 $_SESSION['email'] = $row['email'] ?? null;
                 $_SESSION['kod'] = $row['kod'] ?? null;
                 $_SESSION['userLoggedIN'] = true;
+      
 
                 $update = $conn->prepare("UPDATE felhasznalo SET elrontott_bejelenkezes = 0, aktív = 1 WHERE id = ?");
                 $update->bind_param("i", $row['id']);

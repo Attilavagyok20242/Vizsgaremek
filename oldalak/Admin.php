@@ -1,4 +1,16 @@
 <?php
+include "../connection/connection.php";
+if(isset($_POST['cim'])&&isset($_POST['tartalom']))
+{
+    $cim=$_POST['cim'];
+    $tartalom=$_POST['tartalom'];
+    $sql = "INSERT INTO hirek (hir_cim,hir_szoveg,datum) VALUES (?,?,NOW())";
+    $stmt=$conn->prepare($sql);
+    $stmt->bind_param("ss", $cim,$tartalom);
+    $stmt->execute();
+}
+
+
 $views = 0;
 session_start();
 require_once "../connection/connection.php";
@@ -49,11 +61,12 @@ $result = mysqli_query($conn, $query);
      $row = mysqli_fetch_assoc($result);
      $felhasznalo = $row['felhasznalo'];
  }
-     $query = "SELECT COUNT(szoveg) as szoveg FROM uzenetek";
+     $messages=0;
+     $query = "SELECT COUNT(text) as szoveg FROM messages";
      $result = mysqli_query($conn, $query);
      if ($result) {
          $row = mysqli_fetch_assoc($result);
-         $comments = $row['szoveg'];
+         $felhasznalok = $row['felhasznalok'];
      
         }
 ?>
@@ -63,10 +76,9 @@ $result = mysqli_query($conn, $query);
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Admin felület</title>
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 <link rel="stylesheet" href="css/administrator.css">
-<link rel="stylesheet" href="../css/segitseg.css">
   <script src="javascriptek/segitseg.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
@@ -82,16 +94,16 @@ $result = mysqli_query($conn, $query);
             <span class="title">Gladiator Arena</span>
           </a>
         </li>
-        <li>
-          <a href="#" id="uzemfal">
+        <li id="uzemfal">
+          <a href="#" >
             <span class="icon">
               <i class='bx bx-cog'></i>
             </span>
             <span class="title">Üzemfal</span>
           </a>
         </li>
-        <li>
-          <a href="#" id="segitseg">
+        <li id="segitseg">
+          <a href="#" >
             <span class="icon">
             
               <i class='bx bx-user-pin'></i>
@@ -139,11 +151,12 @@ $result = mysqli_query($conn, $query);
         </div>
       </div>
       <!--kártyák-->
+      <div id="uzemtartalomkeret">
        <div class="cardBox">
         <div class="card">
           <div>
-            <div class="numbers"><?php echo $views; ?></div>
-            <div class="cardName">Napi megtekintés</div>
+            <div class="numbers"><?php echo $felhasznalok; ?></div>
+            <div class="cardName">Regisztrált felhasználók</div>
           </div>
            <div class="iconBx">
             <i class='bx bxs-user'></i>
@@ -161,7 +174,7 @@ $result = mysqli_query($conn, $query);
         <div class="card">
           <div>
             <div class="numbers"><?php echo $felhasznalo;?></div>
-            <div class="cardName">Aktív Felhasznalók</div>
+            <div class="cardName">Aktív Felhasználók</div>
           </div>
            <div class="iconBx">
             <i class='bx bxs-user'></i>
@@ -177,31 +190,13 @@ $result = mysqli_query($conn, $query);
            </div>
         </div>
        </div>
-  <div class="ablak">
-  <?php if (isset($_SESSION['id'])): ?>
-    <div class="egybeazegesz" id="jelkeret">
+<div id="poop-up">
+
         
-         <div id="cseveges-kapcsolo">Jovahagyas</div> 
-    </div>
-       <div id="cseveges-doboz" style="display: none;">
-        <div id="cseveges-fejlec">Kérj segítséget <span id="cseveges-bezar">×</span></div>
-        <div id="cseveges-uzenetek"></div> <!-- Üzenetek megjelenítése -->
-        <div id="cseveges-beviteli-terulet">
-            <input type="text" id="cseveges-bevitel" placeholder="Írj egy üzenetet..." autocomplete="off" /> <!-- Üzenet beírása -->
-            <button id="cseveges-kuldes">Küldés</button> <!-- Üzenet elküldése -->
-        </div>
-    </div>
-<?php endif; ?>
-  </div>
-  
-
-
-
 
     </div>
    </div>
-   <script src="Javascripts/adminja.js"></script>
-   <script src="Javascripts/user-adats.js"></script>
+   <script src="javascriptek/adminja.js"></script>
    <script>
       let toggle=document.querySelector('.toggle');
       let navigation=document.querySelector('.navigation');

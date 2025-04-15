@@ -1,4 +1,3 @@
-
 .komment{
     float: right;
     margin-right: 60px;
@@ -7,7 +6,7 @@
 .kulso{
   display: none;
   width: 100%;
-  height: 130vh;
+  height: 100%;
   background: grey;
   opacity: 0.9;
   filter: blur(1px);
@@ -19,13 +18,12 @@
 .kommentkeret{
   display: none;
   left: 500px;
-  top: 20px;
+  top: 50px;
   z-index: 4;
   position: absolute;
-  width: 450px;
-  margin-top: 130px;
-  height: 75vh;
-  background-image: url('../NewsImg/BGscroll.png');
+  width: 500px;
+  height: 600px;
+  background-image: url(NewsImg/BGscroll.png);
   border-radius: 25px;
   align-content: center;
 }
@@ -35,8 +33,7 @@
   background-color: gray;
   margin: 0 auto;
   border-radius: 5px;
-  color: black;
-  text-align: left;
+
 }
 .kommentek{
   overflow-y: auto;
@@ -47,30 +44,26 @@
   border: 5px solid black;
   margin: 0 auto;
   margin-top: 30px;
-  color: black;
 }
 .uzenet{
-  margin-left: 50px;
+  margin-left: 100px;
   margin-top: 10px;
 }
 .uzenetir{
   width: 300px;
   height: 80px;
   resize: none;
-  border: black solid 5px;
-
 }
 body{
-    background-image: url("../NewsImg/BGtable.png");
+    background-image: url("NewsImg/BGtable.png");
     background-repeat: no-repeat;
     background-size:cover;
-    padding-top: 170px;
 }
 .scroll{
     display: none;
     width: 500px;
     height: 600px;
-    background-image: url("../NewsImg/scroll2.png");
+    background-image: url("NewsImg/scroll2.png");
     background-repeat: no-repeat;
     position: relative;
     align-content: center;
@@ -82,7 +75,6 @@ body{
     width: 100%;
     display: flex;
     overflow-y: scroll;
-    margin-left: 55px;
 }
 .szoveg{
     width: 300px;
@@ -134,9 +126,7 @@ body{
 .oldalcim{
   width: 500px;
   height: 90px;
-  margin-left: 50px;
-  box-shadow: 50px;
-
+  margin-left: 510px;
 }
 
 @media only screen and (max-width: 1000px) {
@@ -173,7 +163,7 @@ body{
     position: absolute;
     width: 390px;
     height: 600px;
-    background-image: url('../NewsImg/BGscroll.png');
+    background-image: url(NewsImg/BGscroll.png);
     border-radius: 25px;
     align-content: center;
   }
@@ -224,4 +214,9 @@ body{
     height: 600px;
     overflow-y: hidden;
   }
+}
+
+
+@media only screen and (max-width: 600px) {
+  
 }
