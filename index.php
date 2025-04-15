@@ -45,7 +45,6 @@
     
  
     
-    <!-- Tartalom dinamikus betöltése -->
     <main class="content">
         <?php
         if (file_exists($contentFile)) {
@@ -55,7 +54,23 @@
         } 
         ?>
     </main>
-    
+    <?php if (isset($_SESSION['id'])): ?>
+    <div id="cseveges-kapcsolo">💬</div> <!-- Csevegés ikon -->
+    <div id="cseveges-doboz" style="display: none;">
+        <div id="cseveges-fejlec">Kérj segítséget <span id="cseveges-bezar">×</span></div>
+        <div id="cseveges-uzenetek"></div> <!-- Üzenetek megjelenítése -->
+        <div id="cseveges-beviteli-terulet">
+            <input type="text" id="cseveges-bevitel" placeholder="Írj egy üzenetet..." autocomplete="off" /> <!-- Üzenet beírása -->
+            <button id="cseveges-kuldes">Küldés</button> <!-- Üzenet elküldése -->
+        </div>
+    </div>
+<?php endif; ?>
+
+
+
+
+
+
     <?php if (!isset($_SESSION['id'])): ?>
         <div class="element">
             <div class="bejelentkezes">

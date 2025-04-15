@@ -1,16 +1,13 @@
 
 <body>
-<?php
-print("<script>console.log(ez:".$_SESSION['Szerep'].")</script>")
-?>
    <!-- Hero Szakasz -->
-   <section id="hero" class="hero">
+   <section id="hero" class="hero " >
         <h1>Becsületért és Dicsőségért</h1>
         <p>Lépj be egy világba ahol dicsőséget szerezhetsz.</p>
         <a href="" class="btn" id="enterArena">Lépj be az Arénába</a>
     </section>    
     <!-- Harcos Szakasz -->
-    <section id="warriors" class="warrior-section">
+    <section id="warriors" class="warrior-section betolt" >
         <h2>Legendás Harcosok</h2>
         <div class="warrior-gallery">
             <div class="warrior"><img src="kepek/you may live __].jpg" alt="Harcos 1"></div>
@@ -19,27 +16,27 @@ print("<script>console.log(ez:".$_SESSION['Szerep'].")</script>")
         </div>
     </section>
     <!-- Gladiátorok Legendája Szakasz -->
-    <section id="legendary-warriors" class="legendary-warriors">
+    <section id="legendary-warriors" class="legendary-warriors betolt" >
         <h2>Legendás Harcosok Története</h2>
         <div class="warrior-info" id="warrior1" style=" background-image: url('kepek/max.jpg');">
             <h3>Maximus</h3>
             <p>Maximus Decimus Meridius, a hűséges római tábornok, aki gladiátor lett családja meggyilkolása után, és visszavágott a császárnak.</p>
         </div>
-        <div class="warrior-info" id="warrior2" style="background-image: url('kepek/you may live __].jpg');">
+        <div class="warrior-info " id="warrior2" style="background-image: url('kepek/you may live __].jpg');">
             <h3>Commodus</h3>
             <p>Commodus, a római császár, aki gladiátorként harcolt saját dicsősége érdekében, miközben elhanyagolta birodalma vezetését.</p>
         </div>
-        <div class="warrior-info" id="warrior3" style="background-image: url('kepek/Spartan warrior.jpg');">
+        <div class="warrior-info " id="warrior3" style="background-image: url('kepek/Spartan warrior.jpg');">
             <h3>Spartacus</h3>
             <p>Spartacus, a gladiátor és rabszolgafelkelő, aki vezetésével megszervezte a leghíresebb római lázadásokat a szabadságért.</p>
         </div>
     </section>
 
     <!-- Videó Szakasz -->
-    <section id="warrior-video" class="video-section">
+    <section id="warrior-video" class="video-section betolt" >
         <h2>Gladiátorok Akcióban</h2>
         <div class="video-container">
-            <video id="myVideo" class="video-effect" width="800" controls>
+            <video id="myVideo" class="video-effect" width="800" preload="auto" autoplay muted>
                 <source src="Gladiatorsképek/videoplayback.mp4" type="video/mp4">
                 A böngésződ nem támogatja a videólejátszót.
             </video>
@@ -53,7 +50,7 @@ print("<script>console.log(ez:".$_SESSION['Szerep'].")</script>")
     </section>
 
     <!-- Lábléc Szakasz -->
-    <footer class="footer">
+    <footer class="footer betolt" >
         <div class="footer-content">
             <p>© 2025 Gladiátor UI. Minden jog fenntartva.</p>
             <div class="contact-info">

@@ -255,3 +255,165 @@ pointer-events: none;
 #asd{
   display: none;
 }
+#cseveges-doboz {
+  position: fixed;
+  bottom: 1px;
+  right: 2px;
+  width: 300px;
+  height: 400px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  display: none; /* Alapértelmezetten rejtve */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  padding: 10px;
+}
+
+#cseveges-fejlec {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+#cseveges-bezar {
+  position: absolute;
+  top: 0;
+  right: 2px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#cseveges-kapcsolo {
+  position: fixed;
+  background-color: #6e3c38;
+  color: rgb(255, 251, 251);
+  border-radius: 20%;
+  padding: 15px;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+#cseveges-uzenetek {
+  height: 250px;
+  overflow-y: scroll;
+  margin-bottom: 10px;
+}
+
+.cseveges-uzenet {
+  margin-bottom: 10px;
+}
+
+.cseveges-uzenet strong {
+  font-weight: bold;
+}
+
+.admin-valasz {
+  background-color: #ffffff;
+  padding: 5px;
+  margin-top: 5px;
+  border-radius: 5px;
+}
+
+#cseveges-beviteli-terulet {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#cseveges-bevitel {
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+button#cseveges-kuldes {
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button#cseveges-kuldes:hover {
+  background-color: #45a049;
+}
+
+.valaszBevitel {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+button.valaszKuldes {
+  background-color: #4CAF50;
+  color: rgb(255, 242, 242);
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 5px;
+}
+
+button.valaszKuldes:hover {
+  background-color: #45a049;
+}
+
+.beszelgetes-blokk {
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+#cseveges-doboz.show {
+  display: block;
+}
+
+
+.nev{
+  background-color: #6e3c38;
+  color: white;
+  width: 80px;
+  padding-top: 15px;
+  height: 60px;
+  padding-left: 30px;
+  margin-left: 15px;
+  border-radius: 20%;
+  display: inline-block;
+}
+.uzenet{
+  background-color: #6e3c38;
+  color: white;
+  width: 80px;
+  height: 60px;
+  padding-top: 15px;
+  border-radius: 20%;
+  margin-left: 35px;
+  display: inline-block;
+}
+#cseveges-kapcsolo {
+  background-color: #6e3c38;
+  color: rgb(255, 251, 251);
+  border-radius: 20%;
+  padding-top: 15px;
+  margin-left: 35px;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 1001;
+  display: inline-block;
+}
+.egybeazegesz{
+  width: 400px;
+  height: 100px;
+  padding: 5px;
+}

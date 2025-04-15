@@ -1,13 +1,4 @@
 RewriteEngine On
-RewriteBase /
-
-# Block access to specific pages
-RewriteRule ^profilom$ - [F,L]
-RewriteRule ^erdekessegek$ - [F,L]
-
-# Continue with existing rules
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^Kilepes$ oldalak/kilepes.php [nc,qsa]
 RewriteRule ^Login$ oldalak/logreg.php [nc,qsa]
 RewriteRule ^felhasznaloi$ oldalak/felhasznaloi.php [nc,qsa]

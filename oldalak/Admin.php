@@ -1,16 +1,13 @@
 <?php
 $views = 0;
 session_start();
- $query = "SELECT Szerep FROM felhasznalo WHERE id=".$_SESSION['id'];
- $result = mysqli_query($conn, $query);
- if ($result) {
-     $row = mysqli_fetch_assoc($result);
-     $Szerep = $row['Szerep']; // works now
-     if ($Szerep == 0) {
-         header("Location: /fooldal");
-         exit();
-     }
- }
+require_once "../connection/connection.php";
+
+if (!isset($_SESSION['id'])) {
+    http_response_code(403);
+    exit("Nincs jogosultság.");
+}
+
 if (isset($_SESSION['views'])) {
     $views = $_SESSION['views'];
 }
@@ -52,8 +49,7 @@ $result = mysqli_query($conn, $query);
      $row = mysqli_fetch_assoc($result);
      $felhasznalo = $row['felhasznalo'];
  }
-     $messages=0;
-     $query = "SELECT COUNT(text) as szoveg FROM messages";
+     $query = "SELECT COUNT(szoveg) as szoveg FROM uzenetek";
      $result = mysqli_query($conn, $query);
      if ($result) {
          $row = mysqli_fetch_assoc($result);
@@ -72,7 +68,7 @@ $result = mysqli_query($conn, $query);
 <link rel="stylesheet" href="css/administrator.css">
 <link rel="stylesheet" href="../css/segitseg.css">
   <script src="javascriptek/segitseg.js"></script>
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
    <div class="container">
@@ -180,16 +176,32 @@ $result = mysqli_query($conn, $query);
             <i class='bx bxs-user'></i>
            </div>
         </div>
-      
-      
        </div>
-<div id="poop-up">
-
+  <div class="ablak">
+  <?php if (isset($_SESSION['id'])): ?>
+    <div class="egybeazegesz" id="jelkeret">
         
+         <div id="cseveges-kapcsolo">Jovahagyas</div> 
+    </div>
+       <div id="cseveges-doboz" style="display: none;">
+        <div id="cseveges-fejlec">Kérj segítséget <span id="cseveges-bezar">×</span></div>
+        <div id="cseveges-uzenetek"></div> <!-- Üzenetek megjelenítése -->
+        <div id="cseveges-beviteli-terulet">
+            <input type="text" id="cseveges-bevitel" placeholder="Írj egy üzenetet..." autocomplete="off" /> <!-- Üzenet beírása -->
+            <button id="cseveges-kuldes">Küldés</button> <!-- Üzenet elküldése -->
+        </div>
+    </div>
+<?php endif; ?>
+  </div>
+  
+
+
+
 
     </div>
    </div>
-   <script src="javascriptek/adminja.js"></script>
+   <script src="Javascripts/adminja.js"></script>
+   <script src="Javascripts/user-adats.js"></script>
    <script>
       let toggle=document.querySelector('.toggle');
       let navigation=document.querySelector('.navigation');

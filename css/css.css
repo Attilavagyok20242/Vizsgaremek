@@ -129,12 +129,15 @@ display: none;
 
 .warrior img {
     width: 200px;
-    height: 300px;
+    height: 45vh;
     object-fit:cover;
     border-radius: 10px;
+    transition: 0.5s;
+}
+.warrior img:hover{
+    width: 300px;
 }
 
-/* Legendary Warriors Section with Parallax */
 .legendary-warriors {
     padding: 80px 20px;
 }
@@ -147,18 +150,17 @@ display: none;
 .warrior-info {
     padding: 40px;
     background-size:cover;
-    background-position: center;
+    image-rendering:-moz-crisp-edges;
     color: #fff;
+    background-position-y: 120vh;
     margin-bottom: 40px;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s;
+    box-shadow: 0 4px 6px rgba(1, 0,2, 0.5);
+    transition: transform 0.5s;
 }
 
 .warrior-info:hover {
-    transform: scale(1.05);
-   
-
+    transform: scale3D(1.3,1.3,1.3);
 }
 
 .warrior-info h3 {
@@ -204,20 +206,20 @@ display: none;
     display: inline-block;
     overflow: hidden;
     border-radius: 10px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
-    width: 90%; /* Increased width for a larger video */
-    max-width: 1200px; /* Ensure the video doesn't stretch too wide */
+    box-shadow: 0px 5px 15px rgba(255, 254, 254, 0.5);
+    width: 90%; 
+    max-width: 1200px; 
 }
 
 .video-container video {
-    width: 100%; /* Make video fill the container */
+    width: 100%; 
     border-radius: 10px;
-    transition: transform 0.3s ease-in-out;
+    transform: scale3D(1.3,1.3,1.3);
+    border-radius: 10px;
 }
 
-/* Hover Effect: Scale video */
 .video-container:hover video {
-    transform: scale(1.05);
+    transform: scale(1.3);
 }
 .bejelentkezes,
 .megerositess {
@@ -267,10 +269,8 @@ display: none;
     transform: translate(-50%, -50%) scale(1.1);
 }
 
-/* Caption Animation */
 .video-caption {
     margin-top: 20px;
-    font-size: 24px; /* Increased font size for the caption */
     opacity: 0;
     transition: opacity 1s ease;
 }
@@ -279,11 +279,7 @@ display: none;
     opacity: 1;
 }
 
-/* Custom video controls (hide default controls) */
-.video-container video::-webkit-media-controls {
-}
 
-/* Footer Section */
 .footer {
     padding: 60px;
     background: rgba(0, 0, 0, 0.8);
@@ -403,3 +399,142 @@ display: none;
         display: block;
     }
 }    
+@keyframes slide-fade-in{
+    from{
+        opacity: 0;
+        transform:translateY(2px);
+    }
+}
+@media(prefers-reduced-motion:no-preference){
+    .betolt{
+        animation:slide-fade-in both;
+        animation-timeline: scroll();
+        animation-range: contain 0% contain 80%;
+    }
+}
+/* Csevegés panel stílusok */
+#cseveges-doboz {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    height: 400px;
+    background-color: #000000;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    display: none; /* Alapértelmezetten rejtve */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 10px;
+}
+
+#cseveges-fejlec {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+#cseveges-bezar {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#cseveges-kapcsolo {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #ff6f61;
+    color: rgb(0, 0, 0);
+    border-radius: 50%;
+    padding: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+#cseveges-uzenetek {
+    height: 250px;
+    overflow-y: scroll;
+    margin-bottom: 10px;
+}
+
+.cseveges-uzenet {
+    margin-bottom: 10px;
+}
+
+.cseveges-uzenet strong {
+    font-weight: bold;
+}
+
+.admin-valasz {
+    background-color: #000000;
+    padding: 5px;
+    margin-top: 5px;
+    border-radius: 5px;
+}
+
+#cseveges-beviteli-terulet {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#cseveges-bevitel {
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+}
+
+button#cseveges-kuldes {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button#cseveges-kuldes:hover {
+    background-color: #45a049;
+}
+
+.valaszBevitel {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button.valaszKuldes {
+    background-color: #4CAF50;
+    color: rgb(0, 0, 0);
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 5px;
+}
+
+button.valaszKuldes:hover {
+    background-color: #45a049;
+}
+
+.beszelgetes-blokk {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+#cseveges-doboz.show {
+    display: block;
+}
