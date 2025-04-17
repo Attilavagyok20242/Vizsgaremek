@@ -35,8 +35,7 @@
   background-color: gray;
   margin: 0 auto;
   border-radius: 5px;
-  color: black;
-  text-align: left;
+
 }
 .kommentek{
   overflow-y: auto;
@@ -47,7 +46,6 @@
   border: 5px solid black;
   margin: 0 auto;
   margin-top: 30px;
-  color: black;
 }
 .uzenet{
   margin-left: 50px;

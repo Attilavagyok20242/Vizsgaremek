@@ -115,24 +115,4 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }, 5000);
 });
-function Jelentesek() {
-    fetch("assets/ccc.php")
-        .then((response) => response.json())
-        .then((data) => {
-            let keret = document.getElementsById("jelkeret"); 
 
-            data.forEach((uzenet) => {
-                keret.innerHTML += `
-                    <div class="nev">
-                        <p class="nev">${uzenet.felhasznalo}</p>
-                        <p class="uzenet">${uzenet.szoveg}</p>
-                    </div>`;
-            });
-        })
-        .catch((err) => {
-            console.error("Hiba történt az üzenetek betöltésekor:", err);
-            alert("Hiba történt az üzenetek betöltésekor!");
-        });
-}
-
-Jelentesek();

@@ -11,11 +11,18 @@ $(document).ready(function () {
       $("#adatvaltoz").click(function (e) { 
          $("#kartya2").fadeIn("slow");
          $("#kartya1").hide("fast");
+         $("#kartya3").hide("fast");
       });
       $("#profilkep").click(function (e) { 
          $("#kartya1").fadeIn("slow");
          $("#kartya2").hide("fast");
+         $("#kartya3").hide("fast");
       });
+      $("#naplo").click(function (e) { 
+        $("#kartya3").fadeIn("slow");
+        $("#kartya2").hide("fast");
+        $("#kartya1").hide("fast");
+     });
 });
 function JelVizsgal()
 {
@@ -50,7 +57,6 @@ function JelszoModosit(jelszo,visszajelzes,jelszo1,jelszo2)
             visszajelzes.innerHTML = this.responseText;
             jelszo1.value="";
             jelszo2.value="";
-            setTimeout(() => window.location.reload(), 3000);
         }
         else{
             visszajelzes.style.color="red";
@@ -73,7 +79,6 @@ function FelhNevModosit()
         if (this.responseText!="foglalt") {
             visszajelzes.style.color="darkgreen";
             visszajelzes.innerHTML=this.responseText;
-            setTimeout(() => window.location.reload(), 3000);
         }
         else{
             visszajelzes.style.color="red";
@@ -95,7 +100,6 @@ function EmailModosit()
         if (this.responseText!="foglalt") {
             visszajelzes.style.color="darkgreen";
             visszajelzes.innerHTML=this.responseText;
-            setTimeout(() => window.location.reload(), 3000);
         }
         else{
             visszajelzes.style.color="red";
@@ -134,9 +138,23 @@ function megerosites(){
             console.log("Válasz szövege:", this.responseText);
         }
     };
-
     console.log("Küldés indítása...");
     xhttp.open("GET", "level_kuld2",true);
     xhttp.send();
     console.log("Küldés megtörtént!");
 }
+function Naplo()
+{
+    naplo=document.getElementById("naplod");
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        const adatok=JSON.parse(this.responseText);
+        console.log(adatok);
+            
+        };
+    xhttp.open("GET", "assets/naplo.php", true);
+    xhttp.send();
+    }
+}
+Naplo();

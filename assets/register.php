@@ -11,7 +11,6 @@ if (isset($_POST['Nev'], $_POST['Jelszo'], $_POST['email'])) {
         exit();
     }
 
-    // Felhasználónév vagy email létezik-e már?
     $stmt = $conn->prepare("SELECT email, nev FROM felhasznalo WHERE email = ? OR nev = ?");
     $stmt->bind_param("ss", $email, $nev);
     $stmt->execute();

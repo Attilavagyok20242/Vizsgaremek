@@ -31,7 +31,6 @@ function FelhasznaloCheck(){
                 $update = $conn->prepare("UPDATE felhasznalo SET elrontott_bejelenkezes = 0, aktív = 1 WHERE id = ?");
                 $update->bind_param("i", $row['id']);
                 $update->execute();
-
                 if ($row['Szerep'] == 1) {
                     header("Location: /admin");
                 } else {

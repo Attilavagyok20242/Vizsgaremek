@@ -1,7 +1,7 @@
 body{
     
     justify-content: center;
-    min-height: 100vh;
+    min-height: 120vh;
     background: url(../hatter/asd.avif);
     background-size: cover;
 }
@@ -61,20 +61,15 @@ body{
     font-size: 20px;
     font-weight: bold;
     display:  none;
-
-
-
 }
 #kartya1{
     height: 200px;
-    position: relative;
-
-
 }
 #feltolt
 {
     height: 20px;
     margin-top: 160px;
+    margin-right: 250px;
     background-color: brown;
     border-radius: 7px;
 }
@@ -87,16 +82,22 @@ body{
     color: black;
 }
 #cim{
-    color: black;
     border-radius: 5px;
     background: rgba(133, 131, 131, 0.7);
     height: 30px;
     width: 600px;
     margin: 0 auto;
-    padding-top: 50px;
     margin-bottom: 150px;
 }
 .profil{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+
+}
+.kepkeret
+{
     border: 5px black solid;
     border-radius: 5px;
     width: 150px;
@@ -104,19 +105,18 @@ body{
     margin: 20px;
     float: left;
     background-color: grey;
-
+    position: relative;
 
 }
 #kepfeltolt{
-    width: 150px;
-    height: 176px;
-    size: 150px;
-    border: 2px solid black;
-    z-index: 1;
-    position: absolute;
-    right: 884px;
-    margin-top: 2px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     opacity: 0;
+    z-index: 1;
+    display: block;
+    position: absolute;
    
 }
 #kepfeltolt:hover{
@@ -138,15 +138,12 @@ body{
 .adatok2{
     margin-left: 10px;
 }
-#adatok{
-    text-align: left;
-}
 .adatok{
     height: 30px;
     border-radius: 5px;
     border: solid 2px;
     background-color: brown;
-    margin-left: 25px;
+    margin-left: 60px;
 }
 .valtozz{
     width: 50px;
@@ -231,4 +228,16 @@ input:hover{
 }
 .number input{
     background-color: #ff9800;
+}
+.naplod{
+    width: 500px;
+    height: 180px;
+    overflow-y: auto;
+    border-radius: 5px;
+    background-color: rgb(40, 35, 35);
+    margin: 0 auto;
+}
+#kartya3{
+    height: 250px;
+    align-content: center;
 }
