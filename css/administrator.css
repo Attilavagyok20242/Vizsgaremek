@@ -264,7 +264,35 @@ pointer-events: none;
 #asd{
   display: none;
 }
-<<<<<<< HEAD
+.keret{
+    width: 600px;
+    height: 400px;
+    background-color: white;
+    border-radius: 15px;
+    margin-left: 320px;
+    margin-top: 20px;
+}
+.bemenetek{
+  width: 200px;
+  height: fit-content;
+  margin-left: 100px;
+  padding-top: 50px;
+}
+.cim{
+  width: 400px;
+  height: 50px;
+  border: solid 5px black;
+  border-radius: 5px;
+  font-size: large;
+}
+.tartalom{
+  margin-top: 15px;
+  width: 400px;
+  resize: none;
+  height: 200px;
+  border: solid 5px black;
+  border-radius: 5px;
+}
 #cseveges-doboz {
   position: fixed;
   bottom: 1px;
@@ -301,10 +329,13 @@ pointer-events: none;
   background-color: #6e3c38;
   color: rgb(255, 251, 251);
   border-radius: 20%;
+  margin-top: 300px;
+  margin-left: 320px;
   padding: 15px;
   font-size: 20px;
   cursor: pointer;
   z-index: 1001;
+  display: none;
 }
 
 #cseveges-uzenetek {
@@ -411,49 +442,90 @@ button.valaszKuldes:hover {
   margin-left: 35px;
   display: inline-block;
 }
-#cseveges-kapcsolo {
-  background-color: #6e3c38;
-  color: rgb(255, 251, 251);
-  border-radius: 20%;
-  padding-top: 15px;
-  margin-left: 35px;
-  font-size: 20px;
-  cursor: pointer;
-  z-index: 1001;
-  display: inline-block;
-}
 .egybeazegesz{
   width: 400px;
   height: 100px;
   padding: 5px;
-=======
-.keret{
-    width: 600px;
-    height: 400px;
-    background-color: white;
-    border-radius: 15px;
-    margin-left: 320px;
-    margin-top: 20px;
 }
-.bemenetek{
-  width: 200px;
-  height: fit-content;
-  margin-left: 100px;
-  padding-top: 50px;
+.jelentes {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
-.cim{
-  width: 400px;
-  height: 50px;
-  border: solid 5px black;
+.jelentes button.Jovahagyas {
+  margin-top: 8px;
+  padding: 5px 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.jelentes button.Jovahagyas:hover {
+  background-color: #218838;
+}
+.hiba {
+  color: red;
+}
+#felhasznalo_torles{
+  display: none;
+}
+table {
+  width: 80%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+table th,
+table td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+table th {
+  background-color: black;
+  color: white;
+}
+
+table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Törlés gomb stílusa */
+button.delete-btn {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
   border-radius: 5px;
-  font-size: large;
+  font-size: 14px;
+  transition: background-color 0.3s;
 }
-.tartalom{
-  margin-top: 15px;
-  width: 400px;
-  resize: none;
-  height: 200px;
-  border: solid 5px black;
-  border-radius: 5px;
->>>>>>> d7980f0657210b1cf571fab652d7a3c91a29d0a9
+
+button.delete-btn:hover {
+  background-color: #d32f2f;
+}
+
+@media (max-width: 768px) {
+  table {
+      width: 100%;
+  }
+
+  h1 {
+      font-size: 1.5rem;
+  }
+
+  button.delete-btn {
+      padding: 6px 12px;
+      font-size: 12px;
+  }
 }

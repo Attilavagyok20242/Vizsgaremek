@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbadat="arenaklub";
+$dbadat="game";
 
 $conn =  mysqli_connect($servername, $username, $password,$dbadat,3306);
 if ($conn->connect_error) {

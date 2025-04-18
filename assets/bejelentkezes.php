@@ -1,5 +1,5 @@
 <?php
-require_once("./connection/connection.php");
+require_once("../connection/connection.php");
 session_start();
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $nev = filter_input(INPUT_POST, 'Nevs', FILTER_SANITIZE_STRING);

@@ -59,12 +59,27 @@
     <div id="cseveges-doboz" style="display: none;">
         <div id="cseveges-fejlec">Kérj segítséget <span id="cseveges-bezar">×</span></div>
         <div id="cseveges-uzenetek"></div> <!-- Üzenetek megjelenítése -->
+        
         <div id="cseveges-beviteli-terulet">
-            <input type="text" id="cseveges-bevitel" placeholder="Írj egy üzenetet..." autocomplete="off" /> <!-- Üzenet beírása -->
-            <button id="cseveges-kuldes">Küldés</button> <!-- Üzenet elküldése -->
+            <input 
+                type="text" 
+                id="jelentes-cim" 
+                placeholder="Jelentés címe (csak első alkalommal)" 
+                autocomplete="off"
+            /> <!-- Jelentés címe, ha új jelentés jön létre -->
+            
+            <input 
+                type="text" 
+                id="cseveges-bevitel" 
+                placeholder="Írj egy üzenetet..." 
+                autocomplete="off"
+            /> 
+
+            <button id="cseveges-kuldes">Küldés</button> 
         </div>
     </div>
 <?php endif; ?>
+
 
 
 
