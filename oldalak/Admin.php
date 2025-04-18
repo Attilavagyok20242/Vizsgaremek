@@ -96,7 +96,7 @@ $result = mysqli_query($conn, $query);
             <span class="icon">
               <i class='bx bx-home'></i>
             </span>
-            <span class="title">Gladiator Arena</span>
+            <span class="title">Arena Klub</span>
           </a>
         </li>
         <li id="uzemfal">

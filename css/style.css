@@ -327,3 +327,115 @@
         font-size: 30px;
     }
 }
+@media screen and (max-width: 1024px) {
+    .korhinta .lista .elem .tartalom {
+        top: 20%;
+        width: 90%;
+        left: 50%;
+        transform: translateX(-50%);
+        padding-right: 0;
+        font-size: 18px;
+    }
+
+    .korhinta .lista .elem .cim,
+    .korhinta .lista .elem .tema {
+        font-size: 3em;
+    }
+
+    .korhinta .lista .elem .gombok {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+        width: 100%;
+        justify-items: center;
+    }
+
+    .elonezet .elem {
+        width: 120px;
+        height: 180px;
+    }
+
+    .nyilak {
+        top: 85%;
+        right: 40%;
+        width: 250px;
+    }
+
+    .nyilak button {
+        width: 50px;
+        height: 50px;
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .korhinta {
+        height: auto;
+        margin-top: 0;
+    }
+
+    .korhinta .lista .elem .tartalom {
+        top: 10%;
+        font-size: 16px;
+    }
+
+    .korhinta .lista .elem .cim,
+    .korhinta .lista .elem .tema {
+        font-size: 2.2em;
+    }
+
+    .korhinta .lista .elem .gombok {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        row-gap: 10px;
+    }
+
+    .elonezet {
+        flex-direction: column;
+        bottom: 20px;
+        left: 10%;
+        transform: translateX(0);
+    }
+
+    .elonezet .elem {
+        width: 100px;
+        height: 140px;
+    }
+
+    .nyilak {
+        flex-direction: row;
+        justify-content: center;
+        left: 0;
+        right: 0;
+        top: auto;
+        bottom: 10px;
+        margin: auto;
+    }
+
+    .nyilak button {
+        width: 45px;
+        height: 45px;
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .korhinta .lista .elem .tartalom {
+        top: 8%;
+        width: 95%;
+        font-size: 14px;
+    }
+
+    .korhinta .lista .elem .cim,
+    .korhinta .lista .elem .tema {
+        font-size: 1.8em;
+    }
+
+    .elonezet {
+        display: none;
+    }
+
+    .nyilak {
+        width: 100%;
+        gap: 15px;
+    }
+}
