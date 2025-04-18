@@ -1,6 +1,6 @@
 <?php
 
-$sql="SELECT id,hir_szoveg, hir_cim,datum FROM hirek ORDER BY datum ASC LIMIT 3";
+$sql="SELECT id,hir_szoveg, hir_cim,datum FROM hirek ORDER BY datum DESC LIMIT 3";
 $result=$conn->query($sql);
 
 while($row=$result->fetch_assoc())
@@ -37,6 +37,7 @@ $harmadik_datum=$tomb[2]["datum"];
     <div class="kulso" id="eltuntet">
     </div>
         <div class="kommentkeret" id="komm">
+            <button class="bezar" id="bezar">X</button>
             <div class="kommentek" id="k">
             </div>
             <div class="uzenet">

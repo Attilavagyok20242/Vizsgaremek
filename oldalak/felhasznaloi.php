@@ -1,18 +1,31 @@
 <?php
     if (isset($_SESSION['id'])) {
-        $sql="SELECT nev, email,datum,profilkep FROM felhasznalo WHERE id=".$_SESSION["id"];
+        $sid=$_SESSION["id"];
+        $sql="SELECT nev, email,datum,profilkep FROM felhasznalo WHERE id=$sid";
         $result=$conn->query($sql);
         $row=$result->fetch_assoc();
+        $sql="SELECT COUNT(id) AS 'komm' FROM kommentek WHERE felhasznalo_id=$sid";
+        $result=$conn->query($sql);
+        $kommentek=$result->fetch_assoc();
         if (isset($_POST["kuld"])) {
-
             if(isset($_FILES["image"])){
                 $fileName=$row['nev'].'_'.$_FILES["image"]["name"];
                 $tmpName=$_FILES["image"]["tmp_name"];
                 if($_FILES['image']['name']!=""){
-                    $conn->query("UPDATE felhasznalo SET profilkep='$fileName' WHERE id=".$_SESSION["id"]);
+                    $tipusok = ['image/jpeg', 'image/png', 'image/jpg'];
+                    $kiterjesztesek = ['jpg', 'jpeg', 'png'];
+                    $mimetipus = mime_content_type($tmpName); // Checks actual MIME type
+                    $fajlkiterjesztes = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+                    if (in_array($mimetipus, $tipusok) && in_array($fajlkiterjesztes, $kiterjesztesek)) {
+                        $meret=2 * 1024 * 1024;
+                        if ($_FILES["image"]["size"] < $meret) {
+                            $conn->query("UPDATE felhasznalo SET profilkep='$fileName' WHERE id=".$_SESSION["id"]);
+                        }
+                    }
                 }
             }
             header("Location:http://arenaklub.loc/?page=Profil");
+            exit();
         }
         
     }    
@@ -35,7 +48,7 @@ if(!isset($_SESSION['id']))
     <div id="adatok">
         <p id="fnev">Felhasználó név:<span class="adatok2"><?php if(isset($row['nev'])){print $row['nev'];} ?></span><p>
         <p id="email">E-mail:<span class="adatok2"><?php if(isset($row['email'])){print $row['email'];} ?></span></p>
-        <p id="elozmenyek">Kommentjeid száma:<span class="adatok2"></span></p>
+        <p id="elozmenyek">Kommentjeid száma:<span class="adatok2"><?php if(isset($kommentek['komm'])){print $kommentek['komm'];} ?></span></p>
         <p id="regdate">Regisztráció dátuma:<span class="adatok2"><?php if(isset($row['nev'])){print $row['datum'];} ?></span></p>
     </div>
 </section>
@@ -85,15 +98,16 @@ if(!isset($_SESSION['id']))
         <div id="box3">
             <div class="bemenetek">
                 <p id="visszajelzesjelszo" class="visszajelzes"></p>
-                <input type="text" class="bemenet" name="ujjelszo" id="ujjelszo" placeholder="Az új jelszavad..." required>
+                <input type="password" class="bemenet" name="ujjelszo" id="ujjelszo" placeholder="Az új jelszavad..." required>
                 <br>
-                <input type="text" class="bemenet" name="ujujjelszo" id="ujujjelszo" placeholder="Az új jelszavad újra..." required>
+                <input type="password" class="bemenet" name="ujujjelszo" id="ujujjelszo" placeholder="Az új jelszavad újra..." required>
+                <br>
                 <button onclick="JelVizsgal()">Küld</button>
             </div>
         </div>
     </div>
     <div id="kartya3" class="kartyak">
-        <div class="naplod">
+        <div class="naplod" id="naplod">
         </div>
     </div>
 </section>

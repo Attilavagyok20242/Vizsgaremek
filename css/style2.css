@@ -1,11 +1,9 @@
 body{
-    
     justify-content: center;
     min-height: 120vh;
     background: url(../hatter/asd.avif);
     background-size: cover;
 }
-
 #pkeret{
     border-radius: 5px;
     background-color: white;
@@ -55,7 +53,7 @@ body{
 .kartyak{
     border-radius: 5px;
     background: rgba(133, 131, 131, 0.7);
-    width: 600px;
+    width: 620px;
     margin: 0 auto;
     color: black;
     font-size: 20px;
@@ -85,9 +83,12 @@ body{
     border-radius: 5px;
     background: rgba(133, 131, 131, 0.7);
     height: 30px;
-    width: 600px;
+    width: 620px;
     margin: 0 auto;
-    margin-bottom: 150px;
+    margin-top: 200px;
+    margin-bottom: 10px;
+    color: darkred;
+    text-decoration: underline black;
 }
 .profil{
     width: 100%;
@@ -124,7 +125,7 @@ body{
     
 }
 #menusor{
-    width: 600px;
+    width: 620px;
     height: 50px;
     background: rgba(133, 131, 131, 0.7);
     margin: 0 auto;
@@ -137,6 +138,7 @@ body{
 }
 .adatok2{
     margin-left: 10px;
+    color: darkred;
 }
 .adatok{
     height: 30px;
@@ -176,6 +178,11 @@ body{
 input:hover{
     cursor: pointer;
 }
+.formatumok{
+    font-weight: normal;
+    float: right;
+    font-size: medium;
+}
 .visszajelzes{
     background-color: lightblue;
     margin-left: 5px;
@@ -187,7 +194,6 @@ input:hover{
     height: 10px;
     margin: 0 auto;
 }
-
 .megerositesfel {
     border-radius: 5px;
     background: rgba(133, 131, 131, 0.7);
@@ -237,7 +243,104 @@ input:hover{
     background-color: rgb(40, 35, 35);
     margin: 0 auto;
 }
+.naplod p{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    float: left;
+    margin-top: 2px;
+    margin-left: 2px;
+    color: rgb(255, 7, 7);
+}
 #kartya3{
     height: 250px;
     align-content: center;
+}
+#adatok{
+    text-align: left;
+}
+@media only screen and (max-width: 1000px) {
+    body {
+        background-size: cover;
+        padding: 10px;
+        height: 1600px;
+    }
+    #menusor
+    {
+        padding-bottom: 40px;
+    }
+    #pkeret, #cim, .kartyak, #menusor, .megerositesfel {
+        width: 100%;
+        flex-direction: column;
+        height: auto;
+    }
+
+    #pkeret {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .kepkeret {
+        margin: 10px auto;
+        float: none;
+    }
+
+    #adatok {
+        margin: 10px;
+        font-size: 16px;
+    }
+
+    #feltolt {
+        margin: 20px auto 0 auto;
+        display: block;
+    }
+
+    .adatok {
+        margin: 5px;
+        font-size: 14px;
+        padding: 5px;
+        display: block;
+    }
+
+    .valtozz {
+        width: 40px;
+        height: 30px;
+        font-size: 10px;
+    }
+
+    .bemenetek input {
+        width: 200px;
+        display: block;
+    }
+    .bemenetek button{
+        width: 80px;
+        height: 30px;
+        display: block;
+    }
+
+    .megerositesfel {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .megerosites-gombs, .number, .kuldes {
+        width: 90%;
+        margin: 5px 0;
+    }
+
+    .naplod {
+        width: 90%;
+    }
+    .adatok2{
+        padding-top: 10px;
+        display: block;
+        color: darkred;
+    }
+    .belsokeret {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 }

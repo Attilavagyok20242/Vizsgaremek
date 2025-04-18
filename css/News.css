@@ -18,8 +18,8 @@
 }
 .kommentkeret{
   display: none;
-  left: 500px;
-  top: 20px;
+  left: 760px;
+  top: 25px;
   z-index: 4;
   position: absolute;
   width: 450px;
@@ -46,6 +46,7 @@
   border: 5px solid black;
   margin: 0 auto;
   margin-top: 30px;
+  text-align: left;
 }
 .uzenet{
   margin-left: 50px;
@@ -74,13 +75,22 @@ body{
     align-content: center;
     text-align: justify;
 }
+p{
+  color: black;
+}
+h4{
+  color: black
+}
+h1{
+  color: black;
+}
 .keret{
     margin-top: 18px;
     height: fit-content;
     width: 100%;
     display: flex;
     overflow-y: scroll;
-    margin-left: 55px;
+    margin-left: 200px;
 }
 .szoveg{
     width: 300px;
@@ -136,25 +146,34 @@ body{
   box-shadow: 50px;
 
 }
+.bezar{
+  display: none;
+}
 
 @media only screen and (max-width: 1000px) {
+  .bezar{
+    display: block;
+    width: 40px;
+    height: 40px;
+    margin-left: 330px;
+  }
   .uzenet{
     padding-top: 10px;
     margin: 0 auto;
   }
   .uzenetir{
     width: 300px;
-    margin-left: 41px;
+    margin-left: 8px;
   }
   .gomb{
     width: 210px;
     height: 40px;
-    margin-left: 90px;
+    margin-left: 25px;
   }
   .kulso{
     display: none;
-    width: 420px;
-    height: 858px;
+    width: 395px;
+    height: 1015px;
     background: grey;
     opacity: 0.9;
     filter: blur(1px);
@@ -165,15 +184,15 @@ body{
   }
   .kommentkeret{
     display: none;
-    left: 15px;
     top: 15px;
     z-index: 4;
     position: absolute;
     width: 390px;
-    height: 600px;
+    height: 650px;
     background-image: url('../NewsImg/BGscroll.png');
     border-radius: 25px;
     align-content: center;
+    left: 2px;
   }
     body {
           padding-bottom: 50%;
@@ -218,8 +237,9 @@ body{
     margin: 0 auto;
   }
   .keret{
-    width: 400px;
+    width: 395px;
     height: 600px;
     overflow-y: hidden;
+    margin-left: 0px;
   }
 }

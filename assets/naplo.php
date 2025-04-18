@@ -2,29 +2,30 @@
 require "../connection/connection.php";
 session_start();
 
-$felhasznalo=$conn->query("SELECT * FROM nev_elozmenyek");
-$email=$conn->query("SELECT * FROM email_elozmenyek");
-$jelszo=$conn->query("SELECT * FROM jelszo_elozmenyek");
+$id=$_SESSION["id"];
+$felhasznalo=$conn->query("SELECT * FROM nev_elozmenyek WHERE felhasznalo_id=$id ORDER BY datum DESC");
+$email=$conn->query("SELECT * FROM email_elozmenyek WHERE felhasznalo_id=$id ORDER BY datum DESC");
+$jelszo=$conn->query("SELECT * FROM jelszo_elozmenyek WHERE felhasznalo_id=$id ORDER BY datum DESC");
 $tomb = [
     'nev' => [],
     'email' => [],
     'jelszo' => []
 ];
 if ($felhasznalo) {
-    while ($row = $usernames->fetch_assoc()) {
+    while ($row = $felhasznalo->fetch_assoc()) {
         $tomb['nev'][] = $row;
     }
 }
 
 if ($email) {
-    while ($row = $emails->fetch_assoc()) {
+    while ($row = $email->fetch_assoc()) {
         $tomb['email'][] = $row;
     }
 }
 
 if ($jelszo) {
-    while ($row = $passwords->fetch_assoc()) {
-        $tomb['password'][] = $row;
+    while ($row = $jelszo->fetch_assoc()) {
+        $tomb['jelszo'][] = $row;
     }
 }
 

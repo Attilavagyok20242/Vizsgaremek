@@ -15,6 +15,10 @@ $(document).ready(function(){
     $("#eltuntet").hide();
     $("#komm").hide();
   });
+  $("#bezar").click(function(){
+    $("#eltuntet").hide();
+    $("#komm").hide();
+  });
   $(".komment").click(function(){
     $("#eltuntet").show();
     $("#komm").show();
