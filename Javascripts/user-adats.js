@@ -5,9 +5,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const szobak = document.querySelector(".szobak");
     const element = document.querySelector(".element");
 
+
     const kuldesGomb = document.getElementById("cseveges-kuldes");
     const uzenetBevitel = document.getElementById("cseveges-bevitel");
-    const cimBevitel = document.getElementById("jelentes-cim"); // Jelentés címe input
+    const cimBevitel = document.getElementById("jelentes-cim"); 
     const uzenetDoboz = document.getElementById("cseveges-uzenetek");
     const csevegesKapcsolo = document.getElementById("cseveges-kapcsolo");
     const csevegesDoboz = document.getElementById("cseveges-doboz");
@@ -15,32 +16,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let csevegesNyitva = false;
 
-    // Jogosultság és UI frissítés
     fetch("felhasznalo_belepve")
         .then(response => response.json())
         .then(data => {
             if (data.loggedIn) {
-                if (kilepes) kilepes.style.display = "block";
-                if (megerosites) megerosites.style.display = "block";
-                if (profils) profils.style.display = "block";
-                if (szobak) szobak.style.display = "block";
-
+                kilepes.style.display = "block";
+                megerosites.style.display = "block";
+                profils.style.display = "block";
+                szobak.style.display = "none";
                 fetch("felhasznalo_kod")
                     .then(response => response.json())
                     .then(data => {
-                        if (data.megerosites === true) {
-                            if (megerosites) megerosites.style.display = "none";
-                            if (element) element.style.display = "none";
+                        console.log(data);
+                        if (data.megerosites == true) {
+                                megerosites.style.display = "none";
+                                element.style.display = "none";
                         }
                     })
                     .catch(error => console.error("Hiba történt (megerősítés lekérés):", error));
             } else {
-                if (megerosites) megerosites.style.display = "none";
+                 megerosites.style.display = "none";
             }
         })
         .catch(error => console.error("Hiba történt (bejelentkezés ellenőrzés):", error));
 
-    // Üzenetek betöltése
     function uzenetekBetoltese() {
         fetch("assets/uzenet_betolto.php")
             .then((response) => response.json())
@@ -78,7 +77,6 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     }
 
-    // Csevegés kapcsoló
     if (csevegesKapcsolo) {
         csevegesKapcsolo.addEventListener("click", function () {
             csevegesDoboz.style.display = csevegesNyitva ? "none" : "block";
@@ -89,13 +87,11 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Csevegés bezárás és üzenetek törlése
     if (csevegesBezaras) {
         csevegesBezaras.addEventListener("click", function () {
             csevegesDoboz.style.display = "none";
             csevegesNyitva = false;
 
-            // Az összes üzenetet töröljük a chat bezárásakor
             fetch("assets/uzenet_torlese.php", {
                 method: "POST",
                 body: JSON.stringify({}),
@@ -115,7 +111,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Üzenet küldése
     if (kuldesGomb && uzenetBevitel) {
         kuldesGomb.addEventListener("click", function () {
             const uzenet = uzenetBevitel.value.trim();

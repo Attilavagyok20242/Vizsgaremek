@@ -141,7 +141,6 @@ $result = mysqli_query($conn, $query);
         <div class="toggle">
           <i class='bx bx-menu'></i>
         </div>
-        <!--kereső-->
         
         <!--felhaználó kép-->
         <div class="user">

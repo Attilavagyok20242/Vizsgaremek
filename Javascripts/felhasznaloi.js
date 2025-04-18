@@ -11,11 +11,18 @@ $(document).ready(function () {
       $("#adatvaltoz").click(function (e) { 
          $("#kartya2").fadeIn("slow");
          $("#kartya1").hide("fast");
+         $("#kartya3").hide("fast");
       });
       $("#profilkep").click(function (e) { 
          $("#kartya1").fadeIn("slow");
          $("#kartya2").hide("fast");
+         $("#kartya3").hide("fast");
       });
+      $("#naplo").click(function (e) { 
+        $("#kartya3").fadeIn("slow");
+        $("#kartya2").hide("fast");
+        $("#kartya1").hide("fast");
+     });
 });
 function JelVizsgal()
 {
@@ -70,14 +77,19 @@ function FelhNevModosit()
     xhttp.open('POST', 'adatvaltoz', true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.onload = function () {
-        if (this.responseText!="foglalt") {
+        if (this.responseText=="foglalt") {
+            visszajelzes.style.color="red";
+            visszajelzes.innerHTML="A felhasználónév már foglalt!";
+        }
+        else if(this.responseText=="nincs")
+        {
+            visszajelzes.style.color="red";
+            visszajelzes.innerHTML="Adj meg egy felhasználó nevet!";
+        }
+        else{
             visszajelzes.style.color="darkgreen";
             visszajelzes.innerHTML=this.responseText;
             setTimeout(() => window.location.reload(), 3000);
-        }
-        else{
-            visszajelzes.style.color="red";
-            visszajelzes.innerHTML="A felhasználónév már foglalt!";
         }
         
         
@@ -92,14 +104,19 @@ function EmailModosit()
     xhttp.open('POST', 'adatvaltoz', true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.onload = function () {
-        if (this.responseText!="foglalt") {
+        if (this.responseText=="foglalt") {
+            visszajelzes.style.color="red";
+            visszajelzes.innerHTML="Ez az E-mail cím már foglalt!";
+        }
+        else if(this.responseText=="formatum_hiba")
+        {
+            visszajelzes.style.color="red";
+            visszajelzes.innerHTML="Rossz az email formatum!";
+        }
+        else{
             visszajelzes.style.color="darkgreen";
             visszajelzes.innerHTML=this.responseText;
             setTimeout(() => window.location.reload(), 3000);
-        }
-        else{
-            visszajelzes.style.color="red";
-            visszajelzes.innerHTML="Ez az E-mail cím már foglalt!";
         }
     };
     xhttp.send('ujemail='+ujemail);
@@ -112,7 +129,6 @@ function Kepvaltoztat()
         formdata=new FormData();
         formdata.append("image",profilkep);
         kep=document.getElementById("profil");
-        console.log(profilkep);
         $.ajax({
             url: "keptolt",
             type: "POST",
@@ -121,7 +137,19 @@ function Kepvaltoztat()
             processData: false,
             contentType: false,
             complete: function(vissza){
-                kep.src=vissza.responseText;
+                if(vissza.responseText=="rossz_formatum")
+                {
+                    kep.src="ikon/feltoltes.png";
+                    alert("Rossz a fájl formátum!");
+                }
+                else if(vissza.responseText=="tul_nagy")
+                {
+                    kep.src="ikon/feltoltes.png";
+                    alert("A kép túl nagy!");
+                }
+                else{
+                    kep.src=vissza.responseText;
+                }
             }
         });
     }
@@ -134,9 +162,54 @@ function megerosites(){
             console.log("Válasz szövege:", this.responseText);
         }
     };
-
     console.log("Küldés indítása...");
     xhttp.open("GET", "level_kuld2",true);
     xhttp.send();
     console.log("Küldés megtörtént!");
 }
+function Naplo()
+{
+    naplo=document.getElementById("naplod");
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            const adatok = JSON.parse(this.responseText);
+            let osszadat = [];
+            if (adatok.email?.length > 0) {
+                osszadat.push(...adatok.email.map(item => ({
+                    ...item,
+                    tipus: 'email'
+                })));
+            }
+            if (adatok.nev?.length > 0) {
+                osszadat.push(...adatok.nev.map(item => ({
+                    ...item,
+                    tipus: 'nev'
+                })));
+            }
+            if (adatok.jelszo?.length > 0) {
+                osszadat.push(...adatok.jelszo.map(item => ({
+                    ...item,
+                    tipus: 'jelszo'
+                })));
+            }
+            osszadat.sort((a, b) => new Date(b.datum) - new Date(a.datum));
+            for (let i = 0; i < osszadat.length; i++) {
+                const adat = osszadat[i];
+                let html = "";
+
+                if (adat.tipus === "email") {
+                    html = `<p>Régi email: ${adat.old_email} | Változás időpontja: ${adat.datum}</p>`;
+                } else if (adat.tipus === "nev") {
+                    html = `<p>Régi felhasználónév: ${adat.old_nev} | Változás időpontja: ${adat.datum}</p>`;
+                } else if (adat.tipus === "jelszo") {
+                    html = `<p>Régi jelszó: #### | Változás időpontja: ${adat.datum}</p>`;
+                }
+                naplo.innerHTML += html;
+            }
+        }
+    };
+    xhttp.open("GET", "assets/naplo.php", true);
+    xhttp.send();
+}
+Naplo();

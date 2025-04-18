@@ -8,8 +8,8 @@ $(document).ready(function () {
             method: 'GET',
             data: { id: userId },
             success: function (response) {
-                alert(response); // Visszajelzés a törlésről
-                loadUsers(); // Felhasználók újratöltése
+                alert(response); 
+                loadUsers(); 
             },
             error: function () {
                 alert('Hiba történt a törlés során.');
@@ -18,14 +18,13 @@ $(document).ready(function () {
     });
 });
 
-// Felhasználók listázása
 function loadUsers() {
     $.ajax({
         url: 'assets/felhasznalo.php',
         method: 'GET',
         success: function (response) {
             var users = JSON.parse(response);
-            var tableHtml = '<table border="1"><tr><th>ID</th><th>Felhasználó neve</th><th>Email</th><th>Művelet</th></tr>';
+            var tableHtml = '<h1>Felhasznalo Informacio</h1><table border="1"><tr><th>ID</th><th>Felhasználó neve</th><th>Email</th><th>Művelet</th></tr>';
             
             users.forEach(function (user) {
                 tableHtml += `<tr>

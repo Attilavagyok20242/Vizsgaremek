@@ -6,31 +6,30 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
-#segitsegtartalomkeret
-{
+#segitsegtartalomkeret {
   display: none;
 }
-.jelentes{
+.jelentes {
   width: 500px;
   height: fit-content;
   background-color: brown;
 }
-:root{
-  --blue:#287bff;
-  --white:#fff;
-  --grey:#f5f5f5;
-  --black1:#222;
-  --black2:#999;
+:root {
+  --blue: #287bff;
+  --white: #fff;
+  --grey: #f5f5f5;
+  --black1: #222;
+  --black2: #999;
 }
-body{
+body {
   min-height: 100vh;
   overflow-x: hidden;
 }
-.container{
+.container {
   position: relative;
   width: 100%;
 }
-.navigation{
+.navigation {
   position: fixed;
   width: 300px;
   height: 100%;
@@ -41,47 +40,43 @@ body{
   transition: 0.5s;
   overflow: hidden;
 }
-.navigation.active{
+.navigation.active {
   width: 80px;
 }
-.navigation ul{
+.navigation ul {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
 }
-.navigation ul li{
+.navigation ul li {
   position: relative;
   width: 100%;
   list-style: none;
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
-
 }
 .navigation ul li:hover,
-.navigation ul li.hovered{
+.navigation ul li.hovered {
   background: var(--white);
 }
-.navigation ul li:nth-child(1)
-{
+.navigation ul li:nth-child(1) {
   margin-bottom: 40px;
   pointer-events: none;
-  
 }
-.navigation ul li a
-{
+.navigation ul li a {
   position: relative;
   display: block;
   width: 100%;
   display: flex;
   text-decoration: none;
-  color:var(--white)
+  color: var(--white);
 }
-.navigation ul li:hover a ,
- .navigation ul li.hovered a{
+.navigation ul li:hover a,
+.navigation ul li.hovered a {
   color: var(--black2);
 }
-.navigation ul li a .icon{
+.navigation ul li a .icon {
   position: relative;
   display: block;
   min-width: 60px;
@@ -89,72 +84,68 @@ body{
   line-height: 60px;
   text-align: center;
 }
-.navigation ul li a .icon i{
+.navigation ul li a .icon i {
   font-size: 1.75em;
 }
-.navigation ul li a .title{
+.navigation ul li a .title {
   position: relative;
   display: block;
   padding: 0 10px;
   height: 60px;
   line-height: 60px;
   text-align: start;
-  white-space:nowrap;
+  white-space: nowrap;
 }
-/*Külső lekerekítés*/
 .navigation ul li:hover a::before,
-.navigation ul li.hovered a::before
-{
-content: '';
-position: absolute;
-right: 0;
-top: -50%;
- width: 100px;
- height: 50px;
- background:transparent;
- border-radius: 50%;
- box-shadow: 35px 35px 0px 10px var(--white);
-pointer-events: none;
+.navigation ul li.hovered a::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: -50%;
+  width: 100px;
+  height: 50px;
+  background: transparent;
+  border-radius: 50%;
+  box-shadow: 35px 35px 0px 10px var(--white);
+  pointer-events: none;
 }
 .navigation ul li:hover a::after,
-.navigation ul li.hovered a::after
-{
-content: '';
-position: absolute;
-right: 0;
- width: 50px;
- height: 50px;
- background:transparent;
- border-radius: 50%;
- box-shadow: 35px -35px 0px 10px var(--white);
-pointer-events: none;
+.navigation ul li.hovered a::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  width: 50px;
+  height: 50px;
+  background: transparent;
+  border-radius: 50%;
+  box-shadow: 35px -35px 0px 10px var(--white);
+  pointer-events: none;
 }
-.main{
+.main {
   position: absolute;
   width: calc(100% - 300px);
   left: 300px;
   min-height: 100vh;
-  background:url("../hatter/asd.jpg");
+  background: url("../hatter/asd.jpg");
   image-rendering: auto;
   background-size: cover;
   background-repeat: no-repeat;
   transition: 0.5s;
   height: 150%;
 }
-.main.active{
+.main.active {
   width: calc(100% - 80px);
   left: 80px;
 }
-.topbar{
+.topbar {
   width: 100%;
-  height:60px;
+  height: 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 10px;
 }
-.toggle
-{
+.toggle {
   position: relative;
   width: 60px;
   height: 60px;
@@ -164,18 +155,16 @@ pointer-events: none;
   font-size: 2.5em;
   cursor: pointer;
 }
-.search{
-  position:relative;
+.search {
+  position: relative;
   width: 400px;
   height: 0 10px;
-  
 }
-.search label{
+.search label {
   position: relative;
   width: 100%;
 }
-.search label input
-{
+.search label input {
   width: 100%;
   height: 40px;
   border-radius: 40px;
@@ -185,15 +174,13 @@ pointer-events: none;
   outline: none;
   bottom: 1px solid var(--black2);
 }
-
-.search label i
-{
+.search label i {
   position: absolute;
   top: 0;
   left: 10px;
- font-size: 1.2em;
+  font-size: 1.2em;
 }
-.user{
+.user {
   position: relative;
   width: 40px;
   height: 40px;
@@ -201,24 +188,23 @@ pointer-events: none;
   overflow: hidden;
   cursor: pointer;
 }
-.user img{
+.user img {
   position: absolute;
-  top:0;
+  top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-.cardBox{
+.cardBox {
   position: relative;
   width: 100%;
   padding: 20px;
   display: grid;
-  grid-template-columns: repeat(4,1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-gap: 30px;
-
 }
-.cardBox .card{
+.cardBox .card {
   position: relative;
   background: var(--white);
   padding: 30px;
@@ -226,66 +212,67 @@ pointer-events: none;
   display: flex;
   justify-content: space-between;
   cursor: pointer;
-  box-shadow: 0  7px 25px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
 }
-.cardBox .card .numbers{
+.cardBox .card .numbers {
   position: relative;
   font-weight: 500;
   font-size: 2.5em;
   color: var(--black1);
 }
-.cardBox .card .cardName{
-  color:var(--black2);
+.cardBox .card .cardName {
+  color: var(--black2);
   font-size: 1.1em;
   margin-top: 5px;
 }
-.cardBox .card .iconBox{
-  font-size:3.5em;
+.cardBox .card .iconBox {
+  font-size: 3.5em;
   color: var(--black2);
 }
-.cardBox .card:hover{
+.cardBox .card:hover {
   background: var(--black2);
 }
-
 .cardBox .card:hover .numbers,
 .cardBox .card:hover .cardName,
-.cardBox .card:hover .iconBx
-{
- background: var(--white);
+.cardBox .card:hover .iconBx {
+  background: var(--white);
 }
-.asd{
+.asd {
   width: 150px;
   height: 150px;
 }
-#segitsegs{
+#segitsegs {
   width: 300px;
   height: 300px;
 }
-#asd{
+#asd {
   display: none;
 }
-.keret{
-    width: 600px;
-    height: 400px;
-    background-color: white;
-    border-radius: 15px;
-    margin-left: 320px;
-    margin-top: 20px;
+.keret {
+  width: 600px;
+  height: 400px;
+  background-color: white;
+  border-radius: 15px;
+  margin-left: 320px;
+  margin-top: 20px;
 }
-.bemenetek{
+.bemenetek {
   width: 200px;
   height: fit-content;
   margin-left: 100px;
   padding-top: 50px;
 }
-.cim{
+#felhasznalo_torles {
+  display: none;
+}
+.cim {
   width: 400px;
   height: 50px;
   border: solid 5px black;
   border-radius: 5px;
   font-size: large;
 }
-.tartalom{
+.tartalom {
   margin-top: 15px;
   width: 400px;
   resize: none;
@@ -302,7 +289,7 @@ pointer-events: none;
   background-color: #ffffff;
   border: 1px solid #ccc;
   border-radius: 10px;
-  display: none; /* Alapértelmezetten rejtve */
+  display: none;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   z-index: 1000;
   padding: 10px;
@@ -420,8 +407,7 @@ button.valaszKuldes:hover {
   display: block;
 }
 
-
-.nev{
+.nev {
   background-color: #6e3c38;
   color: white;
   width: 80px;
@@ -432,7 +418,7 @@ button.valaszKuldes:hover {
   border-radius: 20%;
   display: inline-block;
 }
-.uzenet{
+.uzenet {
   background-color: #6e3c38;
   color: white;
   width: 80px;
@@ -442,7 +428,7 @@ button.valaszKuldes:hover {
   margin-left: 35px;
   display: inline-block;
 }
-.egybeazegesz{
+.egybeazegesz {
   width: 400px;
   height: 100px;
   padding: 5px;
@@ -453,7 +439,7 @@ button.valaszKuldes:hover {
   border: 1px solid #ccc;
   border-radius: 6px;
   background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 .jelentes button.Jovahagyas {
   margin-top: 8px;
@@ -470,7 +456,7 @@ button.valaszKuldes:hover {
 .hiba {
   color: red;
 }
-#felhasznalo_torles{
+#felhasznalo_torles {
   display: none;
 }
 table {
@@ -491,7 +477,7 @@ table td {
 }
 
 table th {
-  background-color: black;
+  background-color: bl;
   color: white;
 }
 
@@ -515,17 +501,128 @@ button.delete-btn:hover {
   background-color: #d32f2f;
 }
 
-@media (max-width: 768px) {
-  table {
-      width: 100%;
+@media (max-width: 1024px) {
+  .cardBox {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  h1 {
-      font-size: 1.5rem;
+  .navigation {
+    width: 250px;
   }
 
-  button.delete-btn {
-      padding: 6px 12px;
-      font-size: 12px;
+  .main {
+    width: calc(100% - 250px);
+    left: 250px;
+    height: fit-content;
+  }
+
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
+
+@media (max-width: 768px) {
+  .navigation {
+    width: 80px;
+  }
+
+  .main {
+    width: calc(100% - 80px);
+    left: 80px;
+    background-size: cover;
+  }
+
+  .cardBox {
+    grid-template-columns: 1fr;
+  }
+
+  .toggle {
+    font-size: 2em;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .keret {
+    width: 90%; 
+    height: auto; 
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .bemenetek {
+    width: 90%; 
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 20px;
+  }
+
+  .cim,
+  .tartalom {
+    width: 100%; 
+    max-width: none;
+  }
+
+  .cim {
+    font-size: 1.2rem; 
+  }
+
+  .tartalom {
+    height: 150px; 
+  }
+}
+
+@media (max-width: 480px) {
+  .navigation {
+    width: 50px;
+  }
+  .main {
+    width: calc(100% - 60px);
+    left: 60px;
+    background-size: cover;
+  }
+
+
+  .topbar {
+    padding: 10px;
+  }
+
+  .toggle {
+    font-size: 1.8em;
+  }
+  table th, table td {
+    padding: 0.5px;
+    font-size: 12px;
+    width: 60%;
+}
+h1{
+  font-size: 20px;
+}
+.keret {
+  width: 100%; 
+  height: auto;
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.bemenetek {
+  width: 100%; 
+  padding-top: 15px;
+}
+
+.cim {
+  font-size: 1rem; 
+}
+
+.tartalom {
+  height: 120px;
+}
+}
+
+
+
