@@ -36,7 +36,7 @@ if (isset($_GET['get_messages'])) {
     $messages = file($chatFile);
     foreach ($messages as $msg) {
         $data = json_decode($msg, true);
-        echo "<p><strong>" . $data['username'] . "</strong> [" . $data['time'] . "]: " . $data['message'] . "</p>";
+        echo "<p class='message' data-user='" . $data['username'] . "'><strong>" . $data['username'] . "</strong> [" . $data['time'] . "]: " . $data['message'] . "</p>";
     }
     exit;
 }
@@ -57,7 +57,24 @@ if (isset($_GET['get_users'])) {
 
 // ÜZENETEK TÖRLÉSE
 if (isset($_POST['delete']) && $_SESSION['username'] === 'admin') {
-    file_put_contents("chat.txt", "");
+    file_put_contents($chatFile, "");
     exit;
 }
-?>
+
+// PRIVÁT ÜZENETEK KEZELÉSE
+if (isset($_POST['private_message']) && isset($_POST['recipient'])) {
+    $message = htmlspecialchars($_POST['private_message']);
+    $recipient = htmlspecialchars($_POST['recipient']);
+    if (!empty($message)) {
+        $data = [
+            "username" => $_SESSION['username'],
+            "recipient" => $recipient,
+            "message" => "(privát) " . $message,
+            "time" => date("H:i:s")
+        ];
+        file_put_contents($chatFile, json_encode($data) . "\n", FILE_APPEND);
+    }
+    exit;
+}
+
+

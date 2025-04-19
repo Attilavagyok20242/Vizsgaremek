@@ -1,0 +1,6 @@
+{"username":"SilverClaws02","message":"ss","time":"14:29:31"}
+{"username":"SilverClaws02","message":"Hali","time":"14:29:55"}
+{"username":"SilverClaws02","message":"SA","time":"14:30:06"}
+{"username":"SilverClaws02","message":"SA","time":"14:30:11"}
+{"username":"SilverClaws02","recipient":"SilverClaws02","message":"(priv\u00e1t) Szia","time":"14:37:28"}
+{"username":"SilverClaws02","recipient":"SilverClaws02","message":"(priv\u00e1t) Szius","time":"14:39:18"}

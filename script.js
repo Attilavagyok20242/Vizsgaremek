@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const contextMenu = document.getElementById("context-menu");
     let selectedMessageUser = "";
 
-    // Sötét mód ellenőrzése
+    // 🌗 Sötét mód beállítás
     if (localStorage.getItem("darkMode") === "enabled") {
         document.body.classList.add("dark-mode");
         document.body.classList.remove("light-mode");
@@ -28,67 +28,127 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Üzenet küldés
+    // 🟢 Szekció: belépési adatok küldése
+    function initSession() {
+        const username = sessionStorage.getItem("username");
+        const chatroom = sessionStorage.getItem("chatroom");
+        if (!username || !chatroom) return;
+
+        const formData = new URLSearchParams();
+        formData.append("username", username);
+        formData.append("chatroom", chatroom);
+
+        fetch("chat.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: formData.toString()
+        }).catch(console.error);
+    }
+
+    initSession();
+
+    // ✉️ Üzenet küldése
     window.sendMessage = function () {
-        let message = messageInput.value.trim();
+        const message = messageInput.value.trim();
         if (message === "") return;
 
         fetch("chat.php", {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: `message=${encodeURIComponent(message)}`
-        }).then(() => {
+        })
+        .then(() => {
             messageInput.value = "";
-        });
+        })
+        .catch(console.error);
     };
 
+    // 🔁 Üzenetek frissítése
     function updateChat() {
         fetch("chat.php?get_messages=1")
             .then(response => response.text())
             .then(data => {
-                chatbox.innerHTML = data;
-                chatbox.scrollTop = chatbox.scrollHeight;
+                chatbox.innerHTML = "";
 
-                document.querySelectorAll(".message").forEach(msg => {
-                    if (msg.getAttribute("data-user") === "<?php echo $_SESSION['username']; ?>") {
-                        msg.classList.add("my-message");
+                const currentUser = sessionStorage.getItem("username");
+                const lines = data.split("\n");
+
+                lines.forEach(line => {
+                    if (line.trim() === "") return;
+                    const temp = document.createElement("div");
+                    temp.innerHTML = line;
+
+                    const p = temp.querySelector("p");
+                    if (!p) return;
+
+                    const div = document.createElement("div");
+                    const username = p.querySelector("strong")?.textContent ?? "";
+                    div.classList.add("message");
+                    div.setAttribute("data-user", username);
+
+                    if (username === currentUser) {
+                        div.classList.add("my-message");
                     } else {
-                        msg.classList.add("other-message");
+                        div.classList.add("other-message");
                     }
+
+                    div.innerHTML = p.innerHTML;
+                    chatbox.appendChild(div);
                 });
-            });
+
+                chatbox.scrollTop = chatbox.scrollHeight;
+            })
+            .catch(console.error);
     }
 
     setInterval(updateChat, 1000);
 
-    // Kontextus menü és privát üzenet funkciók
+    // 📜 Kontextus menü jobb klikkre
     document.addEventListener("contextmenu", function (event) {
-        event.preventDefault();
-        let target = event.target.closest(".message");
+        const target = event.target.closest(".message");
         if (target) {
+            event.preventDefault();
             selectedMessageUser = target.getAttribute("data-user");
-            contextMenu.style.top = `${event.pageY}px`;
-            contextMenu.style.left = `${event.pageX}px`;
-            contextMenu.style.display = "block";
+
+            if (selectedMessageUser) {
+                contextMenu.style.top = `${event.pageY}px`;
+                contextMenu.style.left = `${event.pageX}px`;
+                contextMenu.style.display = "block";
+            }
         }
     });
 
+    // ⛔ Kontextus menü elrejtése klikkre vagy ESC-re
     document.addEventListener("click", function () {
         contextMenu.style.display = "none";
     });
 
-    document.getElementById("private-message").addEventListener("click", function () {
-        let privateMsg = prompt(`Írj privát üzenetet ${selectedMessageUser} számára:`);
-        if (privateMsg) {
-            fetch("chat.php", {
-                method: "POST",
-                headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: `private_message=${encodeURIComponent(privateMsg)}&recipient=${selectedMessageUser}`
-            });
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+            contextMenu.style.display = "none";
         }
     });
 
+    // 🔐 Privát üzenet küldése
+    document.getElementById("private-message").addEventListener("click", function () {
+        if (!selectedMessageUser) return;
+
+        const privateMsg = prompt(`Írj privát üzenetet ${selectedMessageUser} számára:`);
+        if (privateMsg && privateMsg.trim() !== "") {
+            fetch("chat.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: `private_message=${encodeURIComponent(privateMsg)}&recipient=${encodeURIComponent(selectedMessageUser)}`
+            })
+            .catch(console.error);
+        }
+    });
+
+    // 🚨 Üzenet jelentése
     document.getElementById("report-message").addEventListener("click", function () {
         alert("Az üzenetet jelentetted az adminoknak!");
+
+        // Ezt kiegészítheted mentéssel:
+        // fetch("report.php", { ... });
     });
 });
