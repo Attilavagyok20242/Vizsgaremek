@@ -8,7 +8,24 @@
     <script defer src="script.js"></script>
 </head>
 <body>
-    <div class="chat-container">
+
+    <!-- Bejelentkezés -->
+    <div id="login-section" class="login-container">
+        <h2>Adja meg a nevét</h2>
+        <input type="text" id="username" placeholder="Felhasználónév" required>
+        <button onclick="showRoomSelection()">Tovább</button>
+    </div>
+
+    <!-- Szobaválasztás -->
+    <div id="room-selection" class="room-container" style="display: none;">
+        <h2>Válassz egy chatszobát!</h2>
+        <button onclick="joinChat('Általános')">Általános</button>
+        <button onclick="joinChat('Gladiátor')">Gladiátor</button> 
+        <button onclick="joinChat('Játék')">Játék</button>
+    </div>
+
+    <!-- Chatszoba -->
+    <div id="chat-section" class="chat-container" style="display: none;">
         <h2>Üdvözlünk a chatszobában!</h2>
         <button id="dark-mode-toggle">🌙 Sötét mód</button>
         <div id="chatbox"></div>
@@ -18,27 +35,36 @@
             <button onclick="sendMessage()">Küldés</button>
         </div>
     </div>
-    
+
+    <!-- Jobb klikkes menü -->
     <div id="context-menu" class="context-menu">
         <ul>
             <li id="private-message">💬 Privát üzenet küldése</li>
             <li id="report-message">⚠️ Jelentés az adminnak</li>
         </ul>
     </div>
+
+    <!-- JS kezelők -->
     <script>
-        function joinChat() {
-            let username = document.getElementById("username").value;
-            let chatroom = document.getElementById("chatroom").value;
-        
-            if (username.trim() === "") {
+        function showRoomSelection() {
+            const username = document.getElementById("username").value.trim();
+            if (username === "") {
                 alert("Kérlek, add meg a neved!");
                 return;
             }
-        
             sessionStorage.setItem("username", username);
-            sessionStorage.setItem("chatroom", chatroom);
-            window.location.href = "chatszoba.php";
+            document.getElementById("login-section").style.display = "none";
+            document.getElementById("room-selection").style.display = "block";
+        }
+    
+        function joinChat(room) {
+            sessionStorage.setItem("chatroom", room); // Szoba mentése sessionStorage-ba
+            document.getElementById("room-selection").style.display = "none";
+            document.getElementById("chat-section").style.display = "block";
+            // Ide jöhetnek további inicializáló hívások, pl. loadMessages()
         }
     </script>
+    
+
 </body>
 </html>
