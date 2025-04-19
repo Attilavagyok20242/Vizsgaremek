@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
+
+.egybe {
+    font-family: 'Cinzel', serif;
+    background: url('gladiátor.jpg') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120vh;
+    margin: 0;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 10px;
+}
+
+.chat-container {
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 15px rgba(255, 215, 0, 0.5);
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    height: 70vh;
+}
+
+#chatbox {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 10px;
+    border: 1px solid rgba(255, 215, 0, 0.5);
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    max-height: 400px;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+input[type='text'] {
+    flex-grow: 1;
+    padding: 10px;
+    border: 2px solid gold;
+    border-radius: 25px;
+    background: black;
+    color: white;
+    font-size: 16px;
+    min-width: 0;
+}
+
+button {
+    background: gold;
+    color: black;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+    white-space: nowrap;
+}
+
+button:hover {
+    background: darkgoldenrod;
+}
+
+#dark-mode-toggle {
+    margin-top: 10px;
+    align-self: center;
+    background: black;
+    color: white;
+    border: 2px solid gold;
+    padding: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(255, 215, 0, 0.5);
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+#dark-mode-toggle:hover {
+    background: darkgoldenrod;
+    color: black;
+}
+
+/* Context menu */
+.context-menu {
+    display: none;
+    position: absolute;
+    background: black;
+    color: white;
+    border: 1px solid gold;
+    border-radius: 5px;
+    z-index: 9999;
+    box-shadow: 0px 0px 10px rgba(255, 215, 0, 0.5);
+}
+
+.context-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.context-menu li {
+    padding: 10px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.context-menu li:hover {
+    background-color: rgba(255, 215, 0, 0.1);
+}
+
+#chatroom, #username {
+    display: block;
+    margin: 10px auto;
+    padding: 10px;
+    font-size: 18px;
+    width: 80%;
+    max-width: 300px;
+}
+
+button {
+    background-color: #008CBA;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 18px;
+    cursor: pointer;
+    display: block;
+    margin: 10px auto;
+}
+
+/* Dark mode tweaks */
+.dark-mode {
+    background: url('../chatszobakepek/gladiátor2.jpg') no-repeat center center fixed !important;
+    background-size: cover !important;
+    color: white;
+}
+
+.dark-mode .chat-container {
+    background: rgba(20, 20, 20, 0.9) !important;
+    box-shadow: 0px 0px 15px rgba(255, 215, 0, 0.3);
+}
+
+.dark-mode #chatbox {
+    background: rgba(30, 30, 30, 0.9) !important;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.dark-mode input[type='text'] {
+    background: #222 !important;
+    color: white !important;
+    border: 2px solid darkgoldenrod !important;
+}
+
+.dark-mode button {
+    background: darkgoldenrod !important;
+    color: black !important;
+}
+
+.dark-mode button:hover {
+    background: goldenrod !important;
+}
+
+.dark-mode #dark-mode-toggle {
+    background: darkgoldenrod !important;
+    color: black !important;
+    border: 2px solid white !important;
+}
+
+.light-mode {
+    background: url('../chatszobakepek/gladiátor.jpg') no-repeat center center fixed !important;
+    background-size: cover !important;
+}
+
+@media (max-width: 600px) {
+    .chat-container {
+        width: 100%;
+        height: 90vh;
+        padding: 15px;
+    }
+
+    input[type='text'] {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+
+    #dark-mode-toggle {
+        font-size: 16px;
+        padding: 8px;
+    }
+
+    #chatroom, #username {
+        font-size: 16px;
+        width: 90%;
+    }
+}

@@ -9,14 +9,9 @@ RewriteRule ^keptolt$ assets/keptolt.php [nc,qsa]
 RewriteRule ^adatvaltoz$ assets/adatvaltoz.php [nc,qsa]
 RewriteRule ^admin$ oldalak/Admin.php [nc,qsa]
 RewriteRule ^kilepesadmin$ oldalak/Kilepesadmin.php [nc,qsa]
-RewriteRule ^chat$ assets/chat.php [nc,qsa]
-RewriteRule ^chatszoba$ assets/chatszoba.php [nc,qsa]
-RewriteRule ^szoba$ oldalak/Szobak.php [nc,qsa]
-RewriteRule ^szobaszabaly$ chat.php?get_typing [nc,qsa]
-RewriteRule ^szobafrissit$ chat.php?get_messages=$1 [nc,qsa]
-RewriteRule ^iras$ chat.php?get_messages=$1 [nc,qsa]
 RewriteRule ^felhasznalo_kod$ assets/felhasznalo_kod.php [nc,qsa]
 RewriteRule ^level_kuld2$ phpmailerteljes/level_kuld2.php [nc,qsa]
+
 
 # Catch-all for other routes
 RewriteRule ^([a-zA-Z]+)$ index.php?menupont=$1 [nc,qsa]

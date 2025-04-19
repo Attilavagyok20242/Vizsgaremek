@@ -317,7 +317,6 @@ display: none;
     color: #e6b800;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     .hero {
         padding: 60px 20px;
@@ -349,7 +348,6 @@ display: none;
     }
 }
 
-/* Parallax Backgrounds */
 #warrior1 {
     background-image: url('max.jpg');
 }

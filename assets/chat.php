@@ -1,109 +1,117 @@
-<?php 
+<?php
 // SESSION KEZELÉS
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
+session_start();
+
+// Database connection
+$servername = "localhost";  // Update this if needed
+$username = "root";         // Update with your MySQL username
+$password = "";             // Update with your MySQL password
+$dbname = "game";        // Update with your database name
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
 
-// NÉV ELLENŐRZÉS
-if (!isset($_SESSION['nev']) && !isset($_COOKIE["nev"])) {
-    die("Hiba: Nincs beállítva a felhasználónév.");
+// FELHASZNÁLÓNÉV ELLENŐRZÉS
+if (!isset($_SESSION['nev'])) {
+    echo "Hiba: Nem vagy bejelentkezve!";
+    exit;
 }
 
-// CHATSZOBA KIVÁLASZTÁS
-$room = $_COOKIE["chatroom"] ?? "general";
-$chatFile = "chat_{$room}.txt";
-
-// CHAT FÁJL LÉTREHOZÁSA, HA NEM LÉTEZIK
-if (!file_exists($chatFile)) {
-    file_put_contents("uzenetek/".$chatFile, ""); 
-}
-
-// FELHASZNÁLÓ NEVÉNEK MENTÉSE
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["nev"])) {
-    $_SESSION['nev'] = htmlspecialchars($_POST["nev"]);
-    setcookie("nev", $_SESSION['nev'], time() + 3600, "/");
-    echo json_encode(["nev" => $_SESSION['nev']]);
-    exit();
-}
+$username = $_SESSION['nev']; // Use $_SESSION['nev'] consistently
+$user_id = $_SESSION['id']; // Assuming the user ID is stored in session
+$room = $_SESSION["chatroom"] ?? "general";  // Default to 'general' room if not set
 
 // ÜZENET KÜLDÉSE
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["message"]) && isset($_COOKIE["nev"])) {
-    $message = htmlspecialchars($_POST["message"]);
-    $data = [
-        "nev" => $_COOKIE["nev"],
-        "message" => $message,
-        "time" => date("H:i:s")
-    ];
-    file_put_contents($chatFile, json_encode($data) . "\n", FILE_APPEND);
-    exit();
-}
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['message'])) {
+    $message = htmlspecialchars($_POST['message']);
+    if (!empty($message)) {
+        // Prepare the SQL statement to prevent SQL injection
+        $stmt = $conn->prepare("INSERT INTO chat_messages (felhasznalo_id, uzenet, room) VALUES (?, ?, ?)");
+        $stmt->bind_param("iss", $user_id, $message, $room); // 'i' for integer (user_id), 's' for string (message and room)
 
-// GÉPELÉSI ÁLLAPOT MENTÉSE
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['typing'])) {
-    $nev = $_COOKIE["nev"] ?? "ismeretlen";
-    $typingData = file_exists("typing_status.json") ? json_decode(file_get_contents("uzenetek/typing_status.json"), true) : [];
-    $typingData[$nev] = $_POST['typing'] == 1 ? time() : 0;
-    file_put_contents("uzenetek/typing_status.json", json_encode($typingData));
-    exit();
-}
-
-// GÉPELÉSI ÁLLAPOT LEKÉRÉSE
-if (isset($_GET['get_typing'])) {
-    $typingData = file_exists("typing_status.json") ? json_decode(file_get_contents("uzenetek/typing_status.json"), true) : [];
-    $activeUsers = [];
-    foreach ($typingData as $user => $lastTypingTime) {
-        if (time() - $lastTypingTime < 3) {
-            $activeUsers[] = $user;
+        if ($stmt->execute()) {
+            echo "Message sent!";
+        } else {
+            echo "Error: " . $stmt->error;
         }
+
+        $stmt->close();
+    } else {
+        echo "Hiba: Az üzenet nem lehet üres!";
     }
-    echo json_encode($activeUsers);
-    exit();
+    exit;
 }
+if (isset($_GET['get_messages'])) {
+    $stmt = $conn->prepare("SELECT *, u.nev  FROM chat_messages m JOIN felhasznalo u ON m.felhasznalo_id = u.id WHERE m.room = ? ORDER BY m.time ASC");
+    $stmt->bind_param("s", $room); 
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-// PRIVÁT ÜZENET KÜLDÉSE
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['private_message']) && isset($_POST['recipient'])) {
-    $privateMessage = htmlspecialchars($_POST['private_message']);
-    $recipient = htmlspecialchars($_POST['recipient']);
-    file_put_contents("uzenetek/private_messages.txt", "Privát üzenet: $recipient - $privateMessage\n", FILE_APPEND);
-    exit();
-}
-
-// ÜZENET JELENTÉSE
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['report_message'])) {
-    $reportedMessage = htmlspecialchars($_POST['report_message']);
-    file_put_contents("uzenetek/reported_messages.txt", "Jelentett üzenet: $reportedMessage\n", FILE_APPEND);
-    exit();
-}
-
-// ÜZENETEK LEKÉRÉSE
-if (isset($_GET["get_messages"])) {
-    $messages = file_exists($chatFile) ? file($chatFile) : [];
-    foreach ($messages as $msg) {
-        $data = json_decode($msg, true);
-        echo "<div class='message " . ($data['nev'] == $_COOKIE['nev'] ? "my-message" : "other-message") . "'>";
-        echo "<strong>" . $data['nev'] . "</strong> [" . $data['time'] . "]: " . $data['message'];
-        echo "</div>";
+    while ($data = $result->fetch_assoc()) {
+        echo "<p class='message' data-user='" . $data['username'] . "'><strong>" . $data['username'] . "</strong> [" . $data['time'] . "]: " . $data['uzenet'] . "</p>";
     }
-    exit();
-}
 
-// FELHASZNÁLÓK AKTIVITÁSÁNAK KEZELÉSE
+    $stmt->close();
+}
 if (isset($_GET['get_users'])) {
-    $users = file_exists("users.json") ? json_decode(file_get_contents("uzenetek/users.json"), true) : [];
-    $users[$_COOKIE['nev']] = time();
-    file_put_contents("uzenetek/users.json", json_encode($users));
+    $users = isset($_SESSION['users']) ? $_SESSION['users'] : [];
+    $users[$username] = time();
+    $_SESSION['users'] = $users;
 
     foreach ($users as $user => $last_active) {
-        if (time() - $last_active < 60) { // Aktív státusz
+        if (time() - $last_active < 60) {
             echo "<p>✅ $user</p>";
         }
     }
-    exit();
+    exit;
+}
+if (isset($_POST['delete']) && $username === 'admin') {
+    $stmt = $conn->prepare("DELETE FROM chat_messages WHERE room = ?");
+    $stmt->bind_param("s", $room);  
+    if ($stmt->execute()) {
+        echo "Messages have been deleted.";
+    } else {
+        echo "Error: " . $stmt->error;
+    }
+
+    $stmt->close();
+    exit;
 }
 
-// ADMIN: ÜZENETEK TÖRLÉSE
-if (isset($_POST['delete']) && $_COOKIE['nev'] === 'admin') {
-    file_put_contents("uzenetek/".$chatFile, "");
-    exit();
+if (isset($_POST['private_message']) && isset($_POST['recipient'])) {
+    $message = htmlspecialchars($_POST['private_message']);
+    $recipient = htmlspecialchars($_POST['recipient']);
+
+    if (!empty($message)) {
+        $stmt = $conn->prepare("SELECT id FROM users WHERE nev = ?");
+        $stmt->bind_param("s", $recipient);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $recipient_data = $result->fetch_assoc();
+
+        if ($recipient_data) {
+            $recipient_id = $recipient_data['id'];
+
+            $stmt = $conn->prepare("INSERT INTO chat_messages (felhasznalo_id, uzenet, room) VALUES (?, ?, ?)");
+            $stmt->bind_param("iss", $user_id, "(privát) " . $message, $room);
+
+            if ($stmt->execute()) {
+                echo "Private message sent!";
+            } else {
+                echo "Error: " . $stmt->error;
+            }
+
+            $stmt->close();
+        } else {
+            echo "Error: Recipient not found.";
+        }
+    } else {
+        echo "Hiba: A privát üzenet nem lehet üres!";
+    }
+    exit;
 }
+
+$conn->close(); // Close the database connection
 ?>

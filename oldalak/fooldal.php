@@ -4,7 +4,6 @@
    <section id="hero" class="hero " >
         <h1>Becsületért és Dicsőségért</h1>
         <p>Lépj be egy világba ahol dicsőséget szerezhetsz.</p>
-        <a href="" class="btn" id="enterArena">Lépj be az Arénába</a>
     </section>    
     <!-- Harcos Szakasz -->
     <section id="warriors" class="warrior-section betolt" >
@@ -58,12 +57,6 @@
                 <p>Email: arenaklub001@gmail.com</p>
                 <p>Telefon: +30 513 6408</p>
             </div>
-            <div class="social-links">
-                <a href="#" class="social-icon">Facebook</a>
-                <a href="#" class="social-icon">Twitter</a>
-                <a href="#" class="social-icon">Instagram</a>
-            </div>
         </div>
     </footer>
-    <script src="js.js"></script>
 </body>

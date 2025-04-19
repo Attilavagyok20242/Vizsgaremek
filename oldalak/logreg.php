@@ -39,13 +39,6 @@
                        <i class="bx bx-lock-alt"></i> 
                 </div>
                 <input type="submit" class="btn" onclick="atad()" placeholder="Regisztráció">
-                <p>Egyéb regisztrácós formák</p>
-                    <div class="social-icons">
-                        <a href="#"><i class="bx bxl-facebook"></i></a>
-                        <a href="#"><i class="bx bxl-twitter"></i></a>
-                        <a href="#"><i class="bx bxl-instagram"></i></a>
-                        <a href="#"><i class="bx bxl-google"></i></a>
-                    </div>
             </form>
         </div>
             <div class="toggle-box">

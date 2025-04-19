@@ -6,5 +6,8 @@ if (isset($_SESSION['userLoggedIN']) && $_SESSION['userLoggedIN'] === true) {
     $response["loggedIn"] = true;
     $response["username"] = $_SESSION['nev'] ?? "Ismeretlen";
 }
+
 echo json_encode($response);
 exit;
+?>
+
