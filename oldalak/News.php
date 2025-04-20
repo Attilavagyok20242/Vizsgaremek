@@ -1,6 +1,8 @@
 <?php
 
-$sql="SELECT id,hir_szoveg, hir_cim,datum FROM hirek ORDER BY datum DESC LIMIT 3";
+use Dom\Element;
+
+$sql="SELECT id, hir_szoveg, hir_cim, datum FROM hirek ORDER BY datum DESC LIMIT 3";
 $result=$conn->query($sql);
 
 if (mysqli_num_rows($result)>0) {
@@ -16,20 +18,39 @@ if (mysqli_num_rows($result)>0) {
             "datum" => $row["datum"]
         );
     }
-    $elso_id=$tomb[0]["id"];
-    $elso_hir=$tomb[0]["hir_szoveg"];
-    $elso_hir_cim=$tomb[0]["hir_cim"];
-    $elso_datum=$tomb[0]["datum"];
+    if (count($tomb)>0) {
+        $elso_id=$tomb[0]["id"];
+        $elso_hir=$tomb[0]["hir_szoveg"];
+        $elso_hir_cim=$tomb[0]["hir_cim"];
+        $elso_datum=$tomb[0]["datum"];
+    }
+    else{
+        $elso_id=0;
+    }
+    if(count($tomb)>1)
+    {
+        $masodik_id=$tomb[1]['id'];
+        $masodik_hir=$tomb[1]["hir_szoveg"];
+        $masodik_hir_cim=$tomb[1]["hir_cim"];
+        $masodik_datum=$tomb[1]["datum"];
+    }
+    else{
+        $masodik_id=0;
+    }
+    if(count($tomb)>2){
+        $harmadik_id=$tomb[2]['id'];
+        $harmadik_hir=$tomb[2]["hir_szoveg"];
+        $harmadik_hir_cim=$tomb[2]["hir_cim"];
+        $harmadik_datum=$tomb[2]["datum"];
+    }
+    else{
+        $harmadik_id=0;
+    }
+    
 
-    $masodik_id=$tomb[1]['id'];
-    $masodik_hir=$tomb[1]["hir_szoveg"];
-    $masodik_hir_cim=$tomb[1]["hir_cim"];
-    $masodik_datum=$tomb[1]["datum"];
+    
 
-    $harmadik_id=$tomb[2]['id'];
-    $harmadik_hir=$tomb[2]["hir_szoveg"];
-    $harmadik_hir_cim=$tomb[2]["hir_cim"];
-    $harmadik_datum=$tomb[2]["datum"];
+    
 }
 else{
     $elso_id=0;
