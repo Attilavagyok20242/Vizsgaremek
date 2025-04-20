@@ -21,7 +21,6 @@ document.addEventListener("DOMContentLoaded", function () {
         csevegesKapcsolo, csevegesDoboz, csevegesBezaras
     });
 
-    // Felhasználó bejelentkezés ellenőrzése
     fetch("felhasznalo_belepve")
         .then(res => res.json())
         .then(data => {
