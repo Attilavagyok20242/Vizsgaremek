@@ -25,6 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $_SESSION['email'] = $row['email'] ?? null;
                 $_SESSION['kod'] = $row['kod'] ?? null;
                 $_SESSION['userLoggedIN'] = true;
+                $_SESSION['Szerep']=$row['Szerep'];
       
 
                 $update = $conn->prepare("UPDATE felhasznalo SET elrontott_bejelenkezes = 0, aktív = 1 WHERE id = ?");

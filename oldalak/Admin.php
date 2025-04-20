@@ -15,15 +15,16 @@ $views = 0;
 session_start();
 require_once "../connection/connection.php";
 
-if (!isset($_SESSION['id'])) {
+if (!isset($_SESSION['Szerep'])==1) {
     http_response_code(403);
+    header("Location:/");
     exit("Nincs jogosultság.");
 }
 
 if (isset($_SESSION['views'])) {
     $views = $_SESSION['views'];
 }
-setcookie('views', $views, time() + (86400 * 30), "/"); // Set the cookie to expire in 30 days
+setcookie('views', $views, time() + (86400 * 30), "/"); 
 $id=0;
 $nev="";
 $jelszo="";

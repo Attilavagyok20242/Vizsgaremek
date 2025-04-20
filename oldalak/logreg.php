@@ -38,7 +38,7 @@
                     <input type="password" placeholder="Jelszó" name="Jelszo"required>
                        <i class="bx bx-lock-alt"></i> 
                 </div>
-                <input type="submit" class="btn" onclick="atad()" placeholder="Regisztráció">
+                <input type="submit" class="btn" onclick="atad()" placeholder="Regisztráció" value="Regisztráció">
             </form>
         </div>
             <div class="toggle-box">
