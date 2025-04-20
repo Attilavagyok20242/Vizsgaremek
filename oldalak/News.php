@@ -1,4 +1,5 @@
 <?php
+
 $sql="SELECT id, hir_szoveg, hir_cim, datum FROM hirek ORDER BY datum DESC LIMIT 3";
 $result=$conn->query($sql);
 

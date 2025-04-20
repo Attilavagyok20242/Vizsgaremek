@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 18, 2025 at 05:46 PM
+-- Generation Time: Apr 20, 2025 at 10:50 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -41,6 +41,32 @@ CREATE TABLE `bejelentesek` (
 
 INSERT INTO `bejelentesek` (`id`, `cim`, `leiras`, `felhasznalo_id`, `datum`) VALUES
 (1, 'Káromkodás', 'Ez a felhasználó káromkodott', 1, '2025-03-09 12:39:54');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chat_messages`
+--
+
+CREATE TABLE `chat_messages` (
+  `id` int(11) NOT NULL,
+  `felhasznalo_id` int(11) NOT NULL,
+  `uzenet` text NOT NULL,
+  `time` timestamp NOT NULL DEFAULT current_timestamp(),
+  `room` varchar(255) DEFAULT 'general'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `chat_messages`
+--
+
+INSERT INTO `chat_messages` (`id`, `felhasznalo_id`, `uzenet`, `time`, `room`) VALUES
+(1, 214, 'asd', '2025-04-19 20:26:43', 'general'),
+(2, 214, 'sad', '2025-04-19 20:26:48', 'general'),
+(3, 214, 'asd', '2025-04-19 20:31:59', 'general'),
+(4, 214, 'asd', '2025-04-19 20:39:46', 'general'),
+(5, 214, 'asd', '2025-04-19 20:44:02', 'general'),
+(6, 214, 'asd', '2025-04-19 21:07:55', 'general');
 
 -- --------------------------------------------------------
 
@@ -116,7 +142,8 @@ CREATE TABLE `felhasznalo` (
 INSERT INTO `felhasznalo` (`id`, `nev`, `jelszo`, `email`, `aktív`, `Szerep`, `megerositve`, `kod`, `datum`, `utolso_bejelentkezes`, `utoljara_hasznalt_ip`, `elrontott_bejelenkezes`, `profilkep`) VALUES
 (207, 'Szléj', '$2y$10$svqOUoF6BFd0Nrhq.tRekuFq.rKukD51Ulrose6gb7euyO33dvorG', 'ricsigyula6@gmail.com', 0, 1, 1, 5397, '2025-04-18', '2025-03-17 14:37:59', 'localhost', 1, 'Szléj_Arena.png'),
 (208, 'Ka', '$2y$10$oUo4Vn//bCS7vzce39umNe/NgxrguwGgtEtzOMgAykLsEh2Md0KaS', 'attila.hetes@gmail.com', 0, 1, 1, 4765, '2025-04-18', '2025-04-18 16:57:22', 'localhost', 0, 'Attila_Gladiator.jpg'),
-(214, 'asds', '$2y$10$uGHMtMIH83IjNSJMDL62tunA2tVyIMltNG8IvxSqqel1gGZOiMCSm', '72517552872@szily.hu', 1, 0, 1, 4427, '2025-04-18', NULL, NULL, 0, 'felh_ikon.png');
+(214, 'asds', '$2y$10$uGHMtMIH83IjNSJMDL62tunA2tVyIMltNG8IvxSqqel1gGZOiMCSm', '72517552872@szily.hu', 1, 0, 1, 4427, '2025-04-20', '2025-04-20 00:12:43', 'localhost', 0, 'asds_0c0d47ee-fb56-482d-a7e3-f84e3ded69e1.jpg'),
+(215, 'Attilas', '$2y$10$TsZNd1beO5XwKg7ISVRI..pCgMloxmcJnqwGBz2Ki8wmXnUy5v0l.', '725157552872@szily.hu', 1, 0, 0, 4687, '2025-04-19', '2025-04-19 23:36:15', 'localhost', 0, 'felh_ikon.png');
 
 --
 -- Triggers `felhasznalo`
@@ -324,7 +351,9 @@ CREATE TABLE `kommentek` (
 INSERT INTO `kommentek` (`id`, `szoveg`, `datum`, `felhasznalo_id`, `hir_id`) VALUES
 (61, 'Hewlo', '2025-04-13 19:16:19', 213, 7),
 (62, 'Howla', '2025-04-13 19:20:27', 212, 7),
-(63, 'Bugulu', '2025-04-13 19:21:37', 212, 7);
+(63, 'Bugulu', '2025-04-13 19:21:37', 212, 7),
+(0, 'das', '2025-04-18 18:05:44', 214, 0),
+(0, 'Szia', '2025-04-19 08:17:12', 214, 0);
 
 -- --------------------------------------------------------
 
@@ -335,14 +364,14 @@ INSERT INTO `kommentek` (`id`, `szoveg`, `datum`, `felhasznalo_id`, `hir_id`) VA
 CREATE TABLE `menu` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `slug` varchar(100) NOT NULL
+  `tombok` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `menu`
 --
 
-INSERT INTO `menu` (`id`, `name`, `slug`) VALUES
+INSERT INTO `menu` (`id`, `name`, `tombok`) VALUES
 (2, 'Erdekesseg', 'Erdekesseg'),
 (3, 'Profil', 'Profil'),
 (4, 'Szobak', 'Szobak'),
@@ -380,7 +409,7 @@ INSERT INTO `nev_elozmenyek` (`id`, `felhasznalo_id`, `old_nev`, `datum`) VALUES
 
 CREATE TABLE `pages` (
   `id` int(11) NOT NULL,
-  `slug` varchar(100) NOT NULL,
+  `tombok` varchar(100) NOT NULL,
   `title` varchar(100) NOT NULL,
   `content` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -389,9 +418,9 @@ CREATE TABLE `pages` (
 -- Dumping data for table `pages`
 --
 
-INSERT INTO `pages` (`id`, `slug`, `title`, `content`) VALUES
+INSERT INTO `pages` (`id`, `tombok`, `title`, `content`) VALUES
 (2, 'Erdekesseg', 'Erdekesseg', 'gladiatorinformaciok.php'),
-(3, 'Szobak', 'Szobak', 'szobak.php'),
+(3, 'Szobak', 'Szobak', 'chatszoba.php'),
 (7, 'Hírek', 'Hírek', 'News.php'),
 (8, 'Profil', 'Profil', 'felhasznaloi.php'),
 (10, 'Fooldal', 'Fooldal', 'fooldal.php'),
@@ -432,7 +461,8 @@ CREATE TABLE `uzenet_szalk` (
 
 INSERT INTO `uzenet_szalk` (`id`, `felhasznalo_id`, `admin_id`, `statusz`) VALUES
 (35, 208, NULL, ''),
-(36, 208, NULL, '');
+(36, 208, NULL, ''),
+(37, 214, NULL, '');
 
 --
 -- Indexes for dumped tables
@@ -444,6 +474,13 @@ INSERT INTO `uzenet_szalk` (`id`, `felhasznalo_id`, `admin_id`, `statusz`) VALUE
 ALTER TABLE `bejelentesek`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id` (`id`);
+
+--
+-- Indexes for table `chat_messages`
+--
+ALTER TABLE `chat_messages`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `felhasznalo_id` (`felhasznalo_id`);
 
 --
 -- Indexes for table `deleted_users`
@@ -485,7 +522,7 @@ ALTER TABLE `jelszo_elozmenyek`
 --
 ALTER TABLE `menu`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `slug` (`slug`);
+  ADD UNIQUE KEY `slug` (`tombok`);
 
 --
 -- Indexes for table `nev_elozmenyek`
@@ -499,7 +536,7 @@ ALTER TABLE `nev_elozmenyek`
 --
 ALTER TABLE `pages`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `slug` (`slug`);
+  ADD UNIQUE KEY `tombok` (`tombok`) USING BTREE;
 
 --
 -- Indexes for table `uzenetek`
@@ -528,6 +565,12 @@ ALTER TABLE `bejelentesek`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `chat_messages`
+--
+ALTER TABLE `chat_messages`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `email_elozmenyek`
 --
 ALTER TABLE `email_elozmenyek`
@@ -537,13 +580,13 @@ ALTER TABLE `email_elozmenyek`
 -- AUTO_INCREMENT for table `felhasznalo`
 --
 ALTER TABLE `felhasznalo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=215;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=216;
 
 --
 -- AUTO_INCREMENT for table `jelentesek`
 --
 ALTER TABLE `jelentesek`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT for table `jelszo_elozmenyek`
@@ -573,17 +616,23 @@ ALTER TABLE `pages`
 -- AUTO_INCREMENT for table `uzenetek`
 --
 ALTER TABLE `uzenetek`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=330;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=332;
 
 --
 -- AUTO_INCREMENT for table `uzenet_szalk`
 --
 ALTER TABLE `uzenet_szalk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `chat_messages`
+--
+ALTER TABLE `chat_messages`
+  ADD CONSTRAINT `chat_messages_ibfk_1` FOREIGN KEY (`felhasznalo_id`) REFERENCES `felhasznalo` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `email_elozmenyek`
