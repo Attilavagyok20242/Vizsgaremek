@@ -35,6 +35,26 @@ if(!isset($_SESSION['id']))
     exit();
 }
 ?>
+<?php
+session_start();
+require_once "connection/connection.php";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['megerosites'])) {
+    $felhasznaloId = $_SESSION['id']; 
+   $kod=$_SESSION["kod"];
+    if($_POST['megerosites']==$kod){
+        $stmt = $conn->prepare("UPDATE felhasznalo SET megerositve = 1 WHERE id = ?");
+        $stmt->bind_param("i", $felhasznaloId);
+    }
+    if ($stmt->execute()) {
+        echo "Megerősítő kód sikeresen frissítve.";
+    } else {
+        echo "Hiba történt a frissítés során.";
+    }
+    $stmt->close();
+    $conn->close();
+}
+?>
 <link rel="stylesheet" href="css/style2.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <section class="egesz">
@@ -52,13 +72,13 @@ if(!isset($_SESSION['id']))
         <p id="regdate">Regisztráció dátuma:<span class="adatok2"><?php if(isset($row['nev'])){print $row['datum'];} ?></span></p>
     </div>
 </section>
-<section class="megerositesfel">
+<div class="megerositesfel" id="megerosit">
     <button class="megerosites-gombs" onclick="megerosites()">Felhaszalo megerősítő kód kérése</button>
-    <form action="" method="post">
+    <form action="" method="post" >
         <input type="number" name="megerosites" class="number"  required>
         <button type="submit" class="kuldes">Küldés</button>
     </form>
-</section>
+</div>
     <div id="menusor">
         <div class="belsokeret">
             <button class="adatok" id="profilkep">Profilkép</button>

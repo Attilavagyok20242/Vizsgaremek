@@ -418,7 +418,7 @@ display: none;
     bottom: 20px;
     right: 20px;
     width: 300px;
-    height: 400px;
+    height: 420px;
     background-color: #000000;
     border: 1px solid #ccc;
     border-radius: 10px;
@@ -489,16 +489,17 @@ display: none;
     font-size: 14px;
     border-radius: 5px;
     border: 1px solid #ccc;
-    width: 100%;
+    width: 95%;
 }
 
 button#cseveges-kuldes {
-    padding: 10px;
+    padding: 5px;
     background-color: #4CAF50;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+
 }
 
 button#cseveges-kuldes:hover {
@@ -506,7 +507,6 @@ button#cseveges-kuldes:hover {
 }
 
 .valaszBevitel {
-    width: 100%;
     padding: 10px;
     font-size: 14px;
     border-radius: 5px;
@@ -537,4 +537,34 @@ button.valaszKuldes:hover {
 
 #cseveges-doboz.show {
     display: block;
+}
+.figyelmztetes {
+    color: #999;
+    font-size: 0.8em;
+    font-style: italic;
+    margin-top: 4px;
+}
+
+#jelentes-cim {
+    width: 90%;
+    max-width: 400px;
+    padding: 12px 15px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    color: #333;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#jelentes-cim::placeholder {
+    color: #888;
+    font-style: italic;
+}
+
+#jelentes-cim:focus {
+    border-color: #4A90E2;
+    box-shadow: 0 0 8px rgba(74, 144, 226, 0.5);
+    outline: none;
 }

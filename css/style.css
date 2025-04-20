@@ -318,12 +318,80 @@
     }
 }
 
-@media screen and (max-width: 678px) {
+@media screen and (max-width: 1024px) {
     .korhinta .lista .elem .tartalom {
-        padding-right: 0;
+        top: 30%;
+        font-size: 1rem;
     }
 
-    .korhinta .lista .elem .tartalom .cim {
-        font-size: 30px;
+    .korhinta .lista .elem .cim,
+    .korhinta .lista .elem .tema {
+        font-size: 6vw;
+    }
+
+    .elonezet .elem {
+        width: 90px;
+        height: 130px;
+    }
+
+    .nyilak {
+        bottom: 8%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .korhinta .lista .elem .tartalom {
+        margin-top: 150px;
+        left: 20%;
+        font-size: 0.87rem;
+    }
+
+    .korhinta .lista .elem .cim,
+    .korhinta .lista .elem .tema {
+        font-size: 7vw;
+    }
+
+    .korhinta .lista .elem .gombok {
+        grid-template-columns: 1fr;
+    }
+
+    .elonezet {
+        flex-direction: row;
+        gap: 5px;
+        bottom: 10px;
+    }
+
+    .elonezet .elem {
+        width: 80px;
+        height: 120px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .korhinta .lista .elem .tartalom {
+        top: 10%;
+        font-size: 0.85rem;
+    }
+
+    .korhinta .lista .elem .cim,
+    .korhinta .lista .elem .tema {
+        font-size: 7.6vw;
+    }
+
+    .nyilak button {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+
+    .elonezet {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+
+    .elonezet .elem {
+        width: 70px;
+        height: 100px;
     }
 }

@@ -1,90 +1,155 @@
-//ha rákattintok akkor eltüntettem a kártyáknak a div-ét, és megjelenítem a másikat
-$(document).ready(function () {
-    $("#uzemfal").click(function (e) {
-        $("#uzemtartalomkeret").show();
-        $("#segitsegtartalomkeret").hide();
-        
-    });
-    $("#segitseg").click(function (e) {
-        $("#uzemtartalomkeret").hide();
-        $("#segitsegtartalomkeret").show();
-    });
-});
-function Jelentesek()
-{
-    keret=document.getElementById("jelentesek");
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            const obj = JSON.parse(this.responseText);
-            for (let i = 0; i < obj.length; i++) {
-                keret.innerHTML+="<div class='jelentes'><p>"+obj[i].nev+"</p><p>"+obj[i].cim+"</p><p>"+obj[i].datum+"</p><button>Jóváhagyás</button></div>";
-            }
-        }
-    };
-    xhttp.open("GET", "assets/jelentes.php", true);
-    xhttp.send();
-}
-Jelentesek();
-        
-
 document.addEventListener("DOMContentLoaded", function () {
-    const kuldesGomb = document.getElementById("cseveges-kuldes"); // Csevegés küldés gomb
-    const uzenetBevitel = document.getElementById("cseveges-bevitel"); // Üzenet beírása
-    const uzenetDoboz = document.getElementById("cseveges-uzenetek"); // Üzenetek doboza
-    const csevegesKapcsolo = document.getElementById("cseveges-kapcsolo"); // Csevegés ikon
-    const csevegesDoboz = document.getElementById("cseveges-doboz"); // Csevegés panel
-    const csevegesBezaras = document.getElementById("cseveges-bezar"); // Csevegés bezárás gomb
-    let csevegesNyitva = false; // Állapot jelző, hogy a csevegés panel nyitva van-e
+    // === Menükapcsolók ===
+    const uzemBtn = document.getElementById("uzemfal");
+    const segitsegBtn = document.getElementById("segitseg");
+    const felhasznalokBtn = document.getElementById("felhasznalok");
 
-    uzenetDoboz.innerHTML = "";
+    const uzemTartalom = document.getElementById("uzemtartalomkeret");
+    const segitsegTartalom = document.getElementById("segitsegtartalomkeret");
+    const felhasznaloTorles = document.getElementById("felhasznalo_torles");
 
-    // Üzenetek betöltése
+    if (uzemBtn && segitsegBtn && felhasznalokBtn) {
+        uzemBtn.addEventListener("click", () => {
+            uzemTartalom.style.display = "block";
+            segitsegTartalom.style.display = "none";
+            felhasznaloTorles.style.display = "none";
+        });
+
+        segitsegBtn.addEventListener("click", () => {
+            uzemTartalom.style.display = "none";
+            segitsegTartalom.style.display = "block";
+            felhasznaloTorles.style.display = "none";
+        });
+
+        felhasznalokBtn.addEventListener("click", () => {
+            uzemTartalom.style.display = "none";
+            segitsegTartalom.style.display = "none";
+            felhasznaloTorles.style.display = "block";
+        });
+    }
+
+    // === Csevegés / Jelentések ===
+    const jelentesKeret = document.getElementById("jelentesek");
+    const kuldesGomb = document.getElementById("cseveges-kuldes");
+    const uzenetBevitel = document.getElementById("cseveges-bevitel");
+    const uzenetDoboz = document.getElementById("cseveges-uzenetek");
+    const csevegesKapcsolo = document.getElementById("cseveges-kapcsolo");
+    const csevegesDoboz = document.getElementById("cseveges-doboz");
+    const csevegesBezaras = document.getElementById("cseveges-bezar");
+
+    let csevegesNyitva = false;
+
     function uzenetekBetoltese() {
+        if (!uzenetDoboz) return;
+
         fetch("assets/uzenet_betolto.php")
-            .then((response) => response.json())
+            .then((res) => res.json())
             .then((data) => {
-               
                 uzenetDoboz.innerHTML = "";
 
+                if (!data.length) {
+                    uzenetDoboz.innerHTML = "<p class='nincs-uzenet'>Nincsenek üzenetek.</p>";
+                    return;
+                }
+
                 data.forEach((uzenet) => {
-                    const uzenetElem = document.createElement("div");
-                    uzenetElem.classList.add("cseveges-uzenet");
-                    uzenetElem.innerHTML = `<strong>${uzenet.felhasznalo}:</strong> ${uzenet.szoveg} <small>${uzenet.letrehozva}</small>`;
-                    uzenetDoboz.appendChild(uzenetElem);
+                    const elem = document.createElement("div");
+                    elem.className = "cseveges-uzenet";
+                    elem.innerHTML = `
+                        <strong>${uzenet.felhasznalo || "Admin"}:</strong> 
+                        ${uzenet.szoveg || "Nincs szöveg."}
+                        <small>${uzenet.letrehozva || "N/A"}</small>
+                    `;
+                    uzenetDoboz.appendChild(elem);
                 });
 
-                // Görgetés a legújabb üzenetre
                 uzenetDoboz.scrollTop = uzenetDoboz.scrollHeight;
             })
             .catch((err) => {
-                console.error("Hiba történt az üzenetek betöltésekor:", err);
-                alert("Hiba történt az üzenetek betöltésekor!");
+                console.error("Üzenet betöltési hiba:", err);
+                uzenetDoboz.innerHTML = "<p class='hiba-uzenet'>Nem sikerült betölteni az üzeneteket.</p>";
             });
     }
 
-    // A csevegés panel megnyitása és bezárása
-    csevegesKapcsolo.addEventListener("click", function () {
-        if (!csevegesNyitva) {
-            csevegesDoboz.style.display = "block"; 
-            uzenetekBetoltese(); 
-            csevegesNyitva = true; 
-        } else {
-            csevegesDoboz.style.display = "none"; 
-            csevegesNyitva = false; 
-        }
+    function Jelentesek() {
+        if (!jelentesKeret) return;
+
+        fetch("assets/jelentes.php")
+            .then((res) => res.json())
+            .then((obj) => {
+                jelentesKeret.innerHTML = "";
+
+                if (!obj.length) {
+                    jelentesKeret.innerHTML = "<p>Nincsenek új jelentések.</p>";
+                    return;
+                }
+
+                obj.forEach((jelentes) => {
+                    const div = document.createElement("div");
+                    div.className = "jelentes";
+                    div.innerHTML = `
+                        <p><strong>Név:</strong> ${jelentes.nev}</p>
+                        <p><strong>Cím:</strong> ${jelentes.cim}</p>
+                        <p><strong>Dátum:</strong> ${jelentes.datum}</p>
+                        <button class="Jovahagyas">Jóváhagyás</button>
+                        <button class="Lezaras">Jelentés lezárása</button>
+                    `;
+                    jelentesKeret.appendChild(div);
+
+                    div.querySelector(".Jovahagyas")?.addEventListener("click", () => {
+                        fetch("assets/jelentes_jovahagy.php", {
+                            method: "POST",
+                        })
+                        .then((r) => r.json())
+                        .then((d) => {
+                            alert(d.siker ? "Jóváhagyva." : "Hiba történt.");
+                            if (d.siker) {
+                                Jelentesek();
+                                csevegesKapcsolo?.click();
+                            }
+                        });
+                    });
+
+                    div.querySelector(".Lezaras")?.addEventListener("click", () => {
+                        fetch("assets/jelentes_lezarasa.php", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({})
+                        })
+                        .then((r) => r.json())
+                        .then((d) => {
+                            alert(d.siker ? "Lezárva." : "Hiba történt.");
+                            if (d.siker) Jelentesek();
+                        });
+                    });
+                });
+            })
+            .catch((err) => {
+                console.error("Jelentések betöltési hiba:", err);
+                jelentesKeret.innerHTML = "<p class='hiba'>Nem sikerült betölteni a jelentéseket.</p>";
+            });
+    }
+
+    Jelentesek();
+
+    // === Csevegés panel kezelés ===
+    if (csevegesKapcsolo && csevegesDoboz) {
+        csevegesKapcsolo.addEventListener("click", () => {
+            csevegesNyitva = !csevegesNyitva;
+            csevegesDoboz.style.display = csevegesNyitva ? "block" : "none";
+            if (csevegesNyitva) uzenetekBetoltese();
+        });
+    }
+
+    csevegesBezaras?.addEventListener("click", () => {
+        csevegesNyitva = false;
+        csevegesDoboz.style.display = "none";
     });
 
-    // A csevegés panel bezárása
-    csevegesBezaras.addEventListener("click", function () {
-        csevegesDoboz.style.display = "none"; 
-        csevegesNyitva = false; 
-    });
-
-    // Üzenet küldése
-    kuldesGomb.addEventListener("click", function () {
-        const uzenet = uzenetBevitel.value.trim();
-        if (uzenet === "") return; 
+    // === Üzenet küldés ===
+    kuldesGomb?.addEventListener("click", () => {
+        const uzenet = uzenetBevitel?.value.trim();
+        if (!uzenet) return;
 
         const formData = new FormData();
         formData.append("uzenet", uzenet);
@@ -96,23 +161,19 @@ document.addEventListener("DOMContentLoaded", function () {
         .then((res) => res.json())
         .then((res) => {
             if (res.siker) {
-                uzenetBevitel.value = ""; 
+                uzenetBevitel.value = "";
                 uzenetekBetoltese();
             } else {
-                alert("Hiba történt az üzenet küldésekor: " + (res.hiba || "Ismeretlen hiba"));
+                alert("Hiba: " + (res.hiba || "Ismeretlen"));
             }
         })
         .catch((err) => {
-            alert("Hiba történt az üzenet küldésekor: " + err.message);
+            alert("Hiba: " + err.message);
         });
     });
 
-    uzenetekBetoltese();
-
+    // === Automatikus frissítés ===
     setInterval(() => {
-        if (csevegesNyitva) {
-            uzenetekBetoltese();
-        }
+        if (csevegesNyitva) uzenetekBetoltese();
     }, 5000);
 });
-

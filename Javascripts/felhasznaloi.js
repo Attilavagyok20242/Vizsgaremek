@@ -24,6 +24,25 @@ $(document).ready(function () {
         $("#kartya1").hide("fast");
      });
 });
+function Megerositve()
+{
+  
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            console.log(this.responseText);
+            if (this.responseText==1) {
+                document.getElementById("megerosit").style.display="none";
+            }
+            else{
+                document.getElementById("megerosit").style.display="flex";
+            }
+          }
+        };
+        xhttp.open("GET", "assets/megerositve.php", true);
+        xhttp.send();
+}
+Megerositve()
 function JelVizsgal()
 {
     jelszo1=document.getElementById("ujjelszo");

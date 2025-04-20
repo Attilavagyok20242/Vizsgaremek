@@ -61,7 +61,7 @@ $result = mysqli_query($conn, $query);
      $row = mysqli_fetch_assoc($result);
      $felhasznalo = $row['felhasznalo'];
  }
-     $query = "SELECT COUNT(id) as kommentek FROM kommentek";
+     $query = "SELECT COUNT(id) as kommentek FROM uzenetek";
      $result = mysqli_query($conn, $query);
      if ($result) {
          $row = mysqli_fetch_assoc($result);
@@ -85,7 +85,6 @@ $result = mysqli_query($conn, $query);
   <title>Admin felület</title>
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 <link rel="stylesheet" href="css/administrator.css">
-  <script src="javascriptek/segitseg.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
@@ -97,7 +96,7 @@ $result = mysqli_query($conn, $query);
             <span class="icon">
               <i class='bx bx-home'></i>
             </span>
-            <span class="title">Gladiator Arena</span>
+            <span class="title">Arena Klub</span>
           </a>
         </li>
         <li id="uzemfal">
@@ -106,6 +105,14 @@ $result = mysqli_query($conn, $query);
               <i class='bx bx-cog'></i>
             </span>
             <span class="title">Üzemfal</span>
+          </a>
+        </li>
+        <li id="felhasznalok">
+          <a href="#">
+          <span class="icon">
+          <i class='bx bx-user-pin'></i>
+          </span>
+          <span class="title">Kezelés</span>
           </a>
         </li>
         <li id="segitseg">
@@ -117,16 +124,6 @@ $result = mysqli_query($conn, $query);
             <span class="title">Segítség</span>
           </a>
         </li>
-        <li>
-          <a href="#" id="beállítások">
-            <span class="icon">
-              <i class='bx bx-user'></i>
-           
-            </span>
-            <span class="title">Beállítások</span>
-          </a>
-        </li>
-        
         <li>
           <a href="/kilepesadmin">
             <span class="icon">
@@ -144,13 +141,7 @@ $result = mysqli_query($conn, $query);
         <div class="toggle">
           <i class='bx bx-menu'></i>
         </div>
-        <!--kereső-->
-        <div class="search">
-          <label >
-            <input type="text" placeholder="Itt tudsz keresni!">
-            <i class='bx bx-search'></i>
-          </label>
-        </div>
+        
         <!--felhaználó kép-->
         <div class="user">
           <img src="kepek/g.png" alt="">
@@ -196,7 +187,6 @@ $result = mysqli_query($conn, $query);
            </div>
         </div>
        </div>
-
         <div class="keret">
           <div class="bemenetek">
             <form action="" method="post">
@@ -207,13 +197,35 @@ $result = mysqli_query($conn, $query);
         </div>
     </div>
    </div>
-        <div id="segitsegtartalomkeret">
-              <div id="jelentesek">
-              </div>
-        </div>
+   <div id="segitsegtartalomkeret">
+    <h2>Beérkezett jelentések</h2>
+    <div id="jelentesek" class="jelentesek-container">
+    </div>
   </div>
+ 
+
+  <div class="chatresz">
+  <?php if (isset($_SESSION['id'])): ?>
+    <div id="cseveges-kapcsolo">Beszélgetés</div>
+    <div id="cseveges-doboz" style="display: none;">
+        <div id="cseveges-fejlec">Kérj segítséget <span id="cseveges-bezar">×</span></div>
+        <div id="cseveges-uzenetek"></div>
+        <div id="cseveges-beviteli-terulet">
+            <input type="text" id="cseveges-bevitel" placeholder="Írj egy üzenetet..." autocomplete="off" />
+            <button id="cseveges-kuldes">Küldés</button>
+        </div>
+    </div>
+    <div id="jelentesek"></div>
+  <?php endif; ?>
+</div>
+
+   
+<div id="felhasznalo_torles"></div>
+
+
+
   
-  
+  <script src="Javascripts/felhasznalotorles.js"></script>
    <script src="Javascripts/adminja.js"></script>
    <script>
       let toggle=document.querySelector('.toggle');
