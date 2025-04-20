@@ -33,8 +33,7 @@ $username = isset($_SESSION['nev']) ? $_SESSION['nev'] : 'Vendég';
     <div id="room-selection" class="room-container" style="display: <?php echo isset($_SESSION['nev']) ? 'block' : 'none'; ?>;">
         <h2>Válassz egy chatszobát!</h2>
         <button onclick="joinChat('Általános')">Általános</button>
-        <button onclick="joinChat('Gladiátor')">Gladiátor</button> 
-        <button onclick="joinChat('Játék')">Játék</button>
+      
     </div>
 
     <!-- Chatszoba -->

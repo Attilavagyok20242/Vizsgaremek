@@ -130,7 +130,7 @@ function Kepvaltoztat()
         formdata.append("image",profilkep);
         kep=document.getElementById("profil");
         $.ajax({
-            url: "keptolt",
+            url: "assets/keptolt.php",
             type: "POST",
             data: formdata,
             dataType: "multipart/form-data",

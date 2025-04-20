@@ -29,7 +29,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 megerosites.style.display = "block";
                 profils.style.display = "block";
                 szobak.style.display = "block";
-
                 fetch("felhasznalo_kod")
                     .then(res => res.json())
                     .then(data => {
@@ -37,11 +36,13 @@ document.addEventListener("DOMContentLoaded", function () {
                         if (data.megerosites == true) {
                             megerosites.style.display = "none";
                             element.style.display = "none";
+
                         }
                     })
                     .catch(error => console.error("Hiba a megerősítés lekérésekor:", error));
             } else {
                 megerosites.style.display = "none";
+                szobak.style.display="none";
             }
         })
         .catch(error => console.error("Hiba a bejelentkezés ellenőrzésekor:", error));

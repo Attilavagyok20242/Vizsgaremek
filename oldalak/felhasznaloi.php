@@ -24,7 +24,7 @@
                     }
                 }
             }
-            header("Location:http://arenaklub.loc/?page=Profil");
+            header("Location:?page=Profil");
             exit();
         }
         
